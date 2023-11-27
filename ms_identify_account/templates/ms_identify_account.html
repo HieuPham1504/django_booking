@@ -1,0 +1,30 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_login.css' %}">
+
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="identify_main">
+        <p class="sign" align="center">Xác nhận Email</p>
+        <form class="identify_form" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p class="verify_notice" align="center">Nhập thông tin email hoặc số điện thoại.</p>
+            <input class="un" id="email" name="email" type="email" placeholder="Email" aria-label="Email" required>
+            {% if message %}
+            <p class="{{message_class}}" align="center">{{message}}</p>
+            {% endif %}
+            <div class="identify_buttons">
+                <p class="cancel" align="center"><a href="/" style="color: white">Hủy</a></p>
+                <input class="submit" type="submit" value="Gửi"/>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

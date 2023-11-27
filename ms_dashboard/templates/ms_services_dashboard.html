@@ -1,0 +1,221 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_services_dashboard.css' %}">
+
+{% endblock %}
+
+{% block body %}
+
+<div class="services-container">
+    <div class="services-banner">
+        <img src="{% static 'images/ser_banner.jpg' %}" alt="Dich vu">
+    </div>
+
+</div>
+
+<div class="tknoithat-section">
+    <div class="header">
+        <h1>THIẾT KẾ NỘI THẤT</h1>
+    </div>
+    <div class="title">
+        <h2>GENETIC DESIGN</h2>
+    </div>
+    <div class="attribute-details">
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/color_picker_icon.png' %}" alt="Icon">
+            </div>
+            <h2>COLOR PICKER</h2>
+            <p class="attribute-title">(Màu sắc)</p>
+            <p class="attribute-description">May đo phổ hệ riêng của bạn</p>
+        </div>
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/diamon-icon.png' %}" alt="Icon">
+            </div>
+            <h2>TRANSCALAR DESIGN</h2>
+            <p class="attribute-title">(Phong cách)</p>
+            <p class="attribute-description">Thiết kế xuyên vô hướng, không lỗi thời</p>
+        </div>
+
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/leaf-icon.png' %}" alt="Icon">
+            </div>
+            <h2>COMBINE SPACE</h2>
+            <p class="attribute-title">(Tiện ích)</p>
+            <p class="attribute-description">Giao hòa song không gian nghỉ ngơi (Relax) và tái tạo (Rechange)</p>
+        </div>
+
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/multichoices_icon.png' %}" alt="Icon">
+            </div>
+            <h2>MULTICHOICE</h2>
+            <p class="attribute-title">(Công năng)</p>
+            <p class="attribute-description">Thoải mái lựa chọn sức chứa khác nhau từ tối thiểu tới tối đa cho ngôi
+                nhà</p>
+        </div>
+
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/cost_effecttive_icon.png' %}" alt="Icon">
+            </div>
+            <h2>COST-EFFECTIVE</h2>
+            <p class="attribute-title">(Hiệu quả)</p>
+            <p class="attribute-description">Cân đối chi phí đầu tư và vận hành để tối ưu hóa lợi nhuận</p>
+        </div>
+    </div>
+</div>
+
+<div class="tknoithat-section">
+    <div class="header">
+        <h1>THIẾT KẾ NỘI THẤT</h1>
+    </div>
+    <div class="title">
+        <h2>GENETIC DESIGN</h2>
+    </div>
+    <div class="attribute-details_1">
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/timer-icon.png' %}" alt="Icon">
+            </div>
+            <h2>TIẾN ĐỘ CHUẨN XÁC</h2>
+            <p class="attribute-description">Liên tục cập nhật tiến độ thi công, cam kết tặng ngay 8% GTHĐ nếu chậm tiến
+                độ thi công</p>
+        </div>
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/layer-icon.png' %}" alt="Icon">
+            </div>
+            <h2>VẬT LIỆU CHẤT LƯỢNG</h2>
+            <p class="attribute-description">Sử dụng 100% vật liệu có độ bền cao, chất lượng tốt, dễ dàng thay thế, lắp
+                đặt</p>
+        </div>
+
+        <div class="attribute-item">
+            <div class="img-icon">
+                <img class="icon" src="{% static 'images/currency-icon.png' %}" alt="Icon">
+            </div>
+            <h2>CHI PHÍ TỐI ƯU</h2>
+            <p class="attribute-description">Chi phí thi công được hạch toán kỹ lưỡng nằm tối ưu khoản đầu tư cho chủ
+                nhà</p>
+        </div>
+    </div>
+</div>
+
+<div class="qlvanhanh-section">
+    <div class="header">
+        <h1>QUẢN LÝ - VẬN HÀNH</h1>
+    </div>
+
+    <div class="vh-details">
+        <div class="vh-item">
+            <div class="background-image">
+                <img src="{% static 'images/vanhanh_1.jpg' %}" alt="Image">
+            </div>
+            <div class="item-description">
+                <h2>QUẢN LÝ TỪ A -> Z</h2>
+                <p>Quy trình trọn gói: Kiểm soát an ninh, giữ gìn vệ sinh, chăm sóc cảnh quan, nội thất, quản lý vận
+                    hành tối ưu…</p>
+            </div>
+        </div>
+
+        <div class="vh-item">
+            <div class="background-image">
+                <img src="{% static 'images/vanhanh_2.jpg' %}" alt="Image">
+            </div>
+            <div class="item-description">
+                <h2>LIÊN LẠC 24/7</h2>
+                <p>Sẵn sàng tiếp nhận ý kiến phản hồi & cung cấp dịch vụ bất cứ khi nào khách hàng có nhu cầu</p>
+            </div>
+        </div>
+
+        <div class="vh-item">
+            <div class="background-image">
+                <img src="{% static 'images/vanhanh_3.jpg' %}" alt="Image">
+            </div>
+            <div class="item-description">
+                <h2>QUẢN GIA ĐỊA PHƯƠNG</h2>
+                <p>Sử dụng quản gia địa phương cho phép các hoạt động vận hành trong trạng thái sẵn sàng & chu đáo</p>
+            </div>
+        </div>
+
+        <div class="vh-item">
+            <div class="background-image">
+                <img src="{% static 'images/vanhanh_4.jpg' %}" alt="Image">
+            </div>
+            <div class="item-description">
+                <h2>DỊCH VỤ ĐỊNH CHUẨN</h2>
+                <p>Thiết lập bộ tiêu chuẩn dịch vụ cho thương hiệu Mapstar từ: An ninh, vệ sinh, ứng xử, phục vụ…</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="khaithac-section">
+    <div class="header">
+        <h1>KHAI THÁC - KINH DOANH</h1>
+    </div>
+
+    <div class="khaithac-details">
+        <div class="detail khaithac-item-image">
+            <img src="{% static 'images/khaithac_1.jpg' %}" alt="Image">
+        </div>
+
+        <div class="detail khaithac-item-description">
+            <h2 class="header">BÁN HÀNG TỔNG LỰC</h2>
+            <ul class="detail-list">
+                <li>Hệ thống bán hàng phòng đa kênh trên các nền tảng: TAs, OTAs, Direct, Facebook, Fanpage,…</li>
+                <li>Xây dựng các gói combo lưu trú tiết kiệm, combo trọn gói cho nhóm gia đình, nhóm bạn,…</li>
+                <li>Xây dựng các chính sách chiết khấu/flash sales cho khách hàng</li>
+            </ul>
+        </div>
+
+        <div class="detail khaithac-item-description">
+            <h2 class="header">DỊCH VỤ ĐA NĂNG</h2>
+            <ul class="detail-list">
+                <li>Linh hoạt cung cấp các dịch vụ bổ trợ tăng trải nghiệm địa phương & tiện nghi cho khách hàng lưu
+                    trú: ẩm thực, giặt là, phương tiện di chuyển, vé du lịch/trải nghiệm,…
+                </li>
+                <li>Lan tỏa văn hóa địa phương, truyền thống tốt đẹp trong kỳ nghỉ của du khách
+                </li>
+            </ul>
+        </div>
+        <div class="detail khaithac-item-image">
+            <img src="{% static 'images/khaithac_2.jpg' %}" alt="Image">
+        </div>
+
+        <div class="detail khaithac-item-image">
+            <img src="{% static 'images/khaithac_3.jpg' %}" alt="Image">
+        </div>
+        <div class="detail khaithac-item-description">
+            <h2 class="header">ĐỊNH GIÁ LINH HOẠT</h2>
+            <ul class="detail-list">
+                <li>Chiến lược định giá dựa trên thời điểm, nhu cầu thị trường, đối thủ cạnh tranh nhằm tối ưu đa khả
+                    năng lấp đầy phòng
+                </li>
+            </ul>
+        </div>
+
+        <div class="detail khaithac-item-description">
+            <h2 class="header">TRUYỀN THÔNG ĐA KÊNH</h2>
+            <ul class="detail-list">
+                <li>Cộng hưởng lợi ích từ chiến dịch truyền thông phủ của chuỗi thương hiệu lưu trú MapStar trên toàn
+                    quốc
+                </li>
+                <li>Tiếp cận được tối đa & đa dạng tệp khách hàng trên toàn hệ thống bán hàng</li>
+                <li>Sáng tạo bộ tài liệu review & quảng cáo thường xuyên để tìm kiếm khách hàng tiềm năng
+                </li>
+            </ul>
+        </div>
+        <div class="detail khaithac-item-image">
+            <img src="{% static 'images/khaithac_4.jpg' %}" alt="Image">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,155 @@
+:root {
+    --font-bold: 600;
+    --p-padding: 4px;
+    --margin-bottom: 20px
+}
+
+input::placeholder {
+   text-align: start;
+    font-size: 16px;
+}
+
+.recruitment-container {
+    padding-top: var(--navbar-height);
+    background-color: #f3f6f8;
+}
+
+.recruitment-container img {
+    width: 100%;
+}
+
+.recruitment-content {
+    margin-top: var(--navbar-height);
+    margin-left: var(--margin-rl-width);
+    margin-right: var(--margin-rl-width);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+}
+
+.recruitment-content .filters {
+    width: 30%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.filters div.filter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.filters div.filter .rec-input {
+    font-size: 16px;
+    border: 1px solid #dedede;
+    outline: none;
+    padding: 4px;
+}
+
+div.filter .select-placeholder {
+    color: #cccccc;
+}
+
+.filters div.filter label {
+    font-size: 14px;
+    padding: 4px;
+}
+
+.filters .submit-button {
+    height: 28px;
+}
+
+.filters .submit-button .form-submit {
+    width: 100%;
+    height: 100%;
+    background-color: #5aaa77;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.recruitment-list {
+    width: 60%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.recruitment-list .header {
+    border-bottom: 1px solid #cccccc;
+}
+
+.recruitment-list h2 {
+    text-align: start;
+    font-weight: var(--font-bold);
+}
+
+.recruitment-item {
+    color: #606060;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.recruitment-item h3 {
+    text-align: start;
+    font-weight: var(--font-bold);
+}
+
+.recruitment-item .title-name {
+    text-decoration: none;
+    color: #606060;
+}
+
+.recruitment-item .info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recruitment-item .info .info-icon {
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info .info-description {
+    width: 70%;
+}
+
+.info-description .row-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info-description .row-2 div {
+    width: 30%;
+}
+
+.info-description h4 {
+    margin: 0;
+}
+
+.submit-recruitment {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border: 2px solid #5aaa77;
+    color: #5aaa77;
+    font-weight: var(--font-bold);
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.submit-recruitment > a.title-name {
+    color: #5aaa77;
+}

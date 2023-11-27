@@ -1,0 +1,126 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_property_detail.css' %}">
+<script src="{% static 'js/ms_property_detail.js' %}"></script>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="detail-container">
+    {% for slider_image in property_slider_images %}
+    <div class="mySlides fade">
+        <img src="{{slider_image.image.url}}">
+        <h1 class="image-title">{{slider_image.property_id.name}}</h1>
+    </div>
+    {% endfor %}
+
+    <div class="form-booking-container">
+        <form id="booking-form" class="booking-form" action="/booking/available_reservations" method="GET">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="locations">
+                <input class="location" id="location" name="location" type="text" placeholder="Chọn điểm đến"
+                       aria-label="Location" value="{{property_detail.name | upper}}" required readonly>
+                <input id="property-id" class="property-id" name="property-id" type="hidden"
+                       value="{{property_detail.id}}"/>
+            </div>
+            <input class="checkin js_date_picker" id="checkin" name="checkin" type="text" placeholder="Checkin"
+                   aria-label="Checkin" value="{{check_in}}"
+                   required readonly>
+            <input class="checkout js_date_picker" id="checkout" name="checkout" type="text" placeholder="Checkout"
+                   aria-label="Checkout" value="{{check_out}}" required readonly>
+            <input class="no_guest" id="no_guest" name="no_guest" type="number" placeholder="No Guest"
+                   aria-label="No Guest" value="{{no_guest}}">
+            <input class="submit" type="submit" value="Xem giá phòng"/>
+
+        </form>
+    </div>
+    <div class="booking-step">
+        {% if overnight_count %}
+        <div class="available-reservation">
+            <h1>AVAILABLE</h1>
+            <div class="ar-top">
+                <div class="left">
+                    <h3>{{property_detail.name}}</h3>
+                    <div class="detail">
+
+                    </div>
+                </div>
+                <div class="right">
+                    <p><span class="overnight-count">{{overnight_count}}</span> đêm, <span class="max-adults">{{property_detail.max_adults}} người lớn</span>
+                    </p>
+                    <p class="total-amount">
+                        <span id="total-amount">{{total_amount}}</span>
+                        <span class="fb-price-currency">₫</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="ar-bottom">
+                <div class="bottom-left">
+                    {% for property_condition in property_conditions %}
+                    <div class="property-conditions">
+                        <img class="condition-icon" src="{{property_condition.icon.url}}"/>
+                        <p>{{property_condition.title}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="bottom-right">
+                    <button class="booking-button" onClick="onClickBooking()">Chọn</button>
+                </div>
+            </div>
+
+        </div>
+        {% else %}
+        <div class="available-reservation"></div>
+        {% endif %}
+        <div id="extra-services">
+            <h1>EXTRA SERVICES</h1>
+            <div class="es-container">
+                {% for extra_service in extra_services %}
+                <div class="extra-service-item" data-service-id="{{extra_service.id}}">
+                    <div class="service-avt">
+                        <img class="es_avt" src="{{extra_service.image.url}}" alt="{{extra_service.name}}">
+                    </div>
+                    <div class="es-content">
+                        <h3>{{extra_service.name}}</h3>
+                        <p class="es-name">{{extra_service.description}}</p>
+                        <p class="es-price">
+                            <span>{{extra_service.price}}</span>
+                            <span class="fb-price-currency">₫</span>
+                        </p>
+                        <div class="add-service">
+                            <button class="add-service-button" onClick="onClickAddExtraServices()">Chọn</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="booking-action">
+                <button class="action-booking" onClick="onClickBookingPayment()">Đặt Phòng</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="detail-description">
+        <h1>INCLUDED BENEFITS <span class="dropdown-icon">&dtrif;</span></h1>
+        <div class="benefits-container">
+            {% for service in services %}
+            <div class="service-item">
+                <h2>{{service.name}}</h2>
+                <p>{{service.description | linebreaks }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

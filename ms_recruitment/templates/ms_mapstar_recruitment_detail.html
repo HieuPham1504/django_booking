@@ -1,0 +1,305 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_recruitment_detail.css' %}">
+<script src="{% static 'js/ms_recruitment_detail.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="recruitment-detail-container">
+    <div class="banner">
+        <img src="{% static 'images/recruitment_img.jpg' %}" alt="Banner">
+    </div>
+    <div class="recruitment-detail">
+        <div class="left">
+            <div class="header">
+                <h2>{{recruitment_detail.name}}</h2>
+            </div>
+            <div class="recruitment-item" data-recruitment-id="">
+                <div class="info">
+                    <div class="info-icon">
+                        <img src="{% static 'images/info_icon.png' %}" alt="Icon">
+                    </div>
+                    <div class="info-description">
+                        <div class="row-1">
+                            <h3>{{recruitment_detail.job.name}}</h3>
+                        </div>
+                        <div class="row-2">
+                            <div>
+                                <p>
+                                    <span>Lương: </span>
+                                    <span class="salary">{{recruitment_detail.salary|recruitment_calculate_price}}</span>
+                                </p>
+                                <p>
+                                    <span>Hạn: </span>
+                                    <span class="deadline">{{recruitment_detail.date_expire|recruitment_date_format}}</span>
+                                </p>
+                            </div>
+                            <div>
+                                <p>
+                                    <span>Địa điểm: </span>
+                                    <span class="province">{{recruitment_detail.province.name}}</span>
+                                </p>
+                                <p>
+                                    <span class="job-type">{{recruitment_detail.job_type|recruitment_job_type_selection}}</span>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-content">
+                <h2>{{recruitment_detail.name}}</h2>
+                <div class="info">
+                    <div class="info-icon">
+                        <img src="{% static 'images/info_icon.png' %}" alt="Icon">
+                    </div>
+                    <div class="item">
+                        <p>
+                            <span>Lương: </span>
+                            <span class="salary">{{recruitment_detail.salary|recruitment_calculate_price}}</span>
+                        </p>
+                        <p>
+                            <span>Hạn: </span>
+                            <span class="deadline">{{recruitment_detail.date_expire|recruitment_date_format}}</span>
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>
+                            <span>Địa điểm: </span>
+                            <span class="province">{{recruitment_detail.province.name}}</span>
+                        </p>
+                        <p>
+                            <span class="job-type">{{recruitment_detail.job_type|recruitment_job_type_selection}}</span>
+                        </p>
+                    </div>
+                    <div class="item">
+                        <button class="submit-recruitment" onClick="showApplicantPopup()">ỨNG TUYỂN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-content-detail">
+                <div class="detail-column">
+                    <div class="label">
+                        <p>Địa điểm làm việc:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.address}}</p>
+                    </div>
+                </div>
+                <div class="detail-column">
+                    <div class="label">
+                        <p>Ngành nghề:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.job.name}}</p>
+                    </div>
+                </div>
+
+                <div class="detail-column">
+                    <div class="label">
+                        <p>Cấp bậc:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.job.job_title.name}}</p>
+                    </div>
+                </div>
+
+                <div class="detail-column">
+                    <div class="label">
+                        <p>Giới tính:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.gender|recruitment_gender_selection}}</p>
+                    </div>
+                </div>
+
+                <div class="detail-column">
+                    <div class="label">
+                        <p>Kinh nghiệm:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.job_experience}}</p>
+                    </div>
+                </div>
+
+                <div class="job-description">
+                    <div class="label">
+                        <p>Mô tả công việc:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.job_description | linebreaks}}</p>
+                    </div>
+                </div>
+
+                <div class="job-requirement">
+                    <div class="label">
+                        <p>Yêu cầu ứng viên:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.applicant_requirement | linebreaks}}</p>
+                    </div>
+                </div>
+
+                <div class="job-compensation">
+                    <div class="label">
+                        <p>Quyền lợi được hưởng:</p>
+                    </div>
+                    <div class="value">
+                        <p>{{recruitment_detail.job_compensation | linebreaks}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-modal">
+        <div id='applicant-info-modal' class="applicant-info-modal">
+            <input type="hidden" id="recruitment-id" data-recruitment-id="{{recruitment_detail.id}}">
+            <div class="modal-header">
+                <h4>Bạn đang ứng tuyển vị trí Demo tuyển dụng</h4>
+                <div class="dismiss-icon">
+                    <img id="dismiss-icon" src="{% static 'images/reject.png' %}" alt="Dismiss">
+                </div>
+            </div>
+
+            <form id="applicant-modal-form" action="" method="POST">
+                <div class="model-field">
+                    <label for="job">Vị trí ứng tuyển</label>
+                    <select name="job" class="modal-field-item job" id="job" required>
+                        <option value=""></option>
+                        {% for job in jobs %}
+                        <option value="{{job.id}}">{{job.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="model-field">
+                    <label for="fullname">Họ và tên ứng viên</label>
+                    <input name="fullname" class="modal-field-item fullname" id="fullname" type="text" required>
+                </div>
+
+                <div class="model-field">
+                    <label for="birthday">Ngày sinh</label>
+                    <input class="modal-field-item birthday js_date_picker" id="birthday" name="birthday"
+                           type="text"
+                           aria-label="Ngày sinh"
+                           readonly required>
+                </div>
+
+                <div class="model-field">
+                    <label for="gender">Giới tính</label>
+                    <select name="gender" class="modal-field-item gender" id="gender" required>
+                        <option value=""></option>
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                        <option value="other">Khác</option>
+                    </select>
+                </div>
+
+                <div class="model-field">
+                    <label for="phone">Số điện thoại</label>
+                    <input name="phone" class="modal-field-item phone" id="phone" type="text" required>
+                </div>
+
+                <div class="model-field">
+                    <label for="email">Email cá nhân</label>
+                    <input name="email" class="modal-field-item email" id="email" type="email" required>
+                </div>
+
+                <div class="model-field">
+                    <label for="joining-date">Ngày có thể tiếp nhận công việc</label>
+                    <input class="modal-field-item joining-date js_date_picker" id="joining-date"
+                           name="joining-date"
+                           type="text"
+                           aria-label="Ngày có thể tiếp nhận công việc"
+                           readonly required>
+                </div>
+
+                <div class="model-field">
+                    <label for="certificate">Địa điểm làm việc mong muốn</label>
+                    <select name="province" class="modal-field-item province" id="province" required>
+                        <option value=""></option>
+                        {% for province in provinces %}
+                        <option value="{{province.code}}">{{province.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="model-field">
+                    <label for="certificate">Trình độ chuyên môn</label>
+                    <select name="certificate" class="modal-field-item certificate" id="certificate" required>
+                        <option value=""></option>
+                        {% for certificate in certificates %}
+                        <option value="{{certificate.code}}">{{certificate.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="model-field">
+                    <label for="certificate-subject">Chuyên ngành đào tạo</label>
+                    <input name="certificate-subject" class="modal-field-item certificate-subject"
+                           id="certificate-subject" type="text" required>
+                </div>
+
+                <div class="model-field">
+                    <label for="university-name">Trường đào tạo</label>
+                    <input name="university-name" class="modal-field-item university-name" id="university-name"
+                           type="text" required>
+                </div>
+
+                <div class="model-field">
+                    <label for="expected-salary">Mức lương mong muốn</label>
+                    <input name="expected-salary" class="modal-field-item expected-salary" id="expected-salary"
+                           type="number" required>
+                </div>
+
+                <div class="model-field">
+                    <label for="job-experience">Số năm kinh nghiệm làm việc</label>
+                    <select name="job-experience" class="modal-field-item job-experience" id="job-experience" required>
+                        <option value=""></option>
+                        {% for job_experience in job_experiences %}
+                        <option value="{{job_experience.code}}">{{job_experience.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="model-field">
+                    <label for="job-position">Kinh nghiệm làm việc (Chức danh - Tên công ty)</label>
+                    <input name="job-position" class="modal-field-item job-position" id="job-position"
+                           type="text" required>
+                </div>
+
+                <div class="model-field">
+                    <label for="social-media">Bạn biết thông tin từ đâu</label>
+                    <select name="social-media" class="modal-field-item social-media" id="social-media" required>
+                        <option value=""></option>
+                        {% for social_media in social_medias %}
+                        <option value="{{social_media.code}}">{{social_media.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="model-field">
+                    <label for="cv-file">Tải CV</label>
+                    <input name="cv-file" class="modal-field-item cv-file" id="cv-file"
+                           type="file" required>
+                </div>
+
+
+                <div class="modal-submit-button">
+                    <input id="modal-submit-button" type="submit" value="NỘP HỒ SƠ">
+                    <p id="success-message">Cảm ơn bạn đã ứng tuyển</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

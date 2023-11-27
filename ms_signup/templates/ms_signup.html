@@ -1,0 +1,45 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_login.css' %}">
+
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="sign_up_main">
+        <div class="tab-content">
+            <div id="signup">
+                <h1 class="sign" align="center">Đăng ký</h1>
+
+                <form class="form1" action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+<!--                    <input class="un" id="fname" name="fname" type="text" placeholder="Họ"-->
+<!--                           aria-label="First name"-->
+<!--                           required>-->
+                    <input class="un" id="fullname" name="fullname" type="text" placeholder="Họ và tên" aria-label="Last name"
+                           required>
+                    <input class="un" id="email" name="email" type="email" placeholder="Email" aria-label="Email"
+                           required>
+                    <input class="un" id="phone" name="phone" type="text" placeholder="Số điện thoại" aria-label="Phone"
+                           required>
+                    <input class="pass" id="password" name="password" type="password" placeholder="Mật khẩu"
+                           aria-label="Password" required>
+                    <div class="signin-button">
+                        <input class="submit" type="submit" value="Đăng ký"/>
+                    </div>
+                    <p class="forgot" align="center"><a href="/login">Đăng nhập</a></p>
+                    {% if message %}
+                    <p class="success_message" align="center">{{message}}</p>
+                    {% endif %}
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

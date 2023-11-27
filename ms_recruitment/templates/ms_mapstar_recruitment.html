@@ -1,0 +1,103 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_recruitment.css' %}">
+<script src="{% static 'js/ms_recruitment.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="recruitment-container">
+    <div class="banner">
+        <img src="{% static 'images/recruitment_img.jpg' %}" alt="Banner">
+    </div>
+
+    <div class="recruitment-content">
+        <div class="filters">
+            <div class="filter-form">
+                <form id="filters" action="" method="GET">
+                    <div class="filter">
+                        <label for="title">Từ khóa tìm kiếm</label>
+                        <input type="text" class="rec-input title" id="title" name="title"
+                               aria-required="true"
+                               aria-invalid="false" placeholder="Nhập từ khóa" required>
+                    </div>
+                    <div class="filter">
+                        <label for="province">Địa điểm</label>
+                        <select name="province" class="rec-input" id="province" required>
+                            <option value=""></option>
+                            {% for province in provinces %}
+                            <option value="{{province.code}}">{{province.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="province">Ngành nghề</label>
+                        <select name="province" class="rec-input" id="job" required>
+                            <option value=""></option>
+                            {% for job in jobs %}
+                            <option value="{{job.code}}">{{job.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="submit-button">
+                        <input class="form-submit" type="submit" value="Tìm kiếm">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="recruitment-list">
+            <div class="header">
+                <h2>CƠ HỘI NGHỀ NGHIỆP</h2>
+            </div>
+            {% for recruitment in recruitments %}
+            <div class="recruitment-item" data-recruitment-id="{{recruitment.id}}">
+                <div class="title">
+                    <h3><a class="title-name" href="/mapstar-recruitments/{{recruitment.id}}">{{recruitment.name}}</a></h3>
+                </div>
+                <div class="info">
+                    <div class="info-icon">
+                        <img src="{% static 'images/info_icon.png' %}" alt="Icon">
+                    </div>
+                    <div class="info-description">
+                        <div class="row-1">
+                            <h4>{{recruitment.job.name}}</h4>
+                        </div>
+                        <div class="row-2">
+                            <div>
+                                <p>
+                                    <span>Lương: </span>
+                                    <span class="salary">{{ recruitment.salary|recruitment_calculate_price }}</span>
+                                </p>
+                                <p>
+                                    <span>Hạn: </span>
+                                    <span class="deadline">{{recruitment.date_expire|recruitment_date_format}}</span>
+                                </p>
+                            </div>
+                            <div>
+                                <p>
+                                    <span>Địa điểm: </span>
+                                    <span class="province">{{recruitment.province.name}}</span>
+                                </p>
+                                <p>
+                                    <span>{{recruitment.job_type|recruitment_job_type_selection}}</span>
+                                    <span class="job-type"></span>
+                                </p>
+                            </div>
+                            <div>
+                                <button class="submit-recruitment"><a class="title-name" href="/mapstar-recruitments/{{recruitment.id}}">ỨNG TUYỂN</a></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

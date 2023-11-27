@@ -1,0 +1,159 @@
+:root {
+    --navbar-height: 60px;
+    --title-color: #FAA760;
+    --margin-rl-width: 120px;
+    --border-radius: 8px
+}
+
+.confirmation-body {
+    padding-top: var(--navbar-height);
+    margin-left: var(--margin-rl-width);
+    margin-right: var(--margin-rl-width);
+}
+
+.booking-confirmation-information {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--navbar-height);
+    margin-bottom: var(--navbar-height);
+}
+
+.booking-information {
+    width: 36%;
+    border: 1px solid #cccccc;
+    padding: 20px;
+}
+
+.booking-information h2, .booking-information h3 {
+    text-align: start;
+}
+
+.extra-services {
+    border-bottom: 2px solid #000000;
+}
+
+.total-fee .fees-detail {
+    display: flex;
+    font-size: 14px;
+}
+
+.fees-detail-label {
+    width: 20%;
+}
+
+.total-amount .total-amount-value {
+    text-align: end;
+}
+
+.extra-service-item > h3 {
+    margin: 0;
+}
+
+.total-price {
+    text-align: end;
+}
+
+.total-price > h2 {
+    text-align: end !important;
+}
+
+
+.customer-information {
+    width: 60%;
+    border: 1px solid #cccccc;
+}
+
+.customer-information-form {
+    padding: 20px;
+}
+
+.customer-information-form h2 {
+    text-align: start;
+}
+
+#customer-detail > .customer-form-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.customer-detail input.input {
+    width: 100%;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    padding: 4px;
+    margin-bottom: 12px;
+    outline: none;
+}
+
+.customer-detail #comment {
+    width: 100%;
+    height: 64px;
+    box-sizing: border-box;
+    resize: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 4px;
+    outline: none;
+}
+
+.customer-detail #payment_method {
+    width: 50%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    padding: 4px;
+    margin-bottom: 12px;
+    outline: none;
+}
+
+.customer-form-input .cfi-left {
+    width: 48%;
+}
+
+.customer-form-input .cfi-right {
+    width: 48%;
+}
+
+.confirmation-policy {
+    display: flex;
+}
+
+input#confirmation-policy {
+    width: 20px;
+    margin-right: 10px;
+    accent-color: #000000;
+}
+
+.confirm-booking {
+    height: 52px;
+    display: flex;
+    justify-content: end;
+}
+
+.confirm-booking-button {
+    border-radius: var(--border-radius);
+    background-color: #cccccc;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.confirm-booking-button:hover {
+    animation: 0.4s linear booking-button-animation;
+    animation-fill-mode: forwards;
+}
+
+@keyframes booking-button-animation {
+    from {
+        background-color: #ccc;
+        color: black;
+    }
+    to {
+        background-color: var(--title-color);
+        color: #ffffff;
+    }
+}
+

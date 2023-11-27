@@ -1,0 +1,39 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_login.css' %}">
+
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+
+    <div class="main">
+        <p class="sign" align="center">Đăng nhập</p>
+        <form class="loginform" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="un" id="username" name="username" type="text" placeholder="Tên tài khoản" aria-label="Username"
+                   required>
+            <input class="pass" id="password" name="password" type="password" placeholder="Mật khẩu"
+                   aria-label="Password"
+                   required>
+            {% if wrong_account %}
+            <p class="authenticate_warning" align="center">Tên đăng nhập hoặc mật khẩu không đúng.</p>
+            {% endif %}
+            <div class="signin-button">
+                <input class="submit" type="submit" value="Đăng nhập"/>
+            </div>
+
+            <div class="identify_buttons">
+                <p class="forgot" align="center"><a href="/signup">Đăng ký</a></p>
+                <!--            <p class="forgot">|</p>-->
+                <p class="forgot" align="center"><a href="/identify">Quên mật khẩu?</a></p>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

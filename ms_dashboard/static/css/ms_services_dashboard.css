@@ -1,0 +1,124 @@
+:root {
+    --margin-bottom: 20px;
+    --font-bold: 600
+}
+
+.services-container {
+    padding-top: var(--navbar-height);
+    font-family: "Roboto", Sans-serif;
+}
+
+.services-banner > img {
+    width: 100%;
+}
+
+.tknoithat-section {
+    margin-bottom: var(--margin-bottom);
+}
+
+.tknoithat-section h2 {
+    font-weight: var(--font-bold);
+}
+
+.header > h1 {
+    font-size: 38px;
+    font-weight: var(--font-bold);
+    padding-top: var(--margin-bottom);
+}
+
+.attribute-details {
+    display: flex;
+    margin-left: var(--margin-rl-width);
+    margin-right: var(--margin-rl-width);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #cccccc;
+}
+
+.attribute-details_1 {
+    display: flex;
+    margin-left: var(--margin-rl-width);
+    margin-right: var(--margin-rl-width);
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.attribute-item {
+    width: 18%;
+}
+
+.attribute-item .img-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.attribute-item > .attribute-title {
+    text-align: center;
+}
+
+.attribute-item > .attribute-description {
+    text-align: center;
+}
+
+.qlvanhanh-section {
+    background-image: url(../images/vanhanh_bgimg.jpg);
+    margin-bottom: var(--margin-bottom);
+}
+
+.qlvanhanh-section h2 {
+    font-weight: var(--font-bold);
+}
+
+.vh-details {
+    margin-left: var(--margin-rl-width);
+    margin-right: var(--margin-rl-width);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.vh-details .vh-item {
+    width: 48%;
+    position: relative;
+    margin-bottom: var(--margin-bottom);
+}
+
+.vh-item img {
+    width: 100%;
+    border-radius: 20px
+}
+
+.vh-item .item-description {
+    position: absolute;
+    bottom: 60px;
+    padding: 0 var(--margin-bottom);
+}
+
+.khaithac-section {
+    margin-bottom: var(--margin-bottom);
+    margin: 0 var(--margin-rl-width) var(--margin-bottom) var(--margin-rl-width);
+}
+
+.khaithac-section h2 {
+    font-weight: var(--font-bold);
+}
+
+.khaithac-details {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.khaithac-details .detail {
+    width: 50%;
+}
+
+.khaithac-item-image > img {
+    width: 100%;
+}
+
+.khaithac-item-description li {
+    margin-bottom: var(--margin-bottom);
+    line-height: 1.5;
+}

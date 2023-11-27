@@ -1,0 +1,91 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_mapstar_app.css' %}">
+
+{% endblock %}
+
+{% block body %}
+
+<div class="app-container">
+    <div class="app-banner">
+        <img src="{% static 'images/app_mapstar/app-banner.jpg' %}" alt="App Image">
+    </div>
+
+    <div class="app-mapstar-instruction">
+        <h1>ỨNG DỤNG MAPSTAR</h1>
+        <div class="instruction-video">
+            <iframe width="930" height="523" src="https://www.youtube.com/embed/LfPxrZYPJdc"
+                    title="Giới thiệu App MapStar dành cho chủ nhà" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            <p>Ứng dụng nền tảng công nghệ để Quản lý hiệu quả Bất động sản</p>
+        </div>
+    </div>
+
+    <div class="app-instruction-detail">
+        <h1>MAPSTAR APP DÀNH CHO CHỦ NHÀ</h1>
+        <div class="images">
+            <div class="image-item">
+                <img src="{% static 'images/app_mapstar/img_1.jpg' %}" alt="Image">
+                <div class="content-bottom">
+                    <p>Quản lý toàn bộ danh mục bất động sản đang thi công & khai thác</p>
+                </div>
+            </div>
+
+            <div class="image-item">
+                <div class="content-top">
+                    <p>Nhận báo cáo & hình ảnh tiến độ thi công nội thất thường xuyên</p>
+                </div>
+                <img src="{% static 'images/app_mapstar/app_img_2.jpg' %}" alt="Image">
+            </div>
+
+            <div class="image-item">
+                <img src="{% static 'images/app_mapstar/app_img_3.jpg' %}" alt="Image">
+                <div class="content-bottom">
+                    <p>Linh hoạt kiểm soát các hoạt động quản lý vận hành từ xa</p>
+                </div>
+            </div>
+
+            <div class="image-item">
+                <div class="content-top">
+                    <p>Theo dõi báo cáo doanh thu & lợi nhuận minh bạch</p>
+                </div>
+                <img src="{% static 'images/app_mapstar/app_img_4.jpg' %}" alt="Image">
+            </div>
+
+            <div class="image-item">
+                <img src="{% static 'images/app_mapstar/app_img_5.jpg' %}" alt="Image">
+                <div class="content-bottom">
+                    <p>Theo dõi đánh giá & review của khách hàng trong trải nghiệm lưu trú</p>
+                </div>
+            </div>
+
+            <div class="image-item">
+                <div class="content-top">
+                    <p>Theo dõi tổng lượt giữ chỗ đêm nghỉ & đánh giá hiệu quả khai thác kinh doanh trực quan</p>
+                </div>
+                <img src="{% static 'images/app_mapstar/app_img_6.jpg' %}" alt="Image">
+            </div>
+
+            <div class="image-item">
+                <img src="{% static 'images/app_mapstar/app_img_7.jpg' %}" alt="Image">
+                <div class="content-bottom">
+                    <p>Quản lý số lượng & thực hiện đặt đêm nghỉ miễn phí của chủ sở hữu trên ứng dụng</p>
+                </div>
+            </div>
+
+            <div class="image-item">
+                <div class="content-top">
+                    <p>Kết nối liên lạc trực tiếp với quản gia & đội ngũ quản lý vận hành tại địa phương</p>
+                </div>
+                <img src="{% static 'images/app_mapstar/app_img_8.jpg' %}" alt="Image">
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

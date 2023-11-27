@@ -1,0 +1,119 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<script src="{% static 'js/ms_dashboard.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="slideshow-container">
+
+    <div class="mySlides fade">
+        <img src="{% static 'images/banner-2.jpg' %}" style="width:100%">
+    </div>
+
+<!--    <div class="mySlides fade">-->
+<!--        <img src="{% static 'images/img_snow_wide.jpg' %}" style="width:100%">-->
+<!--    </div>-->
+
+    <div class="form-booking-container">
+        <form id="booking-form" class="booking-form" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="locations">
+                <ul class="location-suggest">
+                    {% for property in properties %}
+                    <li class="location-item" data-location-id="{{property.id}}">{{property.name}}</li>
+                    {% endfor %}
+                </ul>
+                <input class="location" id="location" name="location" type="text" placeholder="Chọn điểm đến"
+                       aria-label="Location" required readonly>
+                <input id="property-id" type="hidden"/>
+            </div>
+            <input class="checkin js_date_picker" id="checkin" name="checkin" type="text" placeholder="Checkin"
+                   aria-label="Checkin"
+                   readonly>
+            <input class="checkout js_date_picker" id="checkout" name="checkout" type="text" placeholder="Checkout"
+                   aria-label="Checkout" readonly>
+            <input class="no_guest" id="no_guest" name="no_guest" type="number" placeholder="No Guest"
+                   aria-label="No Guest">
+            <input class="submit" type="submit" value="Xem giá phòng"/>
+
+        </form>
+    </div>
+
+    <section class="section-intro" id="intro">
+        <div class="intro-content">
+            <h1>Chào mừng đến với Mapstar</h1>
+            <p>Vì nắm bắt cơ hội phát triển đầy tiềm năng của thị trường du lịch,
+                chúng tôi mang lại tích cực cho cộng đồng địa phương,
+                cho sự phát triển chung của thị trường bất động sản, nghỉ dưỡng.</p>
+        </div>
+    </section>
+
+    <div class="special-places-slider">
+        <h2 class="slider-title">Khám phá các điểm đặc biệt</h2>
+        <div class="slider-container">
+            <ul id="item-container">
+                <div class="btns" id="previous">
+                    <img src="{% static 'images/arrow_l.png' %}"/>
+                </div>
+                {% for destination in destinations %}
+                {% if forloop.counter < 4 %}
+                <li class="slider-item-active" data-destination-id="{{destination.id}}">
+                    <div>
+                        <img class="slider-image" src="{{destination.background.url}}" alt="Slider">
+                        <div class="item-content">
+                            <h3>{{destination.name}}</h3>
+                            <p class="title">{{destination.description}}</p>
+                        </div>
+                    </div>
+                </li>
+                {% else %}
+                <li class="slider-item"  data-destination-id="{{destination.id}}">
+                    <div>
+                        <img class="slider-image" src="{{destination.background.url}}" alt="Slider">
+                        <div class="item-content">
+                            <h3>{{destination.name}}</h3>
+                            <p class="title">{{destination.description}}</p>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+                <div class="btns" id="next">
+                    <img src="{% static 'images/arrow_r.png' %}"/>
+                </div>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="box-section">
+        <h2 class="box-section-title">Tại sao nên lựa chọn Mapstar</h2>
+        <div class="box-section-container">
+            <div class="btns">
+                <img src="{% static 'images/arrow_r.png' %}"/>
+            </div>
+            <div class="box-section-image">
+                <img src="{% static 'images/tamnhin_1.jpg' %}" alt="Image">
+            </div>
+
+            <div class="box-section-image">
+                <img src="{% static 'images/tamnhin_2.jpg' %}" alt="Image">
+            </div>
+
+            <div class="box-section-image">
+                <img src="{% static 'images/tamnhin_3.jpg' %}" alt="Image">
+            </div>
+
+            <div class="btns">
+                <img src="{% static 'images/arrow_r.png' %}"/>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

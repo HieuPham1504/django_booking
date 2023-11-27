@@ -1,0 +1,70 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_applicant.css' %}">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+
+<div class="container applicant-container">
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="position-relative card table-nowrap table-card">
+                <div class="card-header align-items-center">
+                    <h5 class="mb-0">Thông tin ứng viên</h5>
+<!--                    <p class="mb-0 small text-muted">1 Pending</p>-->
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="small text-uppercase bg-body text-muted">
+                        <tr>
+                            <th>Tên</th>
+                            <th>Vị trí ứng tuyển</th>
+                            <th>Cấp bậc</th>
+                            <th>Kinh nghiệm</th>
+                            <th>Mức lương mong muốn</th>
+                            <th>Ngày có thể tiếp nhận công việc</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for applicant in applicants %}
+                        <tr class="align-middle">
+                            <td>{{applicant.fullname}}</td>
+                            <td>{{applicant.job.name}}</td>
+                            <td>{{applicant.job.job_title.name}}</td>
+                            <td>{{applicant.job_experience.name}}</td>
+                            <td>{{applicant.expected_salary|applicant_calculate_price}}</td>
+                            <td>{{applicant.joining_date|applicant_date_format}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="pagination-container">
+        <div class="pagination_rounded">
+            <ul>
+                <li>
+                    <a href="/applicants?page={{previous_page}}" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a>
+                </li>
+                {% for page in page_range %}
+                    {% if current_page == page %}
+                    <li><a class="active_page" href="/applicants?page={{page}}">{{page}}</a></li>
+                    {% else %}
+                    <li><a href="/applicants?page={{page}}">{{page}}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li><a href="/applicants?page={{next_page}}" class="next"> Next <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

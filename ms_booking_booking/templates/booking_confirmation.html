@@ -1,0 +1,120 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_booking_confirmation.css' %}">
+<script src="{% static 'js/booking.js' %}"></script>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="confirmation-body">
+    <div class="booking-confirmation-information">
+        <input id="property-id" type="hidden" value="{{property.id}}">
+        <div class="booking-information">
+            <div class="property-title">
+                <h2>{{property.name}}</h2>
+                {% if property.address %}
+                <h3>{{property.address}}</h3>
+                {% else %}
+                <h3></h3>
+                {% endif %}
+            </div>
+            <div class="total-fee">
+                <div class="fees-detail">
+                    <div class="fees-detail-label">
+                        <p class="checkin-label">CHECKIN</p>
+                        <p class="checkout-label">CHECKOUT</p>
+                    </div>
+                    <div class="fees-detail-value">
+                        <p id="checkin-value">{{check_in}}</p>
+                        <p id="checkout-value">{{check_out}}</p>
+                    </div>
+                </div>
+                <div class="total-amount">
+                    <h2 class="total-amount-value">
+                        <span class="total-amount-value">{{total_amount}}</span>
+                        <span class="fb-price-currency">₫</span>
+                    </h2>
+                </div>
+                <div class="extra-services">
+                    {% for extra_service in extra_services %}
+                    <div class="extra-service-item" data-extra-service-id="{{extra_service.id}}">
+                        <h3>Extra: {{extra_service.name}}</h3>
+                        <div class="fees-detail">
+                            <div class="fees-detail-label">
+                                <p class="checkin-label">Ngày</p>
+                            </div>
+                            <div class="fees-detail-value">
+                                <p class="due-date"><span>{{check_in}}</span>-<span id="check-out-date-count">{{check_out_date_count_str}}</span></p>
+                            </div>
+                        </div>
+                        <div class="total-amount">
+                            <h2 class="total-amount-value">
+                                <span class="total-amount-value">{{ extra_service.price|extra_service_calculate_price:date_diff }}</span>
+                                <span class="fb-price-currency">₫</span>
+                            </h2>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            <div class="total-price">
+                <p class="title">Tổng tiền</p>
+                <h2 class="total-price-value">
+                    <span id="total-price-val">{{total_price_format}}</span>
+                    <span class="fb-price-currency">₫</span>
+                </h2>
+            </div>
+        </div>
+        <div class="customer-information">
+            <div class="customer-information-form">
+                <div class="customer-detail">
+                    <form id="customer-detail" action="" method="POST">
+                        <h2>THÔNG TIN KHÁCH HÀNG</h2>
+                        <div class="customer-form-input">
+                            <div class="cfi-left">
+                                <label for="name">Họ và tên:</label><br>
+                                <input class="input" type="text" id="name" name="name" required><br>
+                                <label for="country">Quốc tịch:</label><br>
+                                <input class="input" type="text" id="country" name="country" required><br>
+                            </div>
+                            <div class="cfi-right">
+                                <label for="email">Email:</label><br>
+                                <input class="input" type="email" id="email" name="email" required><br>
+                                <label for="phone">Số điện thoại:</label><br>
+                                <input class="input" type="text" id="phone" name="phone" required><br>
+                            </div>
+                        </div>
+                        <label for="comment">Yêu cầu thêm:</label><br>
+                        <textarea type="text" id="comment" name="comment"></textarea>
+
+                        <h2>PHƯƠNG THỨC THANH TOÁN</h2>
+                        <label for="payment_method">Loại thanh toán:</label><br>
+                        <select name="payment_method" id="payment_method" required>
+                            {% for payment_method in active_payment_methods %}
+                            <option value="{{payment_method.code}}">{{payment_method.name}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <div class="confirmation-policy">
+                            <input id="confirmation-policy" type="checkbox" required/>
+                            <p class="policy-detail">Tôi đã đọc và đồng ý với <a href="">Điều khoản của Mapstar</a></p>
+                        </div>
+                    </form>
+                    <div class="confirm-booking">
+                        <button class="confirm-booking-button">
+                            Xác nhận đặt phòng
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
