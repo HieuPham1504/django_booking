@@ -1,0 +1,82 @@
+<div class="bs-payment-confirmation-container">
+    <div class="pcc-info">
+        <input id="final-pay" type="hidden" value="{{ final_pay }}">
+        <form action="" method="POST" id="pcc-form">
+            {% csrf_token %}
+            <div class="pcc-input fullname">
+                <label for="fullname">Họ tên <span class="required-icon">(*)</span></label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+
+            <div class="pcc-input email">
+                <label for="email">Email <span class="required-icon">(*)</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="pcc-input phone">
+                <label for="phone">Số điện thoại <span class="required-icon">(*)</span></label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+
+            <div class="pcc-input customer-request">
+                <label for="customer-request">Ghi chú (Tùy chọn)</label>
+                <textarea type="text" id="customer-request" name="customer-request"></textarea>
+            </div>
+
+        </form>
+        <div class="payment-method-section">
+            <h3>Thanh toán</h3>
+            <div id="qr-code-img">
+                <img src="{{ payment_methods | bs_get_qr_code_image_url }}" alt="QR Code">
+            </div>
+            <div class="payment-methods">
+                {% for payment_method in payment_methods %}
+                    <div class="pm-item">
+                        <div class="pm-item-input">
+                            <input id="{{ payment_method.code }}" name="payment-method" class="payment-method"
+                                   onClick="onClickPaymentMethod()" type="radio"
+                                   value="{{ payment_method.code }}">
+                            <label for="{{ payment_method.code }}">{{ payment_method.name }}</label><br>
+                        </div>
+                        {% if payment_method.image %}
+                            <img src="{{ payment_method.image.url }}" alt="Payment Method Icon">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="payment-bill-container">
+            <div class="payment-bill">
+                <div class="price-detail">
+                    <div class="price-detail-info">
+                        <p>Giá thuê</p>
+                        <p>{{ total_amount | bs_extra_service_calculate_price }}<span class="fb-price-currency">₫</span>
+                        </p>
+                    </div>
+                    {% for item in extra_services_adds %}
+                        <div class="price-detail-info">
+                            <p>{{ item.name }}</p>
+                            <p>{{ item.price | bs_extra_service_calculate_price_total_nights:total_nights }}<span
+                                    class="fb-price-currency">₫</span>
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="footer-section">
+                    <div class="title">
+                        <h3>Tổng giá</h3>
+                        <h1 id="total-price">{{ final_pay | bs_extra_service_calculate_price }}<span
+                                class="fb-price-currency">₫</span></h1>
+                        <p>(Đã bao gồm VAT)</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="submit-payment-button">
+                <button id="submit-payment-button" onClick="onClickPaymentConfirmation()"> THANH TOÁN NGAY</button>
+            </div>
+        </div>
+    </div>
+</div>

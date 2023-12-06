@@ -1,16 +1,5 @@
 $(document).ready(function () {
 
-    $("body").css("display", "none");
-    $("body").fadeIn(400);
-    // to fade out before redirect
-    $('a').click(function (e) {
-        redirect = $(this).attr('href');
-        e.preventDefault();
-        $('body').fadeOut(400, function () {
-            document.location.href = redirect
-        });
-    });
-
     let slidePageNumberLimit = 3
 
     $('.js_date_picker').datepicker({
@@ -142,6 +131,7 @@ $(document).ready(function () {
     });
 
     $('input.submit').click(function (ev) {
+        debugger
         ev.preventDefault()
         let bookingForm = $('.booking-form')
         if (!bookingForm[0].checkValidity()) {
@@ -155,7 +145,31 @@ $(document).ready(function () {
         let checkIn = $('#checkin').val()
         let checkOut = $('#checkout').val()
         let noGuest = $('#no_guest').val() == '' ? 0 : parseInt($('#no_guest').val())
-        window.location.href = `/property/${propertyId}?check_in=${checkIn}&check_out=${checkOut}&no_guest=${noGuest}`
+        $.ajax({
+            type: "POST",
+            url: "/booking/available_reservations/",
+            data: {
+                property_id: propertyId,
+                check_in: checkIn,
+                check_out: checkOut,
+                no_guest: noGuest,
+            },
+            success: function (datas) {
+                mainData = datas.data
+                if (mainData.is_available) {
+                    window.location.href = `/booking-step?property-detail-step&property-id=${propertyId}&check_in=${checkIn}&check_out=${checkOut}&no_guest=${noGuest}`
+                } else {
+                    $.jAlert({ //this is the normal usage
+                        'title': 'Biệt thự đã được đặt. Xin vui lòng chọn ngày khác',
+                        'content': 'Howdy',
+                        'theme': 'green',
+                        'size': 'xsm'
+                    });
+
+                }
+            }
+        })
+
 
     });
 

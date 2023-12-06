@@ -29,17 +29,21 @@ def ms_mapstar_create_contact_request(request):
 
 def ms_dashboard(request):
     context = {}
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     properties = MsProperty.objects.all().order_by('id')
+    first_special_destinations = destinations[0]
+    last_three_special_destinations = destinations[1:4]
     context.update({
         'destinations': destinations,
+        'first_special_destinations': first_special_destinations,
+        'last_three_special_destinations': last_three_special_destinations,
         'properties': properties,
     })
     return render(request, 'ms_dashboard.html', context)
 
 
 def ms_mapstar_services(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     context = {
         'destinations': destinations,
     }
@@ -47,7 +51,7 @@ def ms_mapstar_services(request):
 
 
 def ms_mapstar_about_us(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     context = {
         'destinations': destinations,
     }
@@ -55,7 +59,7 @@ def ms_mapstar_about_us(request):
 
 
 def ms_mapstar_app(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     context = {
         'destinations': destinations,
     }
@@ -63,14 +67,14 @@ def ms_mapstar_app(request):
 
 
 def ms_mapstar_contact(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     context = {
         'destinations': destinations,
     }
     return render(request, 'ms_mapstar_contact.html', context)
 
 def ms_become_partner(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     context = {
         'destinations': destinations,
     }

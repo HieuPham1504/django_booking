@@ -1,0 +1,17 @@
+{% load static %}
+<div class="bs-booking-confirm-container">
+    <div class="bs-booking-confirm">
+        <div class="success-tick-symbol">
+            <img src="{% static 'images/checked.png' %}" alt="Success Image">
+        </div>
+        <h1>XÁC NHẬN ĐẶT PHÒNG</h1>
+        <p>Cảm ơn anh/chị đã đặt phòng tại {{ admin_company_info.name }}.</p>
+        <p>Vui lòng liên hệ với chúng tôi <span class="company-name-info"> ( {{ admin_company_info.phone }} ) </span>
+            khi cần hỗ trợ.</p>
+        <p>Trân trọng!</p>
+        <div class="redirect-menu">
+            <button id="return-home-page" onClick="onClickReturnHomePage()">QUAY VỀ TRANG CHỦ</button>
+            <button id="detail-booking-form">XEM ĐƠN ĐẶT PHÒNG</button>
+        </div>
+    </div>
+</div>

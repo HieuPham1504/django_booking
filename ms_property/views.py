@@ -18,7 +18,7 @@ def ms_property_detail(request, property_id):
     context = {}
     if request.method == 'GET':
         property_id = int(property_id)
-        destinations = MsDestination.objects.all().order_by('id')
+        destinations = MsDestination.objects.all().order_by('priority')
         services = MsServices.objects.filter(is_extra=False).order_by('id')
         extra_services = MsServices.objects.filter(is_extra=True)
         property_detail = MsProperty.objects.get(id=property_id)

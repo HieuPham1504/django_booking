@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 
 @csrf_protect
 def ms_identify_account(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     message = False
     message_class = False
     if request.method == 'POST':

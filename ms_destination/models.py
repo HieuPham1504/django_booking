@@ -6,6 +6,7 @@ class MsDestination(models.Model):
   description = models.TextField(null=False)
   background = models.ImageField(upload_to='images/')
   company = models.ForeignKey(MsCompany, on_delete=models.SET_NULL, null=True, blank=True)
+  priority = models.IntegerField(default=1000)
 
   def __str__(self):
     return self.name

@@ -1,0 +1,218 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_booking_step.css' %}">
+    <script src="{% static 'js/ms_booking_step.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="booking-step-container">
+        <input id="check-in" type="hidden" value="{{ check_in }}">
+        <input id="check-out" type="hidden" value="{{ check_out }}">
+        <input id="property-id" type="hidden" value="{{ property_id.id }}">
+        <input id="no-guest" type="hidden" value="{{ no_guest }}">
+        <div class="bs-banner">
+            <img src="{% static 'images/banner-2.jpg' %}" style="width:100%">
+        </div>
+
+        <div class="booking-step-state">
+            {% for step in booking_steps %}
+                {% if step.sequence == 1 %}
+                    <div class="bs-item active-booking-step" data-step-sequence="{{ step.sequence }}">
+                        <div class="item-sequence">
+                            <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
+                            <img class="item-img-{{ step.sequence }}" src="{% static 'images/done_state_symbol.png' %}"
+                                 alt="Done Step">
+                        </div>
+                        <div class="item-title">
+                            <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                        </div>
+                    </div>
+                    <div class="icon">
+                        <img src="{% static 'images/gray_right_arrow.png' %}"/>
+                        <div>
+                            <p></p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="bs-item" data-step-sequence="{{ step.sequence }}">
+                        <div class="item-sequence">
+                            <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
+                            <img class="item-img-{{ step.sequence }}" src="{% static 'images/done_state_symbol.png' %}"
+                                 alt="Done Step">
+                        </div>
+                        <div class="item-title">
+                            <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                        </div>
+                    </div>
+                    {% if step.sequence != max_sequence %}
+                        <div class="icon">
+                            <img src="{% static 'images/gray_right_arrow.png' %}"/>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="bs-detail">
+            <div class="bs-detail-container">
+                {% if property_detail_step == True %}
+                    <div class="bs-property-detail">
+                        <div class="bs-property-detail-container">
+                            <div class="property-header">
+                                <h3>{{ property_id.name }}</h3>
+                                <div class="header-items">
+                                    <div class="item">
+                                        <div class="icon">
+                                            <img src="{% static 'images/green_square_icon.jpg' %}" alt="Square Icon">
+                                        </div>
+                                        <div class="detail">
+                                            <p>{{ property_id.total_size }} <span>&#13217;</span></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div class="icon">
+                                            <img src="{% static 'images/green_bath_icon.jpg' %}" alt="Bath Icon">
+                                        </div>
+                                        <div class="detail">
+                                            <p>{{ property_id.rest_room_number }} <span>WC</span></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div class="icon">
+                                            <img src="{% static 'images/green_bed_icon.jpg' %}" alt="Bath Icon">
+                                        </div>
+                                        <div class="detail">
+                                            <p>{{ property_id.rest_room_number }} <span>PN</span></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div class="icon">
+                                            <img src="{% static 'images/green_person_icon.png' %}" alt="Bath Icon">
+                                        </div>
+                                        <div class="detail">
+                                            <p>Tối đa {{ property_id.max_adults }} khách</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="images-slider">
+                                <div class="back-icon">
+                                    <img class="back-icon-img" onClick="onClickBackImg()"
+                                         src="{% static 'images/left-arrow.png' %}"
+                                         alt="Back Icon">
+                                </div>
+                                <div class="image-div">
+                                    {% for image_slider in property_slider_images %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="div-size active-div">
+                                                <img id="image-slider" src="{{ image_slider.image.url }}" alt="Image">
+                                            </div>
+                                        {% else %}
+                                            <div class="div-size">
+                                                <img id="image-slider" src="{{ image_slider.image.url }}" alt="Image">
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="next-icon">
+                                    <img class="next-icon-img" onClick="onClickNextImg()"
+                                         src="{% static 'images/right_arrow.png' %}"
+                                         alt="Next Icon">
+                                </div>
+                            </div>
+
+                            <div class="bs-services">
+                                <div class="special-services">
+                                    <h3>Tiện tích nổi bật</h3>
+                                    <p>{{ property_id.included_benefits | linebreaks }}</p>
+                                </div>
+                                <div class="other-services">
+                                    <h3>Tiện ích khác</h3>
+                                    <p>{{ property_id.other_services | linebreaks }}</p>
+                                </div>
+                            </div>
+
+                            <div class="cancel-conditional">
+                                <h3>Điều kiện hoàn hủy</h3>
+                                <p>Không thể hoàn</p>
+                            </div>
+
+                            <div class="total-amount">
+                                <div class="title">
+                                    <h3>Giá thuê</h3>
+                                    <p>(Đã bao gồm VAT)</p>
+                                </div>
+                                <div class="price-unit">
+                                    <p class="title">Mỗi đêm</p>
+                                    <p class="value">{{ price_per_night | format_price }}</p>
+                                </div>
+                                <div class="total">
+                                    <p class="title">Tổng giá</p>
+                                    <p id="total-amount" class="value">{{ total_amount | format_price }}</p>
+                                    <input id="total-amount" type="hidden" value="{{ total_amount }}">
+                                    <input id="total-nights" type="hidden" value="{{ overnight_count }}">
+                                </div>
+                                <div class="next-step-button">
+                                    <button id="extra-service-button" onClick="onClickExtraServiceStep()">Tiếp tục ❯
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="form-booking-container">
+                        <form id="booking-form" class="booking-form" action="" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="locations">
+                                <ul class="location-suggest">
+                                    {% for property in properties %}
+                                        <li class="location-item"
+                                            data-location-id="{{ property.id }}">{{ property.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <input class="location" id="location" name="location" type="text"
+                                       placeholder="Chọn điểm đến"
+                                       aria-label="Location" required>
+                                <input id="property-id" type="hidden"/>
+                            </div>
+                            <input class="checkin js_date_picker" id="checkin" name="checkin" type="text"
+                                   placeholder="Checkin"
+                                   aria-label="Checkin" required>
+                            <input class="checkout js_date_picker" id="checkout" name="checkout" type="text"
+                                   placeholder="Checkout"
+                                   aria-label="Checkout" required>
+                            <input class="no_guest" id="no_guest" name="no_guest" type="number" placeholder="Số người"
+                                   aria-label="No Guest">
+                            <input id="booking-step-submit" class="submit" type="submit" value="Xem giá phòng"/>
+
+                        </form>
+                    </div>
+
+                    <div class="bs-property-detail" style="display: none">
+
+                    </div>
+                {% endif %}
+
+                <div class="bs-extra-services">
+                </div>
+
+                <div class="bs-payment-confirm">
+                </div>
+                <div class="bs-booking-confirm-container">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

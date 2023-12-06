@@ -73,7 +73,7 @@ def ms_applicants(request):
     elif request.method == 'GET':
         datas = request.GET
         current_page = int(datas.get('page', 1))
-        destinations = MsDestination.objects.all().order_by('id')
+        destinations = MsDestination.objects.all().order_by('priority')
         applicants = MsApplicant.objects.all().order_by('-id')
         pages = Paginator(applicants, 10)
         max_page = pages.num_pages

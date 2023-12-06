@@ -1,0 +1,55 @@
+<div class="bs-extra-services-container">
+    <div class="extra-services-list">
+        <h2>Extra Service</h2>
+        {% for extra_service in extra_services %}
+            <div class="es-item">
+                <p>{{ extra_service.name }}</p>
+                <input class="es-item-radio" data-es-name="{{ extra_service.name }}" onClick="onClickExtraService()"
+                       data-es-id="{{ extra_service.id }}"
+                       data-es-price="{{ extra_service.price }}"
+                       data-es-full-package="{{ extra_service.is_full_package }}" type="checkbox">
+            </div>
+        {% endfor %}
+    </div>
+    <div class="fee-info">
+        <div class="detail">
+            <h3>Chi tiết đặt phòng</h3>
+            <div class="datetime-info">
+                <div class="checkin-info">
+                    <p>Nhận phòng</p>
+                    <h3>{{ check_in_str }}</h3>
+                    <p>Từ 14:00</p>
+                </div>
+                <div class="checkout-info">
+                    <p>Trả phòng</p>
+                    <h3>{{ check_out_str }}</h3>
+                    <p>Đến 07:00</p>
+                </div>
+            </div>
+            <div class="nights">
+                <p>Tổng thời gian lưu trú</p>
+                <h3 class="night-value">{{ total_nights }} <span class="unit"> đêm</span></h3>
+            </div>
+        </div>
+        <div class="total-price-section">
+            <div class="price-detail">
+                <div class="price-detail-info">
+                    <p>Giá thuê</p>
+                    <p>{{ total_amount | bs_extra_service_calculate_price }}<span class="fb-price-currency">₫</span></p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="title">
+                    <h3>Tổng giá</h3>
+                    <p>(Đã bao gồm VAT)</p>
+                </div>
+                <h1 id="total-price">{{ total_amount | bs_extra_service_calculate_price }}<span
+                        class="fb-price-currency">₫</span></h1>
+            </div>
+        </div>
+
+        <div class="payment-button">
+            <button id="payment-button" onClick="onClickPaymentButton()">Thanh toán</button>
+        </div>
+    </div>
+</div>

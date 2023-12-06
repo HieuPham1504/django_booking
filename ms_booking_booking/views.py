@@ -1,4 +1,6 @@
 import datetime
+from django.template.loader import render_to_string
+from django.http import HttpResponse, JsonResponse
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
 from .models import MsBooking
@@ -7,6 +9,7 @@ from ms_destination.models import MsDestination
 from ms_property_condition.models import MsPropertyCondition
 from ms_payment_method.models import MsPaymentMethod
 from ms_services.models import MsServices
+from ms_property_slider_image.models import MsPropertySliderImage
 from django.template.defaulttags import register
 from django.views.decorators.csrf import csrf_exempt
 
@@ -15,6 +18,11 @@ def extra_service_calculate_price(price, no_days):
     total_price = price * no_days
     result = '{:,.2f}'.format(total_price)
     return result.split('.')[0]
+
+@register.filter
+def format_price(price):
+    result = '{:,.2f}'.format(price)
+    return result.split('.')[0].replace(',', '.')
 
 
 def ms_booking_confirmation(request):
@@ -46,7 +54,7 @@ def ms_booking_confirmation(request):
             })
 
         active_payment_methods = MsPaymentMethod.objects.filter(is_active=True).order_by('id')
-        destinations = MsDestination.objects.all().order_by('id')
+        destinations = MsDestination.objects.all().order_by('priority')
         property = MsProperty.objects.get(id=property_id)
 
         total_price_val = total_price_extra + float(total_amount.replace(',', ''))
@@ -66,6 +74,9 @@ def ms_booking_confirmation(request):
 def ms_get_available_reservations(request):
     context = {}
     template = ''
+    data = {
+        'is_available': False
+    }
     if request.method == 'POST':
         method_datas = request.POST
         property_id = method_datas['property_id']
@@ -90,6 +101,7 @@ def ms_get_available_reservations(request):
         duplicate_reservations_datas = [data.id for data in duplicate_reservations]
         if not duplicate_reservations_datas:
             property_id = MsProperty.objects.get(id=property_id)
+            property_slider_images = MsPropertySliderImage.objects.filter(property_id=property_id)
             property_conditions = MsPropertyCondition.objects.filter(is_public=True)
             property_prices = {
                 '0': property_id.property_price_monday,
@@ -107,18 +119,23 @@ def ms_get_available_reservations(request):
                 date_count_weekday = date_count.weekday()
                 date_count_price = property_prices.get(str(date_count_weekday), 0)
                 total_amount += date_count_price
-            total_amount_format = '{:,.2f}'.format(total_amount)
             context.update({
                 'overnight_count': date_diff,
+                'price_per_night': total_amount//date_diff,
                 'property_id': property_id,
-                'total_amount': total_amount_format.split('.')[0],
+                'property_slider_images': property_slider_images,
+                'total_amount': total_amount,
                 'property_conditions': property_conditions,
             })
-            template = 'ms_available_reservations.html'
-        else:
-            template = 'ms_served_reservations.html'
+            template = 'property_detail.html'
+            div_content = render_to_string(template, context, request)
+            data = {
+                'is_available': True,
+                'content': div_content
+            }
+            return JsonResponse({"data": data})
 
-    return render(request, template, context)
+    return JsonResponse({"data": data})
 
 @csrf_exempt
 def confirm_booking(request):
@@ -170,7 +187,7 @@ def confirm_booking(request):
             new_booking.extra_services_ids.add(extraServices)
             new_booking.save()
 
-        destinations = MsDestination.objects.all().order_by('id')
+        destinations = MsDestination.objects.all().order_by('priority')
         context.update({
             'booking_id': new_booking,
             'destinations': destinations,

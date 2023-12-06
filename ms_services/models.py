@@ -8,6 +8,7 @@ class MsServices(models.Model):
     price = models.FloatField(default=0, blank=True, null=True)
     is_extra = models.BooleanField(default=False)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+    is_full_package = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

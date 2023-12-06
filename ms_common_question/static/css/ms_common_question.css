@@ -1,0 +1,23 @@
+:root {
+    --font-bold: 600;
+}
+
+.common-question-banner img {
+    width: 100%;
+}
+
+.container {
+    padding-top: var(--navbar-height);
+}
+
+.container h2 {
+    font-weight: bold;
+}
+
+.container .slogan {
+    text-align: center;
+}
+
+.panel-title > a.first {
+    font-weight: var(--font-bold);
+}

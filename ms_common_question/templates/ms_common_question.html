@@ -1,0 +1,55 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_common_question.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+          type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+    <div class="common-question-banner">
+        <img src="{% static 'images/common_question_banner.jpg' %}" alt="Banner">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h2 class=" text-white">CHÚNG TÔI Ở ĐÂY ĐỂ HỖ TRỢ BẠN</h2>
+                <p class="slogan">Thấu hiểu để sẻ chia – Trí tuệ để tiên phong – Tận tâm để đồng hành</p>
+                <span class="loader pull-right"><span class="loader-inner"></span></span>
+                <hr>
+                </br>
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    {% for common_question in common_questions %}
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" role="tab" id="{{ common_question.id }}">
+                                <h4 class="panel-title">
+                                    <a class="first" role="button" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapse{{ common_question.id }}" aria-expanded="true"
+                                       aria-controls="collapseOne">
+                                        {{ common_question.title }}
+                                        <span> </span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse{{ common_question.id }}" class="panel-collapse collapse" role="tabpanel"
+                                 aria-labelledby="{{ common_question.id }}">
+                                <div class="panel-body">
+                                    <p>{{ common_question.content | linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

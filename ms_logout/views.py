@@ -3,7 +3,7 @@ from ms_destination.models import MsDestination
 from django.contrib.auth import logout
 
 def ms_logout(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     context = {
         'destinations': destinations
     }

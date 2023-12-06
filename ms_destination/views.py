@@ -9,7 +9,7 @@ def get_item(dictionary, key):
 
 def ms_destination_list(request, destination_id=False):
     context = {}
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     list_destinations = destinations if not destination_id else MsDestination.objects.filter(id=destination_id)
     destination_properties = {}
     for destination in destinations:

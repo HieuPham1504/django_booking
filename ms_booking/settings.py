@@ -62,6 +62,9 @@ INSTALLED_APPS = [
     'ms_certificate',
     'ms_job_experience',
     'ms_social_media',
+    'ms_booking_step',
+    'ms_account_payment',
+    'ms_common_question',
 ]
 
 MIDDLEWARE = [

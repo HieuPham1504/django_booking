@@ -37,7 +37,7 @@ def ms_signup(request):
         message += 'Tạo tài khoản thành công.\nVui lòng kiểm tra email đã đăng ký để xem thông tin tài khoản của bạn.'
 
 
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     context = {
         'destinations': destinations
     }

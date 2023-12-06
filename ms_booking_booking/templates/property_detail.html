@@ -1,0 +1,105 @@
+{% load static %}
+<div class="bs-property-detail">
+    <div class="bs-property-detail-container">
+        <div class="property-header">
+            <h3>{{ property_id.name }}</h3>
+            <div class="header-items">
+                <div class="item">
+                    <div class="icon">
+                        <img src="{% static 'images/green_square_icon.jpg' %}" alt="Square Icon">
+                    </div>
+                    <div class="detail">
+                        <p>{{ property_id.total_size }} <span>&#13217;</span></p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon">
+                        <img src="{% static 'images/green_bath_icon.jpg' %}" alt="Bath Icon">
+                    </div>
+                    <div class="detail">
+                        <p>{{ property_id.rest_room_number }} <span>WC</span></p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon">
+                        <img src="{% static 'images/green_bed_icon.jpg' %}" alt="Bath Icon">
+                    </div>
+                    <div class="detail">
+                        <p>{{ property_id.rest_room_number }} <span>PN</span></p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="icon">
+                        <img src="{% static 'images/green_person_icon.png' %}" alt="Bath Icon">
+                    </div>
+                    <div class="detail">
+                        <p>Tối đa {{ property_id.max_adults }} khách</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="images-slider">
+            <div class="back-icon">
+                <img class="back-icon-img" onClick="onClickBackImg()" src="{% static 'images/left-arrow.png' %}"
+                     alt="Back Icon">
+            </div>
+            <div class="image-div">
+                {% for image_slider in property_slider_images %}
+                    {% if forloop.counter == 1 %}
+                        <div class="div-size active-div">
+                            <img id="image-slider" src="{{ image_slider.image.url }}" alt="Image">
+                        </div>
+                    {% else %}
+                        <div class="div-size">
+                            <img id="image-slider" src="{{ image_slider.image.url }}" alt="Image">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="next-icon">
+                <img class="next-icon-img" onClick="onClickNextImg()" src="{% static 'images/right_arrow.png' %}"
+                     alt="Next Icon">
+            </div>
+        </div>
+
+        <div class="bs-services">
+            <div class="special-services">
+                <h3>Tiện tích nổi bật</h3>
+                <p>{{ property_id.included_benefits | linebreaks }}</p>
+            </div>
+            <div class="other-services">
+                <h3>Tiện ích khác</h3>
+                <p>{{ property_id.other_services | linebreaks }}</p>
+            </div>
+        </div>
+
+        <div class="cancel-conditional">
+            <h3>Điều kiện hoàn hủy</h3>
+            <p>Không thể hoàn</p>
+        </div>
+
+        <div class="total-amount">
+            <div class="title">
+                <h3>Giá thuê</h3>
+                <p>(Đã bao gồm VAT)</p>
+            </div>
+            <div class="price-unit">
+                <p class="title">Mỗi đêm</p>
+                <p class="value">{{ price_per_night | format_price }}</p>
+            </div>
+            <div class="total">
+                <p class="title">Tổng giá</p>
+                <p id="total-amount" class="value">{{ total_amount | format_price }}</p>
+                <input id="total-amount" type="hidden" value="{{ total_amount }}">
+                <input id="total-nights" type="hidden" value="{{ overnight_count }}">
+            </div>
+            <div class="next-step-button">
+                <button id="extra-service-button" onClick="onClickExtraServiceStep()">Tiếp tục ❯</button>
+            </div>
+        </div>
+    </div>
+</div>

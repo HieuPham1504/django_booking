@@ -17,8 +17,11 @@ class MsProperty(models.Model):
   property_price_sunday = models.FloatField()
   image = models.ImageField(upload_to='images/')
   description = models.TextField(default=False, null=True)
-  included_benefits = models.TextField(default='')
+  included_benefits = models.TextField(null=True, blank=True)
+  other_services = models.TextField(null=True, blank=True)
   address = models.TextField(null=True, blank=True)
+  total_size = models.FloatField(blank=True, null=True)
+  rest_room_number = models.IntegerField(blank=True, null=True)
 
   def __str__(self):
     return self.name

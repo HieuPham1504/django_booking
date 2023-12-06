@@ -10,7 +10,7 @@ def home(request):
 
 @csrf_protect
 def ms_login(request):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     user = False
     wrong_account = False
     context = {

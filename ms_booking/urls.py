@@ -25,10 +25,12 @@ urlpatterns = [
     path('property/', include("ms_property.urls")),
     path('destination/', include("ms_destination.urls")),
     path('booking/', include("ms_booking_booking.urls")),
+    path('booking-step/', include("ms_booking_step.urls")),
     path('login/', include("ms_login.urls")),
     path('logout/', include("ms_logout.urls")),
     path('signup/', include("ms_signup.urls")),
     path('identify/', include("ms_identify_account.urls")),
     path("mapstar-recruitments/", include("ms_recruitment.urls")),
     path("applicants/", include("ms_applicant.urls")),
+    path("common-question/", include("ms_common_question.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -19,7 +19,7 @@ def recruitment_date_format(date):
 @register.filter
 def recruitment_calculate_price(salary):
     result = '{:,.2f}'.format(salary)
-    return result.split('.')[0]
+    return result.split('.')[0].replace(',', '.')
 
 @register.filter
 def recruitment_job_type_selection(job_type):
@@ -43,7 +43,7 @@ def recruitment_gender_selection(gender):
 
 def ms_recruitment(request):
     today = datetime.today()
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     provinces = MsProvince.objects.filter(is_active=True).order_by('id')
     jobs = MsJob.objects.filter(is_active=True).order_by('id')
     recruitments = MsRecruitment.objects.filter(date_expire__gte=today)
@@ -56,7 +56,7 @@ def ms_recruitment(request):
     return render(request, 'ms_mapstar_recruitment.html', context)
 
 def ms_recruitment_detail(request, recruitment_id):
-    destinations = MsDestination.objects.all().order_by('id')
+    destinations = MsDestination.objects.all().order_by('priority')
     recruitment_detail = MsRecruitment.objects.get(id=recruitment_id)
     jobs = MsJob.objects.filter(is_active=True).order_by('id')
     provinces = MsProvince.objects.filter(is_active=True).order_by('id')
