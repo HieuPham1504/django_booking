@@ -105,6 +105,9 @@
     margin: 0;
     padding-top: 80px;
     padding-bottom: 80px;
+    width: 100%;
+    flex-direction: row;
+    background-color: transparent;;
 }
 
 .booking-step-container .booking-form {
@@ -119,11 +122,17 @@
     position: relative;
 }
 
+.location-suggest {
+    top: 32px;
+    border-radius: 0px 0px 4px 4px;
+}
+
 .booking-step-container .booking-form .locations:hover > .location-suggest {
     display: block;
 }
 
 .booking-step-container .booking-form .submit {
+    color: #ffffff;
     background-color: #5aaa77 !important;
 }
 

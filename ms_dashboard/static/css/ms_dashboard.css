@@ -32,7 +32,7 @@ div#logo {
     width: 100%;
     padding-left: 100px;
     transition: 0.5s;
-    background-color: transparent;
+    background-color: #ffffff;
     height: var(--navbar-height);
     align-items: center;
 }
@@ -278,14 +278,19 @@ img {
     width: 60%;
     margin-top: -80px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    padding: 60px 40px 60px 40px;
+    padding: 20px 40px 60px 40px;
     background-color: var(--mapstar--bg-color);
+}
+
+.form-booking-container h1 {
+    text-align: start !important;
 }
 
 .booking-form {
@@ -312,7 +317,7 @@ img {
 .location-suggest {
     display: none;
     position: absolute;
-    bottom: 100%;
+    top: 132px;
     background-color: #ffffff;
     margin-bottom: 0;
     padding: 20px 20px 20px 20px;
