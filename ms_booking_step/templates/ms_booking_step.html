@@ -19,16 +19,31 @@
         <div class="booking-step-state">
             {% for step in booking_steps %}
                 {% if step.sequence == 1 %}
-                    <div class="bs-item active-booking-step" data-step-sequence="{{ step.sequence }}">
-                        <div class="item-sequence">
-                            <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
-                            <img class="item-img-{{ step.sequence }}" src="{% static 'images/done_state_symbol.png' %}"
-                                 alt="Done Step">
+                    {% if property_detail_step != True %}
+                        <div class="bs-item active-booking-step" data-step-sequence="{{ step.sequence }}">
+                            <div class="item-sequence">
+                                <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
+                                <img class="item-img-{{ step.sequence }}"
+                                     src="{% static 'images/done_state_symbol.png' %}"
+                                     alt="Done Step">
+                            </div>
+                            <div class="item-title">
+                                <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                            </div>
                         </div>
-                        <div class="item-title">
-                            <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                    {% else %}
+                        <div class="bs-item" data-step-sequence="{{ step.sequence }}">
+                            <div class="item-sequence">
+                                <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
+                                <img class="item-img-{{ step.sequence }}"
+                                     src="{% static 'images/done_state_symbol.png' %}"
+                                     alt="Done Step">
+                            </div>
+                            <div class="item-title">
+                                <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                     <div class="icon">
                         <img src="{% static 'images/gray_right_arrow.png' %}"/>
                         <div>
@@ -36,16 +51,31 @@
                         </div>
                     </div>
                 {% else %}
-                    <div class="bs-item" data-step-sequence="{{ step.sequence }}">
-                        <div class="item-sequence">
-                            <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
-                            <img class="item-img-{{ step.sequence }}" src="{% static 'images/done_state_symbol.png' %}"
-                                 alt="Done Step">
+                    {% if property_detail_step == True and step.sequence == 2 %}
+                        <div class="bs-item active-booking-step" data-step-sequence="{{ step.sequence }}">
+                            <div class="item-sequence">
+                                <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
+                                <img class="item-img-{{ step.sequence }}"
+                                     src="{% static 'images/done_state_symbol.png' %}"
+                                     alt="Done Step">
+                            </div>
+                            <div class="item-title">
+                                <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                            </div>
                         </div>
-                        <div class="item-title">
-                            <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                    {% else %}
+                        <div class="bs-item" data-step-sequence="{{ step.sequence }}">
+                            <div class="item-sequence">
+                                <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
+                                <img class="item-img-{{ step.sequence }}"
+                                     src="{% static 'images/done_state_symbol.png' %}"
+                                     alt="Done Step">
+                            </div>
+                            <div class="item-title">
+                                <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                     {% if step.sequence != max_sequence %}
                         <div class="icon">
                             <img src="{% static 'images/gray_right_arrow.png' %}"/>
@@ -196,6 +226,7 @@
                             <input id="booking-step-submit" class="submit" type="submit" value="Xem giá phòng"/>
 
                         </form>
+                        <p id="reserved-booking-warning">Đã có lịch đặt phòng vào ngày này. Vui lòng chọn ngày khác!</p>
                     </div>
 
                     <div class="bs-property-detail" style="display: none">

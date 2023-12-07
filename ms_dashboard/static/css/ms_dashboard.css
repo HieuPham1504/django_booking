@@ -276,7 +276,7 @@ img {
 .form-booking-container {
     position: absolute;
     width: 60%;
-    margin-top: -80px;
+    margin-top: -120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -285,7 +285,7 @@ img {
     margin-right: auto;
     left: 0;
     right: 0;
-    padding: 20px 40px 60px 40px;
+    padding: 20px 40px 40px 40px;
     background-color: var(--mapstar--bg-color);
 }
 
@@ -308,6 +308,11 @@ img {
     color: #4a4a4a;
     caret-color: #4a4a4a;
     cursor: pointer;
+}
+
+#reserved-booking-warning {
+    display: none;
+    color: red;
 }
 
 .locations:hover > .location-suggest {

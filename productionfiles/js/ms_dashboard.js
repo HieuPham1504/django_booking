@@ -159,12 +159,8 @@ $(document).ready(function () {
                 if (mainData.is_available) {
                     window.location.href = `/booking-step?property-detail-step&property-id=${propertyId}&check_in=${checkIn}&check_out=${checkOut}&no_guest=${noGuest}`
                 } else {
-                    $.jAlert({ //this is the normal usage
-                        'title': 'Biệt thự đã được đặt. Xin vui lòng chọn ngày khác',
-                        'content': 'Howdy',
-                        'theme': 'green',
-                        'size': 'xsm'
-                    });
+                    let reservedBookingWarning = $('#reserved-booking-warning')
+                    reservedBookingWarning.fadeIn()
 
                 }
             }

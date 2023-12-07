@@ -134,6 +134,9 @@ $(document).ready(function () {
                     propertyDetailDiv2.css('justify-content', 'center')
                     setCheckinCheckoutVal(checkIn, checkOut, propertyId, noGuest)
                     setDoneStep(CurrentState)
+                } else {
+                    let reservedBookingWarning = $('#reserved-booking-warning')
+                    reservedBookingWarning.fadeIn()
                 }
             }
         })
