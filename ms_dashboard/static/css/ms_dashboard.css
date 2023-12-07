@@ -14,7 +14,7 @@ html {
 
 body {
     margin: 0;
-    font-family: Montserrat-Regular, Montserrat-Bold, "Kokomo Breeze", sans-serif;
+    font-family: "Roboto", Sans-serif;
 }
 
 div#logo {
@@ -698,7 +698,7 @@ h1, h2, h3 {
 /*}*/
 
 .footer-info h3 {
-    font-family: "Montserrat-Bold";
+    font-family: "Roboto", Sans-serif;
     font-weight: 600;
 }
 
