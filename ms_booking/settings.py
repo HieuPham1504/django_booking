@@ -149,7 +149,7 @@ LOGGING = {
        # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
         '': {
             'handlers': ['file'], #notice how file variable is called in handler which has been defined above
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'propagate': True,
         },
     },
