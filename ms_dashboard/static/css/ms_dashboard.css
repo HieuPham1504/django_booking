@@ -22,7 +22,7 @@ div#logo {
     justify-items: center;
     align-items: center;
     cursor: pointer;
-    width: 20%;
+    width: 14%;
 }
 
 .navigationWrapper {
@@ -35,6 +35,16 @@ div#logo {
     background-color: #ffffff;
     height: var(--navbar-height);
     align-items: center;
+}
+
+.navigationWrapper .btn-secondary, .navigationWrapper .btn-secondary.dropdown-toggle {
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show > .btn-secondary.dropdown-toggle:focus, .btn-secondary.focus, .btn-secondary:focus {
+    box-shadow: none;
 }
 
 div.parent {
@@ -298,6 +308,7 @@ img {
     justify-content: center;
     height: 100%;
     width: 100%;
+    padding-bottom: 8px;
 }
 
 .booking-form > input {
@@ -322,13 +333,13 @@ img {
 .location-suggest {
     display: none;
     position: absolute;
-    top: 132px;
+    top: 121px;
     background-color: #ffffff;
     margin-bottom: 0;
     padding: 20px 20px 20px 20px;
     overflow-y: auto;
     max-height: 400px;
-    min-width: 160px;
+    min-width: 200px;
     border-radius: 4px 4px 0 0;
     animation: 0.4s linear location-suggest-animation;
 }
