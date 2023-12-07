@@ -683,8 +683,11 @@ h1, h2, h3 {
 .footer .logo{
     text-align: center;
 }
-.footer .footer-bottom{
-    text-align: center;
+.footer-bottom{
+    background-color: #062e36;
+    color: #ffffff;
+    padding: 26px 0;
+    border-top: 1px solid;
 }
 
 .footer-container {
