@@ -130,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Logging
-
+#
 LOGGING = {
     'version': 1,
     # The version number of our log
