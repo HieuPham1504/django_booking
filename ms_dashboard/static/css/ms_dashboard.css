@@ -678,6 +678,13 @@ h1, h2, h3 {
 .footer {
     background-color: #062e36;
     color: #ffffff;
+    padding: 50px 0;
+}
+.footer .logo{
+    text-align: center;
+}
+.footer .footer-bottom{
+    text-align: center;
 }
 
 .footer-container {
@@ -697,10 +704,6 @@ h1, h2, h3 {
     height: 120px;
     width: 100%;
 }
-
-/*.footer-info .logo > img {*/
-/*    height: 100%;*/
-/*}*/
 
 .footer-info h3 {
     font-family: "Roboto", Sans-serif;
