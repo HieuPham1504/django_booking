@@ -112,6 +112,11 @@
     background-color: #c8e0e0;
 }
 
+#reserved-booking-warning {
+    display: none;
+    color: red;
+}
+
 .booking-step-container .booking-form {
     width: 80%;
 }
