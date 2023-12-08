@@ -189,6 +189,7 @@ div#logo {
 .navigationWrapper {
     display: flex;
     position: fixed;
+    left: 0;
     z-index: 999;
     width: 100%;
     padding-left: 100px;
