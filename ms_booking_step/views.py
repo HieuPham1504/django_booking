@@ -43,6 +43,7 @@ def ms_booking_step(request):
             'booking_steps': booking_steps,
             'max_sequence': max_sequence,
             'properties': properties,
+            'destinations': destinations,
         }
         datas = request.GET
         if 'property-detail-step' in datas:
