@@ -55,6 +55,7 @@
 }
 
 .bs-item .item-title {
+    text-align: center;
     color: var(--step-title-color);
 }
 
