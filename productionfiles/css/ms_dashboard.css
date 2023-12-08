@@ -193,7 +193,6 @@ div#logo {
     left: 0;
     z-index: 999;
     width: 100%;
-    padding-left: 100px;
     transition: 0.5s;
     background-color: #ffffff;
     height: var(--navbar-height);
