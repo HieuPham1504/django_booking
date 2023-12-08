@@ -65,12 +65,11 @@
                         <a class="link" href="/signup">Đăng ký</a>
                     </div>
                 {% endif %}
-                <div class="login-icon">
-                    <img class="login-icon-img" src="{% static 'images/user_1.png' %}" alt="User">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
+                    <div class="login-icon">
+                        <img class="login-icon-img" src="{% static 'images/user_1.png' %}" alt="User">
                         <p class="user-name">{{ user.username }}</p>
-                    {% endif %}
-                    {% if user.is_authenticated %}
+
                         <ul class="login-submenu">
                             <li><a href="/my-booking">Quản lý đặt phòng</a></li>
                             {% if user.is_staff %}
@@ -78,8 +77,9 @@
                             {% endif %}
                             <li><a href="/logout">Đăng xuất</a></li>
                         </ul>
-                    {% endif %}
-                </div>
+
+                    </div>
+                {% endif %}
             </div>
         </nav>
     </div>
