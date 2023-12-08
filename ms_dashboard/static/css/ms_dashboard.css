@@ -209,7 +209,7 @@ div#logo {
     box-shadow: none;
 }
 
-.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
     color: black;
     background-color: var(--mapstar--bg-color);
 }
@@ -361,7 +361,7 @@ ul.login-submenu {
     position: absolute;
     display: none;
     margin: 0;
-    background-color: var(--nav-background-color);
+    background-color: #FFFFFF;
     min-width: 120px;
     padding: 20px;
     top: var(--submenu-top-spacing);
@@ -370,6 +370,8 @@ ul.login-submenu {
 
 .login-icon:hover > .login-submenu {
     display: block;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 0.25rem;
 }
 
 @keyframes login-submenu-animation {
@@ -392,7 +394,7 @@ ul.login-submenu li:hover {
 
 ul.login-submenu li > a {
     text-decoration: none;
-    color: #ffffff;
+    color: black;
 }
 
 div.parent:hover > span {
