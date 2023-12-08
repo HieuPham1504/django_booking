@@ -23,7 +23,7 @@
                         <div class="bs-item active-booking-step" data-step-sequence="{{ step.sequence }}">
                             <div class="item-sequence">
                                 <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
-                                <img class="item-img-{{ step.sequence }}"
+                                <img class="item-img-{{ step.sequence }}" style="display: none"
                                      src="{% static 'images/done_state_symbol.png' %}"
                                      alt="Done Step">
                             </div>
@@ -34,13 +34,13 @@
                     {% else %}
                         <div class="bs-item" data-step-sequence="{{ step.sequence }}">
                             <div class="item-sequence">
-                                <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
+                                <div class="step-sequence-title-{{ step.sequence }}" style="display: none">{{ step.sequence }}</div>
                                 <img class="item-img-{{ step.sequence }}"
                                      src="{% static 'images/done_state_symbol.png' %}"
                                      alt="Done Step">
                             </div>
                             <div class="item-title">
-                                <p class="bs-title-{{ step.sequence }}">{{ step.title }}</p>
+                                <p class="bs-title-{{ step.sequence }}" style="color: black">{{ step.title }}</p>
                             </div>
                         </div>
                     {% endif %}
@@ -55,7 +55,7 @@
                         <div class="bs-item active-booking-step" data-step-sequence="{{ step.sequence }}">
                             <div class="item-sequence">
                                 <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
-                                <img class="item-img-{{ step.sequence }}"
+                                <img class="item-img-{{ step.sequence }}" style="display: none"
                                      src="{% static 'images/done_state_symbol.png' %}"
                                      alt="Done Step">
                             </div>
@@ -67,7 +67,7 @@
                         <div class="bs-item" data-step-sequence="{{ step.sequence }}">
                             <div class="item-sequence">
                                 <div class="step-sequence-title-{{ step.sequence }}">{{ step.sequence }}</div>
-                                <img class="item-img-{{ step.sequence }}"
+                                <img class="item-img-{{ step.sequence }}" style="display: none"
                                      src="{% static 'images/done_state_symbol.png' %}"
                                      alt="Done Step">
                             </div>

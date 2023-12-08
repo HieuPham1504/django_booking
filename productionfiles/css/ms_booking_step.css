@@ -51,7 +51,6 @@
 }
 
 .item-sequence img {
-    display: none;
     width: var(--step-item-sequence-width);
 }
 
