@@ -1,5 +1,5 @@
 :root {
-    --navbar-height: 60px;
+    --navbar-height: 100px;
     --nav-background-color: rgb(239, 173, 116);
     --margin-rl-width: 160px;
     --destination-image-height: 400px;
@@ -327,6 +327,7 @@ div.navigation > div.parent {
 }
 
 .account-area-menu {
+    width: 240px;
     height: var(--mapstar-header-height) !important;
     border: 1px solid black;
     margin-left: 20px;
@@ -336,6 +337,8 @@ div.navigation > div.parent {
 
 .account-area-menu > a {
     margin: 4px;
+    width: 50%;
+    text-align: center;
 }
 
 .login-icon {
