@@ -3,6 +3,7 @@
         <input id="final-pay" type="hidden" value="{{ final_pay }}">
         <form action="" method="POST" id="pcc-form">
             {% csrf_token %}
+            <h3>Thông tin người đặt</h3>
             <div class="pcc-input fullname">
                 <label for="fullname">Họ tên <span class="required-icon">(*)</span></label>
                 <input type="text" id="fullname" name="fullname" required>
@@ -66,8 +67,8 @@
                 <div class="footer-section">
                     <div class="title">
                         <h3>Tổng giá</h3>
-                        <h1 id="total-price">{{ final_pay | bs_extra_service_calculate_price }}<span
-                                class="fb-price-currency">₫</span></h1>
+                        <h2 id="total-price">{{ final_pay | bs_extra_service_calculate_price }}<span
+                                class="fb-price-currency">₫</span></h2>
                         <p>(Đã bao gồm VAT)</p>
                     </div>
 

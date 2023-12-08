@@ -362,6 +362,16 @@
     justify-content: space-between;
 }
 
+#pcc-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#pcc-form > h3 {
+    text-align: start;
+}
+
 .pcc-info .pcc-input {
     display: flex;
     justify-content: space-between;
