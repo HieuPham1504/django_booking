@@ -265,7 +265,7 @@
 }
 
 .fee-info {
-    width: 40%;
+    width: 50%;
 }
 
 .fee-info .detail {
@@ -337,11 +337,12 @@
 }
 
 .extra-services-list {
-    width: 50%;
+    width: 46%;
 }
 
 .extra-services-list h2 {
     padding: var(--bs-padding-size);
+    padding-left: 0;
     text-align: start;
     font-weight: var(--font-bold);
 }
