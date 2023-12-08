@@ -188,6 +188,7 @@ div#logo {
 
 .navigationWrapper {
     display: flex;
+    justify-content: space-evenly;
     position: fixed;
     left: 0;
     z-index: 999;
