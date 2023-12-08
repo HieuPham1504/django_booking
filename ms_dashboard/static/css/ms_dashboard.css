@@ -318,6 +318,12 @@ div.navigation > div.parent {
     border-radius: var(--mapstar-header-border-radius);
 }
 
+#company-phone-menu img {
+    width: 20px;
+    padding-right: 4px;
+    margin-right: 4px;
+}
+
 .account-area-menu {
     height: var(--mapstar-header-height) !important;
     border: 1px solid black;
