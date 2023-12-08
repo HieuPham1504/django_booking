@@ -70,15 +70,15 @@
                     {% if user.is_authenticated %}
                         <p class="user-name">{{ user.username }}</p>
                     {% endif %}
-                    <ul class="login-submenu">
-                        {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
+                        <ul class="login-submenu">
                             <li><a href="/my-booking">Quản lý đặt phòng</a></li>
                             {% if user.is_staff %}
                                 <li><a href="/applicants">Thông tin ứng viên</a></li>
                             {% endif %}
                             <li><a href="/logout">Đăng xuất</a></li>
-                        {% endif %}
-                    </ul>
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
         </nav>
