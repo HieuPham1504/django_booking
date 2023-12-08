@@ -1,60 +1,75 @@
 :root {
-    --navbar-height: 60px;
+    --navbar-height: 100px;
     --nav-background-color: rgb(239, 173, 116);
     --margin-rl-width: 160px;
     --destination-image-height: 400px;
     --submenu-top-spacing: 58px;
     --background-color: #c8e0e0;
-    --mapstar--bg-color: #e6e600;
+    --mapstar--bg-color: #ffe001;
+    --mapstar-header-height: 50%;
+    --mapstar-header-border-radius: 40px;
 }
+
 @font-face {
     font-family: "HND-Bold";
     src: url("../fonts/SVN-HelveticaNowDisplay-Bold.otf");
 }
+
 @font-face {
     font-family: "HND-BoldItalic";
     src: url("../fonts/SVN-HelveticaNowDisplay-BoldItalic.otf");
 }
+
 @font-face {
     font-family: "HND-Medium";
     src: url("../fonts/SVN-HelveticaNowDisplay-Medium.otf");
 }
+
 @font-face {
     font-family: "HND-MediumItalic";
     src: url("../fonts/SVN-HelveticaNowDisplay-MediumItalic.otf");
 }
+
 @font-face {
     font-family: "HND-Regular";
     src: url("../fonts/SVN-HelveticaNowDisplay-Regular.otf");
 }
+
 @font-face {
     font-family: "HND-RegularItalic";
     src: url("../fonts/SVN-HelveticaNowDisplay-RegularItalic.otf");
 }
+
 @font-face {
     font-family: "HNT-Bold";
     src: url("../fonts/SVN-HelveticaNowText-Bold.otf");
 }
+
 @font-face {
     font-family: "HNT-BoldItalic";
     src: url("../fonts/SVN-HelveticaNowText-BoldItalic.otf");
 }
+
 @font-face {
     font-family: "HNT-Medium";
     src: url("../fonts/SVN-HelveticaNowText-Medium.otf");
 }
+
 @font-face {
     font-family: "HNT-MediumItalic";
     src: url("../fonts/SVN-HelveticaNowText-MediumItalic.otf");
 }
+
 @font-face {
     font-family: "HNT-Regular";
     src: url("../fonts/SVN-HelveticaNowText-Regular.otf");
 }
+
 @font-face {
     font-family: "HNT-RegularItalic";
     src: url("../fonts/SVN-HelveticaNowText-RegularItalic.otf");
 }
+
 @font-face {
     font-family: "UTM-Bebas";
     src: url("../fonts/UTM\ Bebas.ttf");
@@ -169,12 +184,12 @@ div#logo {
     justify-items: center;
     align-items: center;
     cursor: pointer;
-    width: 14%;
 }
 
 .navigationWrapper {
     display: flex;
     position: fixed;
+    left: 0;
     z-index: 999;
     width: 100%;
     padding-left: 100px;
@@ -192,6 +207,11 @@ div#logo {
 
 .btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show > .btn-secondary.dropdown-toggle:focus, .btn-secondary.focus, .btn-secondary:focus {
     box-shadow: none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
+    color: black;
+    background-color: var(--mapstar--bg-color);
 }
 
 div.parent {
@@ -241,12 +261,12 @@ li.location-menu:hover {
     from {
         padding-left: 0;
         border-left: 0;
-        color: #fff;
+        color: black;
     }
     to {
         padding-left: 10px;
         border-left: 1px solid #cccccc;
-        color: #fed9b7;
+        color: var(--mapstar--bg-color);
     }
 }
 
@@ -275,10 +295,10 @@ div.navigation > div.parent {
     display: flex;
     justify-items: center;
     align-items: center;
-    cursor: pointer;
 }
 
 .login-area {
+    min-width: 35%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -294,11 +314,36 @@ div.navigation > div.parent {
     cursor: pointer;
 }
 
+#company-phone-menu {
+    background-color: var(--mapstar--bg-color);
+    height: var(--mapstar-header-height);
+    border-radius: var(--mapstar-header-border-radius);
+}
+
+#company-phone-menu img {
+    width: 20px;
+    padding-right: 4px;
+    margin-right: 4px;
+}
+
+.account-area-menu {
+    height: var(--mapstar-header-height) !important;
+    border: 1px solid black;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: var(--mapstar-header-border-radius);
+}
+
+.account-area-menu > a {
+    margin: 4px;
+}
+
 .login-icon {
     height: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding: 0 20px;
 }
 
 .login-icon > .login-icon-img {
@@ -318,7 +363,7 @@ ul.login-submenu {
     position: absolute;
     display: none;
     margin: 0;
-    background-color: var(--nav-background-color);
+    background-color: #FFFFFF;
     min-width: 120px;
     padding: 20px;
     top: var(--submenu-top-spacing);
@@ -327,6 +372,8 @@ ul.login-submenu {
 
 .login-icon:hover > .login-submenu {
     display: block;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 0.25rem;
 }
 
 @keyframes login-submenu-animation {
@@ -345,19 +392,21 @@ ul.login-submenu li {
 
 ul.login-submenu li:hover {
     animation: 0.6s linear location-menu-item-animation forwards;
+    color: var(--mapstar--bg-color);
 }
 
 ul.login-submenu li > a {
     text-decoration: none;
-    color: #ffffff;
+    color: black;
 }
 
 div.parent:hover > span {
     color: #fed9b7 !important;
 }
 
-div.parent:hover > a {
-    color: #fed9b7 !important;
+div.parent > a:hover {
+    color: var(--mapstar--bg-color) !important;
+    cursor: pointer;
 }
 
 div.parent > a {
@@ -510,7 +559,7 @@ img {
 }
 
 .location-suggest > li:hover {
-    color: #FAA760;
+    color: var(--mapstar--bg-color);
     animation: 0.6s linear location-suggest-item-animation;
     animation-fill-mode: forwards;
 }
@@ -838,19 +887,23 @@ h1, h2, h3 {
     color: #ffffff;
     padding: 50px 0;
 }
-.footer .address h3{
+
+.footer .address h3 {
     font-family: "UTM-Bebas";
     font-size: 28px;
     font-weight: 500;
 }
-.footer .address span{
+
+.footer .address span {
     font-family: "HND-Regular";
     font-size: 14px;
 }
-.footer .logo{
+
+.footer .logo {
     text-align: center;
 }
-.footer-bottom{
+
+.footer-bottom {
     background-color: #062e36;
     color: #ffffff;
     padding: 15px 0;
@@ -858,14 +911,17 @@ h1, h2, h3 {
     font-family: "HND-Regular";
     font-size: 14px;
 }
-.footer-bottom .left a{
+
+.footer-bottom .left a {
     padding: 0 15px;
     color: #fff;
 }
-.footer-bottom .left .border-footer{
+
+.footer-bottom .left .border-footer {
     border-left: 1px solid #fff;
 }
-.footer-bottom .right{
+
+.footer-bottom .right {
     text-align: right;
 }
 

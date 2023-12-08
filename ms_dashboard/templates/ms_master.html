@@ -24,44 +24,55 @@
 </head>
 
 <body>
-    <div class="w-100">
-        <div class="container-fluid">
-            <nav class="navigationWrapper" id="navbar">
-                <div id="logo">
-                    <div class="header-image">
-                        <img src="{% static 'images/logo.png' %}" alt="Mapstar Logo">
+<div class="w-100">
+    <div class="container-fluid">
+        <nav class="navigationWrapper" id="navbar">
+            <div id="logo">
+                <div class="header-image">
+                    <img src="{% static 'images/logo.png' %}" alt="Mapstar Logo">
+                </div>
+            </div>
+            <div class="navigation">
+                <div class="dropdown parent">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Điểm đến
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% for destination in destinations %}
+                        <a class="dropdown-item" href="/booking-step?destination-id={{ destination.id }}">{{ destination.name }}</a>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="navigation">
-                    <div class="parent">
-                        <a class="link" href="/booking-step">Điểm đến</a>
-                        {# <span class="link" href="">Điểm đến &dtrif;</span>#}
-                        {# <ul class="location-submenu">#}
-                        {# {% for destination in destinations %}#}
-                        {# <li class="location-menu"><a style="color: #ffffff;text-decoration: none" class="submenu-name" #} 
-                        {# href="/destination/{{destination.id}}">{{destination.name}}</a></li>#}
-                        {# {% endfor %}#}
-                        {# </ul>#}
-                    </div>
-                    <div class="parent"><a class="link" href="/become-partner">Hợp tác cùng MapStar</a></div>
-                    <div class="parent"><a class="link" href="/mapstar-services">Dịch vụ</a></div>
-                    <div class="parent"><a class="link" href="/mapstar-app">App MapStar</a></div>
-                    <div class="parent"><a class="link" href="/about-us">Về chúng tôi</a></div>
+                <div class="parent">
+                    <a class="link" href="/booking-step">Điểm đến</a>
+                    {# <span class="link" href="">Điểm đến &dtrif;</span>#}
+                    {# <ul class="location-submenu">#}
+                    {# {% for destination in destinations %}#}
+                    {# <li class="location-menu"><a style="color: #ffffff;text-decoration: none" class="submenu-name" #}
+                    {# href="/destination/{{destination.id}}">{{destination.name}}</a></li>#}
+                    {# {% endfor %}#}
+                    {# </ul>#}
                 </div>
-    
-                <div class="login-area">
-                    <div class="parent"><a class="link" href="/mapstar-recruitments">Tuyển dụng</a></div>
-                    <div class="parent"><a class="link" href="/mapstar-contact">Liên hệ</a></div>
-                    <div class="login-icon">
-                        <img class="login-icon-img" src="{% static 'images/user_1.png' %}" alt="User">
-                        {% if user.is_authenticated %}
+                <div class="parent"><a class="link" href="/become-partner">Hợp tác cùng MapStar</a></div>
+                <div class="parent"><a class="link" href="/mapstar-services">Dịch vụ</a></div>
+                <div class="parent"><a class="link" href="/mapstar-app">App MapStar</a></div>
+                <div class="parent"><a class="link" href="/about-us">Về chúng tôi</a></div>
+            </div>
+
+            <div class="login-area">
+                <div class="parent"><a class="link" href="/mapstar-recruitments">Tuyển dụng</a></div>
+                <div class="parent"><a class="link" href="/mapstar-contact">Liên hệ</a></div>
+                <div class="login-icon">
+                    <img class="login-icon-img" src="{% static 'images/user_1.png' %}" alt="User">
+                    {% if user.is_authenticated %}
                         <p class="user-name">{{ user.username }}</p>
-                        {% endif %}
-                        <ul class="login-submenu">
-                            {% if not user.is_authenticated %}
+                    {% endif %}
+                    <ul class="login-submenu">
+                        {% if not user.is_authenticated %}
                             <li><a href="/login">Đăng nhập</a></li>
                             <li><a href="/signup">Đăng ký</a></li>
-                            {% else %}
+                        {% else %}
                             <li><a href="/my-booking">Quản lý đặt phòng</a></li>
                             {% if user.is_staff %}
                             <li><a href="/applicants">Thông tin ứng viên</a></li>
@@ -77,62 +88,117 @@
         {% block body %}
         {% endblock %}
 
+<<<<<<<<< Temporary merge branch 1
+    <div>
         <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="logo">
-                            <img src="{% static 'images/footer_logo.png' %}" alt="Mapstar Logo">
-                        </div>
+            <div class="footer-container">
+                <div class="footer-info">
+                    <div class="logo">
+                        <img src="{% static 'images/footer_logo.png' %}" alt="Mapstar Logo">
                     </div>
-                    <div class="col-sm-10">
-                        <div class="row">
-                            <div class="col-12 address">
-                                <h3>CÔNG TY CỔ PHẦN MAPSTAR</h3>
+                    <div class="address">
+                        <h3>CÔNG TY CỔ PHẦN MAPSTAR</h3>
+                        <p>Tầng 2 - Thanh Xuân Complex, số 6 Lê Văn Thiêm, Thanh Xuân, Hà Nội.</p>
+                    </div>
+                    <div class="contact">
+                        <h3>LIÊN HỆ</h3>
+                        <p>08.1900.6966</p>
+                        <p>info@mapstar.vn</p>
+                    </div>
+                    <div class="social-media">
+                        <h3>THEO DÕI</h3>
+                        <div class="social-list">
+                            <div class="social-item facebook">
+                                <a href="https://www.facebook.com/venusresortbymapstar">
+                                    <img src="{% static 'images/fb_icon.png' %}" alt="Facebook">
+                                </a>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 address">
-                                <div class="address">
-                                    <img src="{% static 'images/location.png' %}" alt="Facebook">
-                                    <span> Tầng 2 - Thanh Xuân Complex, số 6 Lê Văn Thiêm, Thanh Xuân, Hà Nội.</span>
-                                </div>
+                            <div class="social-item youtube">
+                                <a href="">
+                                    <img src="{% static 'images/youtube_icon.png' %}" alt="Youtube">
+                                </a>
                             </div>
-                            <div class="col-5 address">
-                                <div class="contact">
-                                    <img src="{% static 'images/phone.png' %}" alt="Facebook">
-                                    <span>08.1900.6966</span><br>
-                                    <img src="{% static 'images/email.png' %}" alt="Facebook">
-                                    <span>info@mapstar.vn</span>
-                                </div>
+                            <div class="social-item tiktok">
+                                <a href="https://www.tiktok.com/@venusresort_flamingo">
+                                    <img src="{% static 'images/tiktok_icon.png' %}" alt="Tiktok">
+                                </a>
                             </div>
-                            <div class="col-3 address">
-                                <div class="social-list">
-                                    <div class="social-item facebook">
-                                        <a href="https://www.facebook.com/venusresortbymapstar">
-                                            <img src="{% static 'images/fb_icon.png' %}" alt="Facebook">
-                                        </a>
-                                    </div>
-                                    <div class="social-item youtube">
-                                        <a href="">
-                                            <img src="{% static 'images/youtube_icon.png' %}" alt="Youtube">
-                                        </a>
-                                    </div>
-                                    <div class="social-item tiktok">
-                                        <a href="https://www.tiktok.com/@venusresort_flamingo">
-                                            <img src="{% static 'images/tiktok_icon.png' %}" alt="Tiktok">
-                                        </a>
-                                    </div>
-                                    <div class="social-item zalo">
-                                        <a href="">
-                                            <img src="{% static 'images/zalo_icon.png' %}" alt="Zalo">
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="social-item zalo">
+                                <a href="">
+                                    <img src="{% static 'images/zalo_icon.png' %}" alt="Zalo">
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="footer-end">
+                <ul class="left">
+                    <li><a href="/mapstar-contact">Liên hệ</a></li>
+                    <p>|</p>
+                    <li><a href="/common-question">Câu hỏi thường gặp</a></li>
+                    <p>|</p>
+                    <li><a href="">Chính sách hợp tác</a></li>
+                </ul>
+                <div class="right">
+                    <span>© 2023 MapStar All right reserved.</span>
+=========
+        <div class="footer">
+            <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="logo">
+                                <img src="{% static 'images/footer_logo.png' %}" alt="Mapstar Logo">
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-12 address">
+                                    <h3>CÔNG TY CỔ PHẦN MAPSTAR</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 address">
+                                    <div class="address">
+                                        <img src="{% static 'images/location.png' %}" alt="Facebook">
+                                        <span> Tầng 2 - Thanh Xuân Complex, số 6 Lê Văn Thiêm, Thanh Xuân, Hà Nội.</span>
+                                    </div>
+                                </div>
+                                <div class="col-5 address">
+                                    <div class="contact">
+                                        <img src="{% static 'images/phone.png' %}" alt="Facebook">
+                                        <span>08.1900.6966</span><br>
+                                        <img src="{% static 'images/email.png' %}" alt="Facebook">
+                                        <span>info@mapstar.vn</span>
+                                    </div>
+                                </div>
+                                <div class="col-3 address">
+                                    <div class="social-list">
+                                        <div class="social-item facebook">
+                                            <a href="https://www.facebook.com/venusresortbymapstar">
+                                                <img src="{% static 'images/fb_icon.png' %}" alt="Facebook">
+                                            </a>
+                                        </div>
+                                        <div class="social-item youtube">
+                                            <a href="">
+                                                <img src="{% static 'images/youtube_icon.png' %}" alt="Youtube">
+                                            </a>
+                                        </div>
+                                        <div class="social-item tiktok">
+                                            <a href="https://www.tiktok.com/@venusresort_flamingo">
+                                                <img src="{% static 'images/tiktok_icon.png' %}" alt="Tiktok">
+                                            </a>
+                                        </div>
+                                        <div class="social-item zalo">
+                                            <a href="">
+                                                <img src="{% static 'images/zalo_icon.png' %}" alt="Zalo">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -150,10 +216,14 @@
                             <span>© 2023 MapStar All right reserved.</span>
                         </div>
                     </div>
+>>>>>>>>> Temporary merge branch 2
                 </div>
             </div>
+        
+            
         </div>
     </div>
+</div>
 </body>
 
 </html>
