@@ -58,12 +58,13 @@
                     <img src="{% static 'images/phone_icon_header.png' %}" alt="Phone">
                     08.1900.6966
                 </div>
-                <div class="parent account-area-menu">
-                    <a class="link" href="/login">Đăng nhập</a>
-                    |
-                    <a class="link" href="/signup">Đăng ký</a>
-                </div>
-
+                {% if user.is_authenticated %}
+                    <div class="parent account-area-menu">
+                        <a class="link" href="/login">Đăng nhập</a>
+                        |
+                        <a class="link" href="/signup">Đăng ký</a>
+                    </div>
+                {% endif %}
                 <div class="login-icon">
                     <img class="login-icon-img" src="{% static 'images/user_1.png' %}" alt="User">
                     {% if user.is_authenticated %}
