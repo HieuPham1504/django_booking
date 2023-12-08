@@ -312,6 +312,7 @@
 .total-price-section .footer-section {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .total-price-section #total-price {
