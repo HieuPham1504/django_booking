@@ -452,7 +452,7 @@
     border-bottom: var(--bs-border-color);
 }
 
-.payment-bill h1 {
+.payment-bill h2 {
     text-align: start;
     color: #5aaa77;
     font-weight: var(--font-bold);
@@ -524,6 +524,12 @@
     background-color: #5aaa77;
     border: none;
     color: #ffffff;
+}
+
+@media only screen and (max-width: 1243px) {
+  #pcc-form {
+
+  }
 }
 
 

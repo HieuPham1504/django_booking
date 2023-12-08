@@ -452,7 +452,7 @@
     border-bottom: var(--bs-border-color);
 }
 
-.payment-bill h1 {
+.payment-bill h2 {
     text-align: start;
     color: #5aaa77;
     font-weight: var(--font-bold);
