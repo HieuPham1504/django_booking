@@ -5,56 +5,71 @@
     --destination-image-height: 400px;
     --submenu-top-spacing: 58px;
     --background-color: #c8e0e0;
-    --mapstar--bg-color: #e6e600;
+    --mapstar--bg-color: #ffe001;
+    --mapstar-header-height: 50%;
+    --mapstar-header-border-radius: 40px;
 }
+
 @font-face {
     font-family: "HND-Bold";
     src: url("../fonts/SVN-HelveticaNowDisplay-Bold.otf");
 }
+
 @font-face {
     font-family: "HND-BoldItalic";
     src: url("../fonts/SVN-HelveticaNowDisplay-BoldItalic.otf");
 }
+
 @font-face {
     font-family: "HND-Medium";
     src: url("../fonts/SVN-HelveticaNowDisplay-Medium.otf");
 }
+
 @font-face {
     font-family: "HND-MediumItalic";
     src: url("../fonts/SVN-HelveticaNowDisplay-MediumItalic.otf");
 }
+
 @font-face {
     font-family: "HND-Regular";
     src: url("../fonts/SVN-HelveticaNowDisplay-Regular.otf");
 }
+
 @font-face {
     font-family: "HND-RegularItalic";
     src: url("../fonts/SVN-HelveticaNowDisplay-RegularItalic.otf");
 }
+
 @font-face {
     font-family: "HNT-Bold";
     src: url("../fonts/SVN-HelveticaNowText-Bold.otf");
 }
+
 @font-face {
     font-family: "HNT-BoldItalic";
     src: url("../fonts/SVN-HelveticaNowText-BoldItalic.otf");
 }
+
 @font-face {
     font-family: "HNT-Medium";
     src: url("../fonts/SVN-HelveticaNowText-Medium.otf");
 }
+
 @font-face {
     font-family: "HNT-MediumItalic";
     src: url("../fonts/SVN-HelveticaNowText-MediumItalic.otf");
 }
+
 @font-face {
     font-family: "HNT-Regular";
     src: url("../fonts/SVN-HelveticaNowText-Regular.otf");
 }
+
 @font-face {
     font-family: "HNT-RegularItalic";
     src: url("../fonts/SVN-HelveticaNowText-RegularItalic.otf");
 }
+
 @font-face {
     font-family: "UTM-Bebas";
     src: url("../fonts/UTM\ Bebas.ttf");
@@ -169,7 +184,6 @@ div#logo {
     justify-items: center;
     align-items: center;
     cursor: pointer;
-    width: 14%;
 }
 
 .navigationWrapper {
@@ -294,6 +308,24 @@ div.navigation > div.parent {
     cursor: pointer;
 }
 
+#company-phone-menu {
+    background-color: var(--mapstar--bg-color);
+    height: var(--mapstar-header-height);
+    border-radius: var(--mapstar-header-border-radius);
+}
+
+.account-area-menu {
+    height: var(--mapstar-header-height) !important;
+    border: 1px solid black;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: var(--mapstar-header-border-radius);
+}
+
+.account-area-menu > a {
+    margin: 4px;
+}
+
 .login-icon {
     height: 100%;
     display: flex;
@@ -356,8 +388,8 @@ div.parent:hover > span {
     color: #fed9b7 !important;
 }
 
-div.parent:hover > a {
-    color: #fed9b7 !important;
+div.parent > a:hover {
+    color: var(--mapstar--bg-color) !important;
 }
 
 div.parent > a {
@@ -510,7 +542,7 @@ img {
 }
 
 .location-suggest > li:hover {
-    color: #FAA760;
+    color: var(--mapstar--bg-color);
     animation: 0.6s linear location-suggest-item-animation;
     animation-fill-mode: forwards;
 }
@@ -838,19 +870,23 @@ h1, h2, h3 {
     color: #ffffff;
     padding: 50px 0;
 }
-.footer .address h3{
+
+.footer .address h3 {
     font-family: "UTM-Bebas";
     font-size: 28px;
     font-weight: 500;
 }
-.footer .address span{
+
+.footer .address span {
     font-family: "HND-Regular";
     font-size: 14px;
 }
-.footer .logo{
+
+.footer .logo {
     text-align: center;
 }
-.footer-bottom{
+
+.footer-bottom {
     background-color: #062e36;
     color: #ffffff;
     padding: 15px 0;
@@ -858,14 +894,17 @@ h1, h2, h3 {
     font-family: "HND-Regular";
     font-size: 14px;
 }
-.footer-bottom .left a{
+
+.footer-bottom .left a {
     padding: 0 15px;
     color: #fff;
 }
-.footer-bottom .left .border-footer{
+
+.footer-bottom .left .border-footer {
     border-left: 1px solid #fff;
 }
-.footer-bottom .right{
+
+.footer-bottom .right {
     text-align: right;
 }
 
