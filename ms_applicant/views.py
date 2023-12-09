@@ -84,6 +84,7 @@ def ms_applicants(request):
 
         context = {
             'applicants': display_applicants,
+            'num_pages': max_page,
             'page_range': pages.page_range,
             'next_page': next_page,
             'previous_page': previous_page,

@@ -85,6 +85,7 @@ def ms_recruitment(request):
             'provinces': provinces,
             'jobs': jobs,
             'recruitments': recruitments,
+            'num_pages': max_page,
             'page_range': pages.page_range,
             'next_page': next_page,
             'previous_page': previous_page,
