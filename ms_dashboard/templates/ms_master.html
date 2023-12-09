@@ -52,7 +52,7 @@
             </div>
 
             <div class="login-area">
-                <div class="parent"><a class="link" href="/mapstar-recruitments">Tuyển dụng</a></div>
+                <div class="parent"><a class="link" href="/mapstar-recruitments/?page=1">Tuyển dụng</a></div>
                 <div class="parent"><a class="link" href="/mapstar-contact">Liên hệ</a></div>
                 <div class="parent" id="company-phone-menu">
                     <img src="{% static 'images/phone_icon_header.png' %}" alt="Phone">
@@ -73,7 +73,7 @@
                         <ul class="login-submenu">
                             <li><a href="/my-booking">Quản lý đặt phòng</a></li>
                             {% if user.is_staff %}
-                                <li><a href="/applicants">Thông tin ứng viên</a></li>
+                                <li><a href="/applicants/?page=1">Thông tin ứng viên</a></li>
                             {% endif %}
                             <li><a href="/logout">Đăng xuất</a></li>
                         </ul>
