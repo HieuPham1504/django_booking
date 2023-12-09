@@ -1,7 +1,8 @@
 :root {
     --font-bold: 600;
     --p-padding: 4px;
-    --margin-bottom: 20px
+    --margin-bottom: 20px;
+    --recruitment-input-height: 40px;
 }
 
 input::placeholder {
@@ -49,6 +50,7 @@ input::placeholder {
     border: 1px solid #dedede;
     outline: none;
     padding: 4px;
+    height: var(--recruitment-input-height);
 }
 
 div.filter .select-placeholder {
@@ -61,7 +63,7 @@ div.filter .select-placeholder {
 }
 
 .filters .submit-button {
-    height: 28px;
+    height: var(--recruitment-input-height);
 }
 
 .filters .submit-button .form-submit {
