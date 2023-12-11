@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from ms_destination.models import MsDestination
 from ms_property.models import MsProperty
 from ms_coupons.models import MsCoupon
+from ms_customer.models import MsCustomer
 from .models import MsMapstarContact
 
 
@@ -57,6 +58,7 @@ def ms_dashboard(request):
     today = datetime.now().date()
     destinations = MsDestination.objects.all().order_by('priority')
     properties = MsProperty.objects.all().order_by('id')
+    partner_customers = MsCustomer.objects.filter(is_active=True).order_by('sequence')
     first_special_destinations = destinations[0]
     last_three_special_destinations = destinations[1:4]
     available_coupons = MsCoupon.objects.filter(date_start__lte=today, date_end__gte=today).order_by('sequence')
@@ -66,6 +68,7 @@ def ms_dashboard(request):
         'last_three_special_destinations': last_three_special_destinations,
         'properties': properties,
         'available_coupons': available_coupons,
+        'partner_customers': partner_customers,
     })
     return render(request, 'ms_dashboard.html', context)
 

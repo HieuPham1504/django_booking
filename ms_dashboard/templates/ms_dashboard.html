@@ -159,4 +159,33 @@
 
     </div>
 
+    <div class="our-partner">
+        <section class="container pt-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>ĐỐI TÁC CỦA CHÚNG TÔI</h2>
+                </div>
+            </div>
+        </section>
+        <div class="carousel-container pt-0 mt-2">
+            <button class="btn btn-secondary-outline our-partner-button prev" href="" title="go back"><i
+                    class="fa fa-lg fa-chevron-left"></i></button>
+            <div class="carousel-inner">
+                <div class="card-deck">
+                    {% for partner_customer in partner_customers %}
+                        <div class="h-100">
+                            <div class="card-img-top card-img-top-250">
+                                <img src="{{ partner_customer.image.url }}"
+                                     alt="{{ partner_customer.name }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button class="btn btn-secondary-outline our-partner-button next" href="" title="more"><i
+                    class="fa fa-lg fa-chevron-right"></i></button>
+        </div>
+
+    </div>
+
 {% endblock %}

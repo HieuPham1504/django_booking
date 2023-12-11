@@ -10,6 +10,9 @@ class MsCustomer(models.Model):
   company = models.ForeignKey(MsCompany, on_delete=models.SET_NULL, blank=True, null=True)
   customer_type = models.ForeignKey(MsCustomerType, on_delete=models.SET_NULL, blank=True, null=True)
   user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+  image = models.ImageField(upload_to='customer/', null=True, blank=True)
+  sequence = models.IntegerField(default=1)
+  is_active = models.BooleanField(default=True)
 
   def __str__(self):
     return self.name
