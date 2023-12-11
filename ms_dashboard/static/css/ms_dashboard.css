@@ -444,6 +444,21 @@ img {
     position: relative;
     margin: auto;
 }
+.slideshow-container .our-dest{
+    margin-top: 120px;
+    margin-bottom: 30px;
+}
+.slideshow-container .our-dest .our-destinations h2{
+    font-family: "UTM-Bebas";
+    color: #113137;
+    font-size: 40px;
+}
+.slideshow-container .link-xt{
+    text-align: center;
+}
+.slideshow-container .link-xt a{
+    color: #5aaa77;
+}
 
 /* Caption text */
 .text {
@@ -494,7 +509,6 @@ img {
 /*form*/
 .form-booking-container {
     position: absolute;
-    width: 60%;
     margin-top: -120px;
     display: flex;
     flex-direction: column;
@@ -826,8 +840,7 @@ img {
 
 /*Our destination*/
 .our-destinations {
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
+
 }
 
 .our-destinations > .main-destination {

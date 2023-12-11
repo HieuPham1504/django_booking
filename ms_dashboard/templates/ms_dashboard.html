@@ -11,49 +11,75 @@
         <div class="mySlides">
             <img src="{% static 'images/banner.jpg' %}" style="width:100%" alt="Image">
         </div>
-
-        <!--    <div class="mySlides fade">-->
-        <!--        <img src="{% static 'images/img_snow_wide.jpg' %}" style="width:100%">-->
-        <!--    </div>-->
-
-        <div class="form-booking-container">
-            <h1>Bạn muốn đến đâu?</h1>
-            <form id="booking-form" class="booking-form" action="" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div class="locations">
-                    <ul class="location-suggest">
-                        {% for property in properties %}
-                        <li class="location-item" data-location-id="{{ property.id }}">{{ property.name }}</li>
-                        {% endfor %}
-                    </ul>
-                    <input class="location" id="location" name="location" type="text" placeholder="Lựa chọn điểm đến"
-                        aria-label="Location" required readonly>
-                    <input id="property-id" type="hidden" />
-                </div>
-                <input class="checkin js_date_picker" id="checkin" name="checkin" type="text" placeholder="Checkin"
-                    aria-label="Checkin" readonly>
-                <input class="checkout js_date_picker" id="checkout" name="checkout" type="text" placeholder="Checkout"
-                    aria-label="Checkout" readonly>
-                <input class="no_guest" id="no_guest" name="no_guest" type="number" placeholder="Số người" aria-label="No Guest">
-                <input class="submit" type="submit" value="Check giá" />
-            </form>
-            <p id="reserved-booking-warning">Đã có lịch đặt phòng vào ngày này. Vui lòng chọn ngày khác!</p>
-        </div>
-
-        <div class="our-destinations">
-            <h2 class="slider-title">ĐIỂM ĐẾN CỦA CHÚNG TÔI</h2>
-            <div class="main-destination">
-                <img src="{{ first_special_destinations.background.url }}" alt="Destination Image">
-            </div>
-            <div class="sub-destinations">
-                {% for destination in last_three_special_destinations %}
-                    <div class="sub-child-destinations">
-                        <img src="{{ destination.background.url }}" alt="Destination Image">
+<!-- Bộ lọc  -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-booking-container">
+                        <h1>Bạn muốn đến đâu?</h1>
+                        <form id="booking-form" class="booking-form" action="" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="locations">
+                                <ul class="location-suggest">
+                                    {% for property in properties %}
+                                    <li class="location-item" data-location-id="{{ property.id }}">{{ property.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <input class="location" id="location" name="location" type="text" placeholder="Lựa chọn điểm đến"
+                                    aria-label="Location" required readonly>
+                                <input id="property-id" type="hidden" />
+                            </div>
+                            <input class="checkin js_date_picker" id="checkin" name="checkin" type="text" placeholder="Checkin"
+                                aria-label="Checkin" readonly>
+                            <input class="checkout js_date_picker" id="checkout" name="checkout" type="text" placeholder="Checkout"
+                                aria-label="Checkout" readonly>
+                            <input class="no_guest" id="no_guest" name="no_guest" type="number" placeholder="Số người" aria-label="No Guest">
+                            <input class="submit" type="submit" value="Check giá" />
+                        </form>
+                        <p id="reserved-booking-warning">Đã có lịch đặt phòng vào ngày này. Vui lòng chọn ngày khác!</p>
                     </div>
-                {% endfor %}
+                </div>
+            </div>
+            <!-- Điểm đến  -->
+            <div class="row our-dest">
+                <div class="col-12">
+                    <div class="our-destinations">
+                        <h2 class="slider-title">ĐIỂM ĐẾN CỦA CHÚNG TÔI</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="our-destinations">
+                        <div class="main-destination">
+                            <img src="{{ first_special_destinations.background.url }}" alt="Destination Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="our-destinations">
+                        <div class="sub-destinations">
+                            {% for destination in last_three_special_destinations %}
+                                <div class="sub-child-destinations">
+                                    <img src="{{ destination.background.url }}" alt="Destination Image">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row link-xt">
+                <div class="col-12">
+                    <a href="http://">XEM THÊM <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
             </div>
         </div>
+        
+        
+        
 
         <div class="carousel-backgound">
 
