@@ -1177,6 +1177,28 @@ img {
 
 /* // Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 767.98px) {
+    .booking-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .booking-form .locations {
+        width: 100%;
+    }
+
+    #location {
+        width: 80%;
+    }
+
+    .booking-form > input {
+        width: 80%;
+        margin-top: 10px;
+    }
+
+    .slideshow-container .our-dest {
+        margin-top: 200px;
+    }
+
     .footer .address {
         margin-top: 15px;
     }
