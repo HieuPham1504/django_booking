@@ -1089,6 +1089,10 @@ img {
     background: #46a974;
 }
 
+#coupon-more-information {
+    color: var(--mapstar--bg-color);
+}
+
 /* // Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) { 
 
