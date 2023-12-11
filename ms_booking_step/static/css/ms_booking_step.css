@@ -51,11 +51,11 @@
 }
 
 .item-sequence img {
-    display: none;
     width: var(--step-item-sequence-width);
 }
 
 .bs-item .item-title {
+    text-align: center;
     color: var(--step-title-color);
 }
 
@@ -265,7 +265,7 @@
 }
 
 .fee-info {
-    width: 40%;
+    width: 50%;
 }
 
 .fee-info .detail {
@@ -312,6 +312,7 @@
 .total-price-section .footer-section {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .total-price-section #total-price {
@@ -336,11 +337,12 @@
 }
 
 .extra-services-list {
-    width: 50%;
+    width: 46%;
 }
 
 .extra-services-list h2 {
     padding: var(--bs-padding-size);
+    padding-left: 0;
     text-align: start;
     font-weight: var(--font-bold);
 }
@@ -358,6 +360,16 @@
     padding-top: 40px;
     display: flex;
     justify-content: space-between;
+}
+
+#pcc-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#pcc-form > h3 {
+    text-align: start;
 }
 
 .pcc-info .pcc-input {
@@ -440,7 +452,7 @@
     border-bottom: var(--bs-border-color);
 }
 
-.payment-bill h1 {
+.payment-bill h2 {
     text-align: start;
     color: #5aaa77;
     font-weight: var(--font-bold);
@@ -512,6 +524,12 @@
     background-color: #5aaa77;
     border: none;
     color: #ffffff;
+}
+
+@media only screen and (max-width: 1243px) {
+  #pcc-form {
+
+  }
 }
 
 

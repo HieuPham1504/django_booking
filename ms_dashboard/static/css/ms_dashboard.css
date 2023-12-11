@@ -3,7 +3,7 @@
     --nav-background-color: rgb(239, 173, 116);
     --margin-rl-width: 160px;
     --destination-image-height: 400px;
-    --submenu-top-spacing: 58px;
+    --submenu-top-spacing: 72px;
     --background-color: #c8e0e0;
     --mapstar--bg-color: #ffe001;
     --mapstar-header-height: 50%;
@@ -188,11 +188,11 @@ div#logo {
 
 .navigationWrapper {
     display: flex;
+    justify-content: space-evenly;
     position: fixed;
     left: 0;
     z-index: 999;
     width: 100%;
-    padding-left: 100px;
     transition: 0.5s;
     background-color: #ffffff;
     height: var(--navbar-height);
@@ -284,12 +284,11 @@ li.location-menu:hover {
     width: 50%;
     height: 100%;
     list-style-type: none;
-    justify-items: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 div.navigation > div.parent {
-    padding: 0 20px 0 20px;
     font-size: 16px;
     color: #000000;
     display: flex;
@@ -327,6 +326,7 @@ div.navigation > div.parent {
 }
 
 .account-area-menu {
+    width: 240px;
     height: var(--mapstar-header-height) !important;
     border: 1px solid black;
     margin-left: 20px;
@@ -336,6 +336,8 @@ div.navigation > div.parent {
 
 .account-area-menu > a {
     margin: 4px;
+    width: 50%;
+    text-align: center;
 }
 
 .login-icon {

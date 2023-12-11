@@ -1,7 +1,8 @@
 :root {
     --font-bold: 600;
     --p-padding: 4px;
-    --margin-bottom: 20px
+    --margin-bottom: 20px;
+    --recruitment-input-height: 40px;
 }
 
 input::placeholder {
@@ -16,6 +17,7 @@ input::placeholder {
 
 .recruitment-container img {
     width: 100%;
+    object-fit: none;
 }
 
 .recruitment-content {
@@ -48,6 +50,7 @@ input::placeholder {
     border: 1px solid #dedede;
     outline: none;
     padding: 4px;
+    height: var(--recruitment-input-height);
 }
 
 div.filter .select-placeholder {
@@ -60,7 +63,7 @@ div.filter .select-placeholder {
 }
 
 .filters .submit-button {
-    height: 28px;
+    height: var(--recruitment-input-height);
 }
 
 .filters .submit-button .form-submit {
@@ -152,4 +155,84 @@ div.filter .select-placeholder {
 
 .submit-recruitment > a.title-name {
     color: #5aaa77;
+}
+
+/*pagination*/
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination_rounded, .pagination_square {
+    display: inline-block;
+    margin-top: 40px;
+}
+
+.pagination_rounded ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pagination_rounded li:first-child {
+    margin-left: 0px;
+}
+
+.pagination_rounded ul li {
+    float: left;
+    margin-left: 20px;
+}
+
+.pagination_rounded ul li a:hover {
+    background: #4285f4;
+    color: #fff;
+    border: 1px solid #4285f4;
+}
+
+.active_page {
+    background: #4285f4;
+    color: #fff !important;
+    border: 1px solid #4285f4;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.pagination_rounded .prev {
+    margin-left: 0px;
+    border-radius: 35px;
+    width: 90px;
+    height: 34px;
+    line-height: 34px;
+}
+
+
+.pagination_rounded ul li a {
+    float: left;
+    color: #4285f4;
+    border-radius: 50%;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+    border: 1px solid #e0e0e0;
+}
+
+.pagination_rounded .prev i {
+    margin-right: 10px;
+}
+
+.pagination_rounded .next {
+    border-radius: 35px;
+    width: 90px;
+    height: 34px;
+    line-height: 34px;
+}
+
+.visible-xs {
+    display: none !important;
 }

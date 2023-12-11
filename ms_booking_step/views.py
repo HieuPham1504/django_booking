@@ -13,6 +13,8 @@ from ms_account_payment.models import MsAccountPayment
 from ms_property_slider_image.models import MsPropertySliderImage
 from ms_property_condition.models import MsPropertyCondition
 from ms_company.models import MsCompany
+from ms_destination.models import MsDestination
+
 
 @register.filter
 def bs_get_qr_code_image_url(payment_methods):
@@ -34,12 +36,14 @@ def ms_booking_step(request):
     context = {}
     if request.method == 'GET':
         booking_steps = MsBookingStep.objects.all().order_by('sequence')
+        destinations = MsDestination.objects.all().order_by('priority')
         max_sequence = max([step.sequence for step in booking_steps])
         properties = MsProperty.objects.all()
         context = {
             'booking_steps': booking_steps,
             'max_sequence': max_sequence,
             'properties': properties,
+            'destinations': destinations,
         }
         datas = request.GET
         if 'property-detail-step' in datas:
