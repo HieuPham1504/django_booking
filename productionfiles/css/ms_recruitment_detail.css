@@ -20,18 +20,26 @@ input::placeholder {
 }
 
 .recruitment-detail {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: var(--margin-bottom) var(--margin-rl-width) var(--margin-bottom) var(--margin-rl-width);
+    margin-top: 70px;
+    margin-bottom: 50px;
 }
 
 .recruitment-detail .left {
-    max-height: 240px;
-    width: 30%;
     font-size: 14px;
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0px -20px 20px 0px rgb(35 35 35 / 25%);
+    padding: 10px;
+}
+.recruitment-detail .left a{
+    font-size: 17px;
+    padding: 15px;
+    font-weight: 600;
+    color: grey;
+    display: inline-block;
+}
+.recruitment-detail .left .header h2{
+    font-size: 18px;
+    text-align: left;
 }
 
 .left .recruitment-item > .info {
@@ -40,15 +48,20 @@ input::placeholder {
     padding: 10px;
 }
 
-.left .recruitment-item > .info h3 {
+.left .recruitment-item > .info h4 {
     text-align: start;
     margin: 0;
     margin-left: var(--margin-left-detail-div);
+    font-size: 16px;
 }
 
 .recruitment-item .info-description > .row-2 {
     display: flex;
     justify-content: space-between;
+    font-size: 12px;
+}
+.recruitment-item .info-description > .row-2 p{
+    margin-bottom: 0;
 }
 
 .info-description > .row-2 > div {
@@ -56,14 +69,26 @@ input::placeholder {
 }
 
 .recruitment-detail .right {
-    width: 60%;
     font-size: 14px;
     border-radius: 20px 20px 0px 0px;
-    box-shadow: 0px -20px 20px 0px rgb(35 35 35 / 25%)
+    box-shadow: 0px -20px 20px 0px rgb(35 35 35 / 25%);
+    padding: 10px;
+}
+.recruitment-detail .right h2{
+    text-align: left;
+    font-size: 24px;
 }
 
 .recruitment-detail .right > .right-content {
     padding: 20px;
+}
+
+.recruitment-detail .right .right-content .item p{
+    margin-bottom: 0;
+}
+.recruitment-detail .right .right-content .item i{
+    color: #5aaa77;
+    margin-right: 5px;
 }
 
 .right .right-content > .info {
@@ -212,25 +237,41 @@ input::placeholder {
     align-items: center;
     margin-top: var(--margin-bottom);
 }
+.recruitment-detail-container h3{
+    font-family: "UTM-Alter-Gothic";
+    font-size: 36px;
+    color: #fff;
+    text-align: left;
+    margin-top: -70px;
+}
+.recruitment-detail-container .recruitment-detail .right .info-icon img{
+    width: auto;
+}
 
 
-/*.loader {*/
-/*  border: 16px solid #f3f3f3;*/
-/*  border-radius: 50%;*/
-/*  border-top: 16px solid #3498db;*/
-/*  width: 120px;*/
-/*  height: 120px;*/
-/*  -webkit-animation: spin 2s linear infinite; !* Safari *!*/
-/*  animation: spin 2s linear infinite;*/
-/*}*/
+/* // Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 767.98px) { 
+    .recruitment-detail-container h3 {
+        margin-top: -50px;
+    }
+    .recruitment-detail {
+        margin-top: 35px;
+    }
+    .recruitment-detail .right {
+        margin-top: 30px;
+    }
+    .recruitment-detail-container .recruitment-detail .right .right-content .info .item{
+        width: 65%;
+        display: inline-grid;
+    }
+}
 
-/*!* Safari *!*/
-/*@-webkit-keyframes spin {*/
-/*  0% { -webkit-transform: rotate(0deg); }*/
-/*  100% { -webkit-transform: rotate(360deg); }*/
-/*}*/
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) and (min-width: 767.98px) { 
+   
+}
 
-/*@keyframes spin {*/
-/*  0% { transform: rotate(0deg); }*/
-/*  100% { transform: rotate(360deg); }*/
-/*}*/
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) and (min-width: 991.98px){ 
+   
+}
