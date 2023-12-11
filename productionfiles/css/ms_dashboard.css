@@ -1145,6 +1145,8 @@ img {
 
 .our-partner .card-deck {
     justify-content: space-around;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .our-partner .card-img-top {
