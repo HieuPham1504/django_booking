@@ -1154,7 +1154,7 @@ img {
 }
 
 .our-partner .h-100 {
-    width: 14%;
+    min-width:  16%;
     padding-top: 20px;
     padding-bottom: 20px;
     border: 1px solid #ccc;
