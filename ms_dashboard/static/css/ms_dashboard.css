@@ -459,6 +459,11 @@ img {
 .slideshow-container .link-xt a{
     color: #5aaa77;
 }
+.slideshow-container .discount-container h2{
+    font-family: "UTM-Bebas";
+    color: #113137;
+    font-size: 40px;
+}
 
 /* Caption text */
 .text {
