@@ -41,53 +41,6 @@
             <p id="reserved-booking-warning">Đã có lịch đặt phòng vào ngày này. Vui lòng chọn ngày khác!</p>
         </div>
 
-        <section class="section-intro" id="intro">
-            <div class="intro-content">
-                <h1>Chào mừng đến với Mapstar</h1>
-                <p>Vì nắm bắt cơ hội phát triển đầy tiềm năng của thị trường du lịch,
-                    chúng tôi mang lại tích cực cho cộng đồng địa phương,
-                    cho sự phát triển chung của thị trường bất động sản, nghỉ dưỡng.</p>
-            </div>
-        </section>
-
-        <div class="special-places-slider">
-            <h2 class="slider-title">Khám phá các điểm đặc biệt</h2>
-            <div class="slider-container">
-                <ul id="item-container">
-                    <div class="btns" id="previous">
-                        <img src="{% static 'images/arrow_l.png' %}"/>
-                    </div>
-                    {% for destination in destinations %}
-                        {% if forloop.counter < 4 %}
-                            <li class="slider-item-active" data-destination-id="{{ destination.id }}">
-                                <div>
-                                    <img class="slider-image" src="{{ destination.background.url }}" alt="Slider">
-                                    <div class="item-content">
-                                        <h3>{{ destination.name }}</h3>
-                                        <p class="title">{{ destination.description }}</p>
-                                    </div>
-                                </div>
-                            </li>
-                        {% else %}
-                            <li class="slider-item" data-destination-id="{{ destination.id }}">
-                                <div>
-                                    <img class="slider-image" src="{{ destination.background.url }}" alt="Slider">
-                                    <div class="item-content">
-                                        <h3>{{ destination.name }}</h3>
-                                        <p class="title">{{ destination.description }}</p>
-                                    </div>
-                                </div>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                    <div class="btns" id="next">
-                        <img src="{% static 'images/arrow_r.png' %}"/>
-                    </div>
-                </ul>
-
-            </div>
-        </div>
-
         <div class="our-destinations">
             <h2 class="slider-title">ĐIỂM ĐẾN CỦA CHÚNG TÔI</h2>
             <div class="main-destination">
