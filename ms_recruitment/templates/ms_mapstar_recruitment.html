@@ -79,7 +79,7 @@
                                 <h4>{{ recruitment.job.name }}</h4>
                             </div>
                             <div class="row-2">
-                                <div>
+                                <div class="col-content">
                                     <p>
                                         <i class="fa-brands fa-bitcoin"></i><span>Lương: </span>
                                         <span class="salary">{{ recruitment.salary|recruitment_calculate_price }}</span>
@@ -89,7 +89,7 @@
                                         <span class="deadline">{{ recruitment.date_expire|recruitment_date_format }}</span>
                                     </p>
                                 </div>
-                                <div>
+                                <div class="col-content">
                                     <p>
                                         <i class="fa-solid fa-location-dot"></i><span>Địa điểm: </span>
                                         <span class="province">{{ recruitment.province.name }}</span>
@@ -100,10 +100,10 @@
                                         <span class="job-type"></span>
                                     </p>
                                 </div>
-                                <div>
+                                <div class="col-content">
                                     <button class="submit-recruitment"><a class="title-name"
                                             href="/mapstar-recruitments/{{ recruitment.id }}">ỨNG
-                                            TUYỂN</a></button>
+                                            TUYỂN <i class="fa-solid fa-angles-right"></i></a></button>
                                 </div>
             
                             </div>

@@ -13,13 +13,7 @@
 }
 
 .inspiration-story {
-    display: flex;
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
-    padding-top: var(--margin-bottom);
-    padding-bottom: var(--margin-bottom);
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 35px 0;
 }
 
 .inspiration-story > .story-image {
@@ -33,12 +27,6 @@
     width: 100%;
 }
 
-.inspiration-story .story-detail-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-}
 
 .inspiration-story .story-detail {
     padding: var(--margin-bottom);
@@ -56,23 +44,20 @@
 
 .roadmap-section img {
     width: 100%;
+    margin-top: -85px;
 }
 
 .vision-section {
     background-image: url(../images/about_us/vision-background-image.jpg);
+    padding: 50px 0;
 }
 
-.vision-section .box-section-container {
-    justify-content: space-between;
+.vision-section .box-section-img{
+    margin-top: 25px;
+    text-align: center;
 }
-
-.vision-container {
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
-}
-
-.vision-section .vision-image {
-    padding-top: var(--margin-bottom);
+.vision-section .box-section-img img{
+    width: 100%;
 }
 
 .vision-image > img {
@@ -80,21 +65,19 @@
 }
 
 .star-gen-section .star-gen-image {
-    display: flex;
-    justify-content: center;
-    margin-bottom: var(--margin-bottom);
+    padding: 50px 0;
+    text-align: center;
 }
 
-.sg-leaders {
+/* .sg-leaders {
     margin-left: var(--margin-rl-width);
     margin-right: var(--margin-rl-width);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
+} */
 
 .sg-leaders .leader-item {
-    width: 22%;
     background-color: #F0F3F4;
     margin-bottom: var(--margin-bottom);
 }
@@ -119,11 +102,7 @@
 }
 
 .item-title h4 {
-    font-size: 14px;
-}
-
-.item-info {
-    padding: var(--margin-bottom);
+    font-size: 13px;
 }
 
 .item-info p.title {
@@ -142,6 +121,37 @@
     margin-right: var(--margin-rl-width);
 }
 
-.sg-generations img {
+.img-bottom img {
     width: 100%;
+    margin-bottom: 50px;
+}
+.au-container .star-gen-section .item-title{
+    background-color: #E7EBEC;
+    border-bottom: 2px solid #C7CFD1;
+}
+.au-container .star-gen-section .item-title h3{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.au-container .star-gen-section .item-info {
+    padding: 15px 15px 15px 15px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #F0F3F4 0%, #FFFFFF 95%);
+}
+
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 767.98px) { 
+
+    
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) and (min-width: 767.98px) { 
+   
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) and (min-width: 991.98px){ 
+   
 }
