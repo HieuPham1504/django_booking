@@ -102,28 +102,73 @@
             </div>
         </div>
 
-        <div class="box-section">
-            <h2 class="box-section-title">Tại sao nên lựa chọn Mapstar</h2>
-            <div class="box-section-container">
-                <div class="btns">
-                    <img src="{% static 'images/arrow_r.png' %}"/>
-                </div>
-                <div class="box-section-image">
-                    <img src="{% static 'images/tamnhin_1.jpg' %}" alt="Image">
-                </div>
+        <div class="carousel-backgound">
 
-                <div class="box-section-image">
-                    <img src="{% static 'images/tamnhin_2.jpg' %}" alt="Image">
-                </div>
+        </div>
 
-                <div class="box-section-image">
-                    <img src="{% static 'images/tamnhin_3.jpg' %}" alt="Image">
-                </div>
+        <div class="discount-container">
+            <h2 class="box-section-title">ƯU ĐÃI HIỆN CÓ</h2>
+            <div class="row blog">
+                <div class="col-md-12">
+                    <div id="blogCarousel" class="carousel slide" data-ride="carousel">
 
-                <div class="btns">
-                    <img src="{% static 'images/arrow_r.png' %}"/>
-                </div>
+                        <ol class="carousel-indicators">
+                            {% if available_coupons|get_page_number:2 > 1 %}
+                                {% for index in available_coupons|get_coupon_range:2 %}
+                                    {% if forloop.counter0 == 0 %}
+                                        <li data-target="#blogCarousel" data-slide-to="{{ index }}" class="active"></li>
+                                    {% else %}
+                                        <li data-target="#blogCarousel" data-slide-to="{{ index }}"></li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </ol>
 
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            {% for coupon_list in available_coupons|split_coupons:2 %}
+                                {% if forloop.counter == 1 %}
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            {% for coupon in  coupon_list %}
+                                                <div class="col-md-6">
+                                                    <a href="#">
+                                                        <img src="{{ coupon.image.url }}" alt="Image"
+                                                             style="width:100%;">
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                            <h5>{{ coupon.name }}</h5>
+                                                            <p>{{ coupon.description }}</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            {% for coupon in  coupon_list %}
+                                                <div class="col-md-6">
+                                                    <a href="#">
+                                                        <img src="{{ coupon.image.url }}" alt="Image"
+                                                             style="width:100%;">
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                            <h5>{{ coupon.name }}</h5>
+                                                            <p>{{ coupon.description }}</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 

@@ -170,6 +170,17 @@
     src: url("../fonts/UTM\ Alter\ Gothic.ttf");
 }
 
+h1, h2, h3 {
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
 html {
     height: 100%;
 }
@@ -721,17 +732,6 @@ img {
     margin-right: var(--margin-rl-width);
 }
 
-.special-places-slider > h2 {
-    font-size: 28px;
-    color: #000000;
-}
-
-h1, h2, h3 {
-    text-align: center;
-    font-weight: 500;
-    line-height: 1.2;
-}
-
 .slider-container {
     height: 100%;
 }
@@ -855,20 +855,16 @@ h1, h2, h3 {
 /*box section*/
 .box-section {
     height: auto;
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
-    margin-bottom: 100px;
+    margin: var(--navbar-height) var(--margin-rl-width) 100px var(--margin-rl-width);
 }
 
 .box-section > h2 {
-    color: #FAA760;
-    margin-bottom: var(--navbar-height);
-    font-size: 28px;
+    margin-bottom: 40px;
 }
 
 .box-section-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     height: 100%;
 }
 
@@ -1019,4 +1015,49 @@ h1, h2, h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/* The colour of the indicators */
+
+.carousel-backgound {
+    background: url("/static/images/homepage_background.jpg");
+    background-size: 100% 150%;
+    background-repeat: no-repeat;
+    height: 400px;
+    margin-top: var(--navbar-height);
+}
+
+.discount-container {
+    margin: 0 var(--margin-rl-width) 60px var(--margin-rl-width);
+    height: auto;
+    transform: translateY(-200px);
+}
+
+.carousel-item .row {
+    justify-content: space-between;
+}
+
+.carousel-item.active {
+    background-color: transparent;
+}
+
+.blog .carousel-indicators {
+    left: 0;
+    top: auto;
+    bottom: -60px;
+
+}
+
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    border-top: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+}
+
+.blog .carousel-indicators .active {
+    background: #46a974;
 }
