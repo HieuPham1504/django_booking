@@ -1021,7 +1021,7 @@ img {
 /* The colour of the indicators */
 
 .carousel-backgound {
-    background: url("/static/images/homepage_background.jpg");
+    background: url("/static/images/coupons/coupon_background_design.jpg");
     background-size: 100% 150%;
     background-repeat: no-repeat;
     height: 400px;
