@@ -8,6 +8,7 @@ class MsCoupon(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
     image = models.ImageField(upload_to='coupons/', null=True, blank=True)
+    sequence = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name

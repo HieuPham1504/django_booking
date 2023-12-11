@@ -59,7 +59,7 @@ def ms_dashboard(request):
     properties = MsProperty.objects.all().order_by('id')
     first_special_destinations = destinations[0]
     last_three_special_destinations = destinations[1:4]
-    available_coupons = MsCoupon.objects.filter(date_start__lte=today, date_end__gte=today)
+    available_coupons = MsCoupon.objects.filter(date_start__lte=today, date_end__gte=today).order_by('sequence')
     context.update({
         'destinations': destinations,
         'first_special_destinations': first_special_destinations,
