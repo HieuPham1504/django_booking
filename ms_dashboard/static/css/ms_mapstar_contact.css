@@ -15,7 +15,7 @@
 }
 
 .mapstar-location {
-    margin: var(--navbar-height) var(--margin-rl-width) 40px var(--margin-rl-width);
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,8 +29,7 @@
 
 .contact-detail-section {
     display: flex;
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
+    margin: 50px 0;
 }
 
 .contact-detail-section h3 {

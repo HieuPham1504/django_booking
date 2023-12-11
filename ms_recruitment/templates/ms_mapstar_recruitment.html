@@ -12,23 +12,27 @@
     <div class="recruitment-container">
         <div class="banner">
             <img src="{% static 'images/recruitment_img.jpg' %}" alt="Banner">
+            <div class="container">
+                <h3>TUYỂN DỤNG</h3>
+            </div>
         </div>
-
         <div class="recruitment-content">
             <div class="filters">
                 <div class="filter-form">
                     <form id="filters" action="/mapstar-recruitments" method="GET">
-                        <div class="filter">
+                        <div class="form-group">
                             <label for="title">Từ khóa tìm kiếm</label>
-                            <input type="text" class="rec-input title" id="title" name="title"
+                            <input type="text" id="title" name="title"
                                    value="{{ title }}"
                                    aria-required="true"
-                                   aria-invalid="false" placeholder="Nhập từ khóa">
+                                   class="form-control"
+                                   aria-invalid="false" 
+                                   placeholder="Nhập từ khóa">
                         </div>
-                        <div class="filter">
+                        <div class="form-group">
                             <label for="province">Địa điểm</label>
-                            <select name="province" class="rec-input" id="province">
-                                <option value=""></option>
+                            <select name="province" class="form-control" id="province">
+                                <option value="">Chọn địa điểm</option>
                                 {% for province in provinces %}
                                     {% if  province.code == province_filter.code %}
                                         <option value="{{ province.code }}" selected>{{ province.name }}</option>
@@ -38,10 +42,10 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="filter">
+                        <div class="form-group">
                             <label for="job">Ngành nghề</label>
-                            <select name="job" class="rec-input" id="job">
-                                <option value=""></option>
+                            <select name="job" class="form-control" id="job">
+                                <option value="">Chọn ngành nghề</option>
                                 {% for job in jobs %}
                                     {% if  job.code == job_filter.code %}
                                         <option value="{{ job.code }}" selected>{{ job.name }}</option>
@@ -63,50 +67,50 @@
                     <h2>CƠ HỘI NGHỀ NGHIỆP</h2>
                 </div>
                 {% for recruitment in recruitments %}
-                    <div class="recruitment-item" data-recruitment-id="{{ recruitment.id }}">
-                        <div class="title">
-                            <h3><a class="title-name"
-                                   href="/mapstar-recruitments/{{ recruitment.id }}">{{ recruitment.name }}</a></h3>
+                <div class="recruitment-item" data-recruitment-id="{{ recruitment.id }}">
+                    <div class="title">
+                        <h3><a class="title-name" href="/mapstar-recruitments/{{ recruitment.id }}">{{ recruitment.name }}</a></h3>
+                    </div>
+                    <div class="info">
+                        <div class="info-icon">
+                            <img src="{% static 'images/info_icon.png' %}" alt="Icon">
                         </div>
-                        <div class="info">
-                            <div class="info-icon">
-                                <img src="{% static 'images/info_icon.png' %}" alt="Icon">
+                        <div class="info-description">
+                            <div class="row-1">
+                                <h4>{{ recruitment.job.name }}</h4>
                             </div>
-                            <div class="info-description">
-                                <div class="row-1">
-                                    <h4>{{ recruitment.job.name }}</h4>
+                            <div class="row-2">
+                                <div>
+                                    <p>
+                                        <i class="fa-brands fa-bitcoin"></i><span>Lương: </span>
+                                        <span class="salary">{{ recruitment.salary|recruitment_calculate_price }}</span>
+                                    </p>
+                                    <p>
+                                        <i class="fa-regular fa-clock"></i><span>Hạn: </span>
+                                        <span class="deadline">{{ recruitment.date_expire|recruitment_date_format }}</span>
+                                    </p>
                                 </div>
-                                <div class="row-2">
-                                    <div>
-                                        <p>
-                                            <span>Lương: </span>
-                                            <span class="salary">{{ recruitment.salary|recruitment_calculate_price }}</span>
-                                        </p>
-                                        <p>
-                                            <span>Hạn: </span>
-                                            <span class="deadline">{{ recruitment.date_expire|recruitment_date_format }}</span>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            <span>Địa điểm: </span>
-                                            <span class="province">{{ recruitment.province.name }}</span>
-                                        </p>
-                                        <p>
-                                            <span>{{ recruitment.job_type|recruitment_job_type_selection }}</span>
-                                            <span class="job-type"></span>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <button class="submit-recruitment"><a class="title-name"
-                                                                              href="/mapstar-recruitments/{{ recruitment.id }}">ỨNG
+                                <div>
+                                    <p>
+                                        <i class="fa-solid fa-location-dot"></i><span>Địa điểm: </span>
+                                        <span class="province">{{ recruitment.province.name }}</span>
+                                    </p>
+                                    <p>
+                                        <i class="fa-solid fa-user-clock"></i>
+                                        <span>{{ recruitment.job_type|recruitment_job_type_selection }}</span>
+                                        <span class="job-type"></span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <button class="submit-recruitment"><a class="title-name"
+                                            href="/mapstar-recruitments/{{ recruitment.id }}">ỨNG
                                             TUYỂN</a></button>
-                                    </div>
-
                                 </div>
+            
                             </div>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
                 {% if num_pages > 1 %}
                 <div class="pagination-container">
@@ -114,23 +118,23 @@
                         <ul>
                             <li>
                                 <a href="/mapstar-recruitments?page={{ previous_page }}" class="prev"> <i class="fa fa-angle-left"
-                                                                                                aria-hidden="true"></i>
+                                        aria-hidden="true"></i>
                                     Prev </a>
                             </li>
                             {% for page in page_range %}
-                                {% if current_page == page %}
-                                    <li><a class="active_page" href="/mapstar-recruitments?page={{ page }}">{{ page }}</a></li>
-                                {% else %}
-                                    <li><a href="/mapstar-recruitments?page={{ page }}">{{ page }}</a></li>
-                                {% endif %}
+                            {% if current_page == page %}
+                            <li><a class="active_page" href="/mapstar-recruitments?page={{ page }}">{{ page }}</a></li>
+                            {% else %}
+                            <li><a href="/mapstar-recruitments?page={{ page }}">{{ page }}</a></li>
+                            {% endif %}
                             {% endfor %}
-                            <li><a href="/mapstar-recruitments?page={{ next_page }}" class="next"> Next <i
-                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <li><a href="/mapstar-recruitments?page={{ next_page }}" class="next"> Next <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a>
                             </li>
                         </ul>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
             </div>
 
         </div>
