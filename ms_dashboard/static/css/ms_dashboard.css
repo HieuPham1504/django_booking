@@ -186,6 +186,7 @@ html {
 }
 
 body {
+    font-size: 14px !important;
     margin: 0;
     font-family: "Roboto", Sans-serif;
 }

@@ -11,7 +11,6 @@
 
 .become-partner-container h1 {
     font-weight: var(--font-bold);
-    margin-top: var(--margin-top);
 }
 
 .become-partner-container img {
@@ -19,22 +18,15 @@
 }
 
 .info-1 {
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 50px 0;
 }
 
 .info-1 .left {
-    width: 30%;
+
 }
 
-.info-1 .left .left-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+.info-1 .left img {
+    width: 80%;
 }
 
 .right {
@@ -50,8 +42,7 @@
 }
 
 .info-3-video {
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
+    padding: 50px 0;
 }
 
 .info-3-video .video {
@@ -59,23 +50,17 @@
     justify-content: center;
     align-items: center;
 }
-
-.info-4 {
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
+.info-3-video .video iframe {
+    width: 100%;
+    height: 660px;
 }
 
-.info-4 .image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
+.info-4 img{
+    width: 30%;
 }
 
 .info-5 {
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
+    
 }
 
 .info-5 .header {
@@ -100,10 +85,13 @@
 }
 
 .icon-container .icon-container-item {
-    width: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 0;
+}
+.icon-container .icon-container-item .description p{
+    margin-bottom: 0;
 }
 
 .icon-container-item .icon {
@@ -115,24 +103,18 @@
 }
 
 .info-6 {
-    background-image: url(../images/become_partner/info_6_background.jpg);
+    background-image: url(../images/bg-trang-chu.jpg);
+    padding: 50px 0 100px 0;
 }
 
 .info-6 .details {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
 }
 
 .info-6 h1 {
     color: #ffffff;
-    padding-top: var(--margin-top);
-}
-
-.details .detail-item {
-    width: 30%;
 }
 
 .details .detail-item .icon {
@@ -155,9 +137,8 @@
 }
 
 .enter-submit {
-    margin-left: var(--margin-rl-width);
-    margin-right: var(--margin-rl-width);
-    margin-bottom: var(--margin-bottom);
+    margin-top: -100px;
+    padding-bottom: 50px;
 }
 
 .form-register {
@@ -185,7 +166,42 @@
     border-radius: 4px;
     outline: none;
 }
+.enter-submit .form-register .sub-mit{
+    margin-bottom: 0;
+    padding-top: 8px;
+}
+/* // Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 767.98px) { 
+    .info-3-video {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .become-partner-container h1 {
+        font-weight: var(--font-bold);
+        margin-top: 35px;
+        font-size: 28px;
+    }
+    .info-3-video .video iframe {
+        height: 320px;
+    }
+    .info-4 img{
+        width: 45%;
+    }
+    .info-6 .details .detail-item{
+        margin-top: 25px;
+    }
+    
+}
 
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) and (min-width: 767.98px) { 
+   
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) and (min-width: 991.98px){ 
+   
+}
 
 
 

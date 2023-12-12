@@ -162,6 +162,9 @@
     align-items: center;
     justify-content: end;
 }
+.tknoithat-section .attribute-details .attribute-item p{
+    margin-bottom: 0;
+}
 
 
 /* // Extra small devices (portrait phones, less than 576px) */
@@ -193,10 +196,57 @@
 
 /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) and (min-width: 767.98px) { 
-   
+    .tknoithat-section .header h1 {
+        font-size: 22px;
+    }
+    .tknoithat-section h2 {
+        font-size: 18px;
+    }
+    .tknoithat-section .attribute-details h3 {
+        font-size: 16px;
+    }
+    .tknoithat-section .ttnt-detail .attribute-item h3{
+        font-size: 18px;
+    }
+    .qlvanhanh-section .header h1 {
+        font-size: 22px;
+    }
+    .khaithac-section .header h1 {
+        font-size: 22px;
+        margin-bottom: 0;
+    }
+    .khaithac-section .khaithac-details .khaithac-item-description {
+        margin-top: 10px;
+    }
+    .khaithac-section h2 {
+        font-size: 16px;
+    }
+    .khaithac-item-description li {
+        margin-bottom: 0;
+        line-height: 1.5;
+        font-size: 13px;
+    }
 }
 
 /* // Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) and (min-width: 991.98px){ 
-   
+    .tknoithat-section .header h1 {
+        font-size: 30px;
+    }
+    .tknoithat-section h2 {
+        font-size: 26px;
+    }
+    .tknoithat-section .ttnt-detail .attribute-item h3{
+        font-size: 22px;
+    }
+    .qlvanhanh-section .header h1 {
+        font-size: 28px;
+    }
+    .khaithac-section .header {
+        margin-bottom: 15px;
+    }
+    .khaithac-section .header h1 {
+        font-size: 30px;
+        margin-bottom: 0;
+    }
 }
