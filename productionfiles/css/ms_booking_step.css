@@ -546,6 +546,15 @@
     .total-amount p.title {
         text-align: center;
     }
+
+    .bs-services {
+        flex-direction: column;
+    }
+
+    .bs-services .special-services {
+        width: 100%;
+    }
+
 }
 
 /* // Medium devices (tablets, less than 992px) */
