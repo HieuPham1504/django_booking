@@ -1336,11 +1336,14 @@ img {
     #menuToggle input:checked ~ ul {
         transform: none;
     }
+
 }
 
 /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) and (min-width: 767.98px) {
-
+    .footer {
+        margin-top: 0;
+    }
 }
 
 /* // Large devices (desktops, less than 1200px) */

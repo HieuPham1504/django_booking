@@ -195,7 +195,24 @@
 
 /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) and (min-width: 767.98px) { 
-   
+    .info-1 .left img {
+        width: 70%;
+    }
+    .info-1 .left {
+        font-size: 13px;
+    }
+    .info-1 .left p{
+        margin-bottom: 0;
+    }
+    .info-3-video h1{
+        font-size: 28px;
+    }
+    .info-3-video .video iframe {
+        height: 460px;
+    }
+    .become-partner-container h1 {
+        font-size: 28px;
+    }
 }
 
 /* // Large devices (desktops, less than 1200px) */
