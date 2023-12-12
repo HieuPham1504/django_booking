@@ -526,10 +526,36 @@
     color: #ffffff;
 }
 
-@media only screen and (max-width: 1243px) {
-  #pcc-form {
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
 
-  }
+/* // Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 767.98px) {
+    .booking-step-state {
+        margin-left: 0;
+        margin-right: 0;
+        align-items: flex-start;
+    }
+
+    .total-amount {
+        flex-direction: column;
+    }
+
+    .total-amount p.title {
+        text-align: center;
+    }
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) and (min-width: 767.98px) {
+
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) and (min-width: 991.98px) {
+
 }
 
 

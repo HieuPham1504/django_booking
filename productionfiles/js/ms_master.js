@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+    $('#menuToggle').click(function () {
+        $('#menu').toggleClass('active')
+    });
+
     $("#logo").click(function () {
         window.location.href = "/";
     });

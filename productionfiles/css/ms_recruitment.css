@@ -254,27 +254,58 @@ a:link {
     display: none !important;
 }
 
-
-@media only screen and (max-width: 768px) {
-    .recruitment-container .container h3{
-        margin-top: -50px;
+/* // Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 767.98px) { 
+    .recruitment-content{
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        display: block;
     }
-    .recruitment-content .filters{
+    .recruitment-container h3 {
+        margin-top: -40px;
+    }
+    .recruitment-content .filters {
         width: 100%;
     }
-    .recruitment-content .recruitment-list{
+    .recruitment-list {
         width: 100%;
     }
-
+    .recruitment-list h2 {
+        font-size: 20px;
+    }
+    .info-description .row-2 {
+        display: block;
+    }
+    .info-description .row-2 .col-content{
+        width: 50%;
+    }
+    .info .info-description {
+        padding-left: 25px;
+    }
 }
 
-@media only screen and (max-width: 998px)and (min-width: 768px) {
-    
-    
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) and (min-width: 767.98px) { 
+    .recruitment-content{
+        margin-top: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .info-description .row-2 {
+        display: block;
+    }
+    .info-description .row-2 .col-content{
+        width: 75%;
+    }
 }
 
-
-@media only screen and (max-width: 1200px) and (min-width: 999px) {
-
-
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) and (min-width: 991.98px){ 
+    .recruitment-content{
+        margin-top: 50px;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
