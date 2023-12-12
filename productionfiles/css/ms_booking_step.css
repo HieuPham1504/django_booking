@@ -4,6 +4,7 @@
     --font-bold: 600;
     --property-info-margin: 60px;
     --input-width: 200px;
+    --input-width-for-mobile: 100%;
     --bs-border-radius: 20px;
     --bs-border-color: 1px solid #cccccc;
     --bs-padding-size: 20px;
@@ -458,6 +459,7 @@
     text-align: start;
     color: #5aaa77;
     font-weight: var(--font-bold);
+    font-size: 24px !important;
 }
 
 .payment-bill h3 {
@@ -579,6 +581,38 @@
     .fee-info {
         width: 100%;
     }
+
+    .bs-payment-confirmation-container .pcc-info {
+        flex-direction: column;
+    }
+
+    .payment-method-section {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .payment-methods .pm-item {
+        justify-content: center;
+    }
+
+    .pcc-input > input {
+        width: var(--input-width-for-mobile);
+    }
+
+    .pcc-input > textarea {
+        width: var(--input-width-for-mobile);
+    }
+
+    .payment-method-section h3 {
+        text-align: center;
+    }
+
+    .payment-bill-container {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+
 
 }
 

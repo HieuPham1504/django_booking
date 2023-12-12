@@ -47,6 +47,7 @@ function resetTotalAmount(changePrice) {
 }
 
 function setDoneStep(stepSequence) {
+    debugger
     let hideStepDivSelector = `.step-sequence-title-${stepSequence}`
     let doneStepImgSelector = `.item-img-${stepSequence}`
     let bsTitleSelector = `.bs-title-${stepSequence}`
@@ -94,6 +95,7 @@ $(document).ready(function () {
     });
 
     $('#booking-step-submit').click(function (ev) {
+        debugger
         ev.preventDefault()
         let bookingForm = $('#booking-form')
         if (!bookingForm[0].checkValidity()) {
@@ -155,11 +157,10 @@ function getOnBillExistedExtraService(serviceId) {
 
 
 function onClickExtraService(ev) {
-    debugger
     let checkedInputs = $('.es-item-radio:checked')
     let notCheckedInputs = $(".es-item-radio:not(:checked)")
     let priceDetailDiv = $('div.price-detail')
-    let nightValue = $('h3.night-value').text()
+    let nightValue = $('h5.night-value').text()
 
     notCheckedInputs.each(function () {
         let dataSets = this.dataset
@@ -314,6 +315,7 @@ function onClickPaymentButton(ev) {
 }
 
 function onClickPaymentMethod(ev) {
+    debugger
     let qrCodeImgDiv = $('#qr-code-img')
     let checkedPaymentMethodCode = $('input[name="payment-method"]:checked').val();
     if (checkedPaymentMethodCode == 'qr_code') {
