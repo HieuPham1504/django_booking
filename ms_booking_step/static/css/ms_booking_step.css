@@ -282,6 +282,7 @@
 
 .fee-info .datetime-info {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     border-bottom: 1px solid black;
 }
@@ -319,6 +320,7 @@
     text-align: start;
     font-weight: var(--font-bold);
     color: #5aaa77;
+    font-size: 28px !important;
 }
 
 .payment-button {
@@ -553,6 +555,10 @@
 
     .bs-services .special-services {
         width: 100%;
+    }
+
+    .total-price-section .footer-section {
+        flex-direction: column;
     }
 
 }
