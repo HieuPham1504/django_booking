@@ -265,7 +265,7 @@
 }
 
 .fee-info {
-    width: 50%;
+    width: 54%;
 }
 
 .fee-info .detail {
@@ -282,6 +282,7 @@
 
 .fee-info .datetime-info {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     border-bottom: 1px solid black;
 }
@@ -319,6 +320,7 @@
     text-align: start;
     font-weight: var(--font-bold);
     color: #5aaa77;
+    font-size: 28px !important;
 }
 
 .payment-button {
@@ -337,7 +339,7 @@
 }
 
 .extra-services-list {
-    width: 46%;
+    width: 44%;
 }
 
 .extra-services-list h2 {
@@ -552,6 +554,22 @@
     }
 
     .bs-services .special-services {
+        width: 100%;
+    }
+
+    .total-price-section .footer-section {
+        flex-direction: column;
+    }
+
+    .bs-extra-services-container {
+        flex-direction: column;
+    }
+
+    .extra-services-list {
+        width: 100%;
+    }
+
+    .fee-info {
         width: 100%;
     }
 

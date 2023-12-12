@@ -561,6 +561,18 @@
         flex-direction: column;
     }
 
+    .bs-extra-services-container {
+        flex-direction: column;
+    }
+
+    .extra-services-list {
+        width: 100%;
+    }
+
+    .fee-info {
+        width: 100%;
+    }
+
 }
 
 /* // Medium devices (tablets, less than 992px) */
