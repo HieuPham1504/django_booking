@@ -157,6 +157,7 @@ function getOnBillExistedExtraService(serviceId) {
 
 
 function onClickExtraService(ev) {
+    debugger
     let checkedInputs = $('.es-item-radio:checked')
     let notCheckedInputs = $(".es-item-radio:not(:checked)")
     let priceDetailDiv = $('div.price-detail')
@@ -284,7 +285,6 @@ function getExtraServicesAdded() {
 }
 
 function onClickPaymentButton(ev) {
-    debugger
     let totalAmount = $('input#total-amount').val().replaceAll('.', '')
     let totalNights = $('input#total-nights').val()
     let esId = getExtraServicesAdded()
