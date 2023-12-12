@@ -538,6 +538,14 @@
         margin-right: 0;
         align-items: flex-start;
     }
+
+    .total-amount {
+        flex-direction: column;
+    }
+
+    .total-amount p.title {
+        text-align: center;
+    }
 }
 
 /* // Medium devices (tablets, less than 992px) */
