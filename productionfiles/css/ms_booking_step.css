@@ -526,12 +526,17 @@
     color: #ffffff;
 }
 
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
 /* // Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 767.98px) {
     .booking-step-state {
         margin-left: 0;
         margin-right: 0;
-        align-items: baseline;
+        align-items: flex-start;
     }
 }
 
