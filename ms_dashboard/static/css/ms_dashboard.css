@@ -1199,8 +1199,16 @@ img {
         margin-top: 10px;
     }
 
+    .form-booking-container {
+        margin-top: -40px;
+    }
+
+    .navigationWrapper {
+        height: 52px;
+    }
+
     .slideshow-container .our-dest {
-        margin-top: 200px;
+        margin-top: 320px;
     }
 
     .footer .address {
