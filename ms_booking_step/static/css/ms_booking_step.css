@@ -542,7 +542,7 @@
         align-items: flex-start;
     }
 
-    ..form-booking-container {
+    .form-booking-container {
         padding: 0;
     }
 
