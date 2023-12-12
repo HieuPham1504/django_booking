@@ -157,11 +157,10 @@ function getOnBillExistedExtraService(serviceId) {
 
 
 function onClickExtraService(ev) {
-    debugger
     let checkedInputs = $('.es-item-radio:checked')
     let notCheckedInputs = $(".es-item-radio:not(:checked)")
     let priceDetailDiv = $('div.price-detail')
-    let nightValue = $('h3.night-value').text()
+    let nightValue = $('h5.night-value').text()
 
     notCheckedInputs.each(function () {
         let dataSets = this.dataset
