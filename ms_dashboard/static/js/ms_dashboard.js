@@ -1,9 +1,5 @@
 $(document).ready(function () {
 
-    $('#menuToggle').click(function () {
-        $('#menu').toggleClass('active')
-    });
-
     let slidePageNumberLimit = 3
 
     $('.js_date_picker').datepicker({
