@@ -1329,6 +1329,7 @@ img {
 
     #menu li a {
         color: black;
+        display: block;
     }
 
     #menuToggle input:checked ~ ul {
