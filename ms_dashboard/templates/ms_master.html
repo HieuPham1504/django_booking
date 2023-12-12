@@ -34,6 +34,28 @@
                     <img src="{% static 'images/logo.png' %}" alt="Mapstar Logo">
                 </div>
             </div>
+
+            <div id="menuToggle">
+                <input type="checkbox"/>
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul id="menu">
+                    <li><a href="/booking-step">Điểm đến</a></li>
+                    <li><a href="/become-partner">Hợp tác cùng MapStar</a></li>
+                    <li><a href="/mapstar-services">Dịch vụ</a></li>
+                    <li><a href="/mapstar-app">App Mapstar</a></li>
+                    <li><a href="/about-us">Về chúng tôi</a></li>
+                    <li><a href="/mapstar-recruitments/?page=1">Tuyển dụng</a></li>
+                    <li><a href="/mapstar-contact">Liên hệ</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="/logout">Đăng xuất</a></li>
+                    {% else %}
+                        <li><a href="/login">Đăng nhập</a></li>
+                        <li><a href="/signup">Đăng ký</a></li>
+                    {% endif %}
+                </ul>
+            </div>
             <div class="navigation">
                 <div class="dropdown parent">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"

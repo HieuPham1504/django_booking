@@ -1,14 +1,7 @@
 $(document).ready(function () {
 
-    $('.next').click(function () {
-        $('.carousel').carousel('next');
-        console.log('next')
-        return false;
-    });
-    $('.prev').click(function () {
-        $('.carousel').carousel('prev');
-        console.log('prev')
-        return false;
+    $('#menuToggle').click(function () {
+        $('#menu').toggleClass('active')
     });
 
     let slidePageNumberLimit = 3
