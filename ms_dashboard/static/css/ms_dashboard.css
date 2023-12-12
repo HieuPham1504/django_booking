@@ -1299,10 +1299,10 @@ img {
     #menu {
         display: none;
         position: absolute;
-        width: 280px;
+        width: 320px;
         height: auto;
         box-shadow: 0 0 10px #85888C;
-        margin: -50px 0 0 -50px;
+        margin: -50px 0 0 -160px;
         padding: 50px;
         padding-top: 100px;
         background-color: #F5F6FA;
