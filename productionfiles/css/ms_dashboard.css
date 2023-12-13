@@ -209,6 +209,7 @@ div#logo {
     background-color: #ffffff;
     height: var(--navbar-height);
     align-items: center;
+    border-bottom: 1px solid #dfdfdf;
 }
 
 .navigationWrapper .btn-secondary, .navigationWrapper .btn-secondary.dropdown-toggle {
@@ -470,6 +471,12 @@ img {
     font-family: "UTM-Bebas";
     color: #113137;
     font-size: 40px;
+}
+
+.slideshow-container .diem-den-ous {
+    background-image: url('../images/bg-dia-diem-trang-chu-3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* Caption text */
@@ -935,10 +942,11 @@ img {
 
 /*footer*/
 .footer {
-    background-color: #062e36;
+    background-image: url('../images/bg-footer.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #ffffff;
     padding: 50px 0;
-    /* margin-top: 100px; */
 }
 
 .footer .address h3 {
@@ -1133,6 +1141,7 @@ img {
     margin-top: 300px;
     padding-top: 40px;
     border-top: 1px solid #ccc;
+    padding-bottom: 50px;
 }
 
 /*partner carousel*/
@@ -1377,6 +1386,7 @@ img {
     #menu.active {
         display: block;
         transition: 1s ease-out;
+        padding-top: 15px;
     }
 
     #menu li {
@@ -1396,9 +1406,9 @@ img {
 
     .navigationWrapper {
         justify-content: space-between;
-        padding: 0 30px;
+        padding: 0 25px;
     }
-
+    
 }
 
 /* // Medium devices (tablets, less than 992px) */
@@ -1498,6 +1508,7 @@ img {
     #menu.active {
         display: block;
         transition: 1s ease-out;
+        padding-top: 30px;
     }
 
     #menu li {
@@ -1513,6 +1524,10 @@ img {
 
     #menuToggle input:checked ~ ul {
         transform: none;
+    }
+    .navigationWrapper {
+        justify-content: space-between;
+        padding: 0 25px;
     }
 }
 
