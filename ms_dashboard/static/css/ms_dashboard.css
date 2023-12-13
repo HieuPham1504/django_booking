@@ -209,6 +209,7 @@ div#logo {
     background-color: #ffffff;
     height: var(--navbar-height);
     align-items: center;
+    border-bottom: 1px solid #dfdfdf;
 }
 
 .navigationWrapper .btn-secondary, .navigationWrapper .btn-secondary.dropdown-toggle {
@@ -1341,6 +1342,7 @@ img {
     #menu.active {
         display: block;
         transition: 1s ease-out;
+        padding-top: 15px;
     }
 
     #menu li {
@@ -1359,9 +1361,9 @@ img {
     }
     .navigationWrapper {
         justify-content: space-between;
-        padding: 0 30px;
+        padding: 0 25px;
     }
-
+    
 }
 
 /* // Medium devices (tablets, less than 992px) */
@@ -1461,6 +1463,7 @@ img {
     #menu.active {
         display: block;
         transition: 1s ease-out;
+        padding-top: 30px;
     }
 
     #menu li {
@@ -1476,6 +1479,10 @@ img {
 
     #menuToggle input:checked ~ ul {
         transform: none;
+    }
+    .navigationWrapper {
+        justify-content: space-between;
+        padding: 0 25px;
     }
 }
 
