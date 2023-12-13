@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-@39u+e#x#6^5ss%7%cith%#@$ql5%t0z9ilc+bz8m=_p4h$xn5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-# CSRF_TRUSTED_ORIGINS = ["https://demo.mapstar.vn"]
+ALLOWED_HOSTS = ['demo.mapstar.vn', 'localhost']
+CSRF_TRUSTED_ORIGINS = ["https://demo.mapstar.vn"]
 
 # Application definition
 
