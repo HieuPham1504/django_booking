@@ -553,7 +553,7 @@ img {
     padding-bottom: 8px;
 }
 
-.booking-form > input {
+.booking-form input {
     width: 20%;
     border: 0;
     outline: none;
@@ -669,6 +669,44 @@ img {
     cursor: pointer;
     background: url(/static/images/down-chevron-icon.png) no-repeat scroll 96% 18px;
     background-color: #FFFFFF;
+}
+
+.checkin-checkout-div {
+    display: flex;
+    align-items: center;
+    height: 44px;
+}
+
+.checkin-checkout-div input {
+    border: none;
+    height: 100%;
+    outline: none;
+    background-color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+}
+
+.checkin-checkout-div .next-icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.checkin-checkout-div input#checkin {
+    border-left: 1px solid #ccc;
+    background: url(/static/images/calendar-form-icon.png) no-repeat scroll 10% 14px;
+    background-color: #FFFFFF;
+}
+
+.checkin-checkout-div input#checkout {
+    border-left: none;
+}
+
+#no_guest {
+    background: url(/static/images/no-guest-icon.png) no-repeat scroll 10% 14px;
+    background-color: #FFFFFF;
+    height: 44px;
 }
 
 #no_guest:focus::placeholder {
@@ -1408,7 +1446,17 @@ img {
         justify-content: space-between;
         padding: 0 25px;
     }
-    
+
+    .checkin-checkout-div {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #no_guest {
+        background: url(/static/images/no-guest-icon.png) no-repeat scroll 5% 14px;
+        background-color: #FFFFFF;
+    }
+
 }
 
 /* // Medium devices (tablets, less than 992px) */
@@ -1525,10 +1573,37 @@ img {
     #menuToggle input:checked ~ ul {
         transform: none;
     }
+
     .navigationWrapper {
         justify-content: space-between;
         padding: 0 25px;
     }
+
+    .booking-form {
+        flex-direction: column;
+    }
+
+    .booking-form input {
+        height: 44px;
+        width: 100%;
+    }
+
+    #no_guest {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background: url(/static/images/no-guest-icon.png) no-repeat scroll 5% 14px;
+        background-color: #FFFFFF;
+    }
+
+    .checkin-checkout-div {
+        margin-top: 10px;
+    }
+
+    .slideshow-container .our-dest {
+        margin-top: 220px;
+    }
+
+
 }
 
 /* // Large devices (desktops, less than 1200px) */
@@ -1556,4 +1631,5 @@ img {
     .navigation {
         width: 50%;
     }
+
 }

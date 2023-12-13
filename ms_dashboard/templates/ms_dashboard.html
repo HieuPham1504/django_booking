@@ -42,12 +42,17 @@
                                        aria-label="Location" required readonly>
                                 <input id="property-id" type="hidden"/>
                             </div>
-                            <input class="checkin js_date_picker" id="checkin" name="checkin" type="text"
-                                   placeholder="Checkin"
-                                   aria-label="Checkin" readonly>
-                            <input class="checkout js_date_picker" id="checkout" name="checkout" type="text"
-                                   placeholder="Checkout"
-                                   aria-label="Checkout" readonly>
+                            <div class="checkin-checkout-div">
+                                <input class="checkin js_date_picker" id="checkin" name="checkin" type="text"
+                                       placeholder="Checkin"
+                                       aria-label="Checkin" readonly>
+                                <div class="next-icon">
+                                    <img src="{% static 'images/next-icon.png' %}" alt="Next">
+                                </div>
+                                <input class="checkout js_date_picker" id="checkout" name="checkout" type="text"
+                                       placeholder="Checkout"
+                                       aria-label="Checkout" readonly>
+                            </div>
                             <input class="no_guest" id="no_guest" name="no_guest" type="number" placeholder="Số người"
                                    aria-label="No Guest">
                             <input class="submit" type="submit" value="Check giá"/>
