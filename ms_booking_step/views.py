@@ -34,11 +34,13 @@ def bs_extra_service_calculate_price(price):
 
 def ms_booking_step(request):
     context = {}
+    destination_properties = {}
     if request.method == 'GET':
         booking_steps = MsBookingStep.objects.all().order_by('sequence')
         destinations = MsDestination.objects.all().order_by('priority')
         max_sequence = max([step.sequence for step in booking_steps])
         properties = MsProperty.objects.all()
+
         context = {
             'booking_steps': booking_steps,
             'max_sequence': max_sequence,
@@ -46,6 +48,18 @@ def ms_booking_step(request):
             'destinations': destinations,
         }
         datas = request.GET
+        if 'destination-id' in datas:
+            filter_destination_id = int(datas['destination-id'])
+            filter_destination = MsDestination.objects.get(id=filter_destination_id)
+            list_properties = MsProperty.objects.filter(destination_id=filter_destination)
+            if len(list_properties) > 0:
+                destination_properties.update({
+                    filter_destination.name: list_properties
+                })
+            context.update({
+                'destination_properties': destination_properties
+            })
+
         if 'property-detail-step' in datas:
             method_datas = request.GET
             property_id = method_datas.get('property-id')

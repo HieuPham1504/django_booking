@@ -113,6 +113,10 @@
     background-color: #c8e0e0;
 }
 
+.location-suggest.active {
+    top: 46px;
+}
+
 #reserved-booking-warning {
     display: none;
     color: red;
@@ -133,10 +137,6 @@
 .location-suggest {
     top: 31px;
     border-radius: 0px 0px 4px 4px;
-}
-
-.booking-step-container .booking-form .locations:hover > .location-suggest {
-    display: block;
 }
 
 .booking-step-container .booking-form .submit {
@@ -245,6 +245,11 @@
 
 .cancel-conditional {
     margin: var(--property-info-margin);
+}
+
+.next-step-button {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .total-amount {
@@ -576,6 +581,10 @@
         padding: 0;
     }
 
+    .location-suggest.active {
+        width: 300px;
+    }
+
     .total-amount {
         flex-direction: column;
     }
@@ -645,7 +654,6 @@
     .bs-booking-confirm {
         width: 80%;
     }
-
 
 
 }

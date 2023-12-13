@@ -121,10 +121,10 @@ $(document).ready(function () {
     });
 
     // property select
-    $('li.location-item').click(function (ev) {
+    $('li.sd-property-pk').click(function (ev) {
         let propertyIdInput = $('input#property-id')
         let locationItem = $('input#location')
-        let selectPropertyId = this.dataset.locationId
+        let selectPropertyId = this.dataset.propertyId
         let selectPropertyName = this.innerText
         locationItem.val(selectPropertyName)
         propertyIdInput.val(selectPropertyId)

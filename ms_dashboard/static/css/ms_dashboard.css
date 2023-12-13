@@ -561,9 +561,13 @@ img {
     color: red;
 }
 
-.locations:hover > .location-suggest {
-    display: block;
-}
+/*.locations:hover > .location-suggest {*/
+/*    display: block;*/
+/*}*/
+
+/*.locations .location-suggest:hover {*/
+/*    display: block;*/
+/*}*/
 
 .location-suggest {
     display: none;
@@ -579,6 +583,11 @@ img {
     animation: 0.4s linear location-suggest-animation;
 }
 
+.location-suggest.active {
+    display: block;
+    z-index: 1000;
+}
+
 @keyframes location-suggest-animation {
     from {
         opacity: 0;
@@ -588,7 +597,34 @@ img {
     }
 }
 
-.location-suggest > li {
+.location-suggest .suggest-destination {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.location-suggest .suggest-destination p {
+    margin: 0;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.location-suggest .suggest-destination .sd-info {
+    text-align: start;
+}
+
+.location-suggest .suggest-destination img {
+    padding-top: 4px;
+    width: auto;
+}
+
+.location-suggest .suggest-destination ul {
+    padding: 0 0 0 10px;
+}
+
+.location-suggest li {
     list-style-type: none;
     text-transform: uppercase;
     line-height: 2;
@@ -597,7 +633,7 @@ img {
     cursor: pointer;
 }
 
-.location-suggest > li:hover {
+.location-suggest li:hover {
     color: var(--mapstar--bg-color);
     animation: 0.6s linear location-suggest-item-animation;
     animation-fill-mode: forwards;
@@ -624,8 +660,8 @@ img {
     color: #4a4a4a;
     caret-color: #4a4a4a;
     cursor: pointer;
-    /*border-top-left-radius: 8px;*/
-    /*border-bottom-left-radius: 8px;*/
+    background: url(/static/images/down-chevron-icon.png) no-repeat scroll 96% 18px;
+    background-color: #FFFFFF;
 }
 
 #no_guest:focus::placeholder {
@@ -1081,7 +1117,7 @@ img {
     border-radius: 50%;
     width: 8px;
     height: 8px;
-   border-top: 0px solid transparent;
+    border-top: 0px solid transparent;
     border-bottom: 0px solid transparent;
 }
 
@@ -1172,7 +1208,8 @@ img {
 [id="menuToggle"] {
     display: none;
 }
-.navigationWrapper .navigation button{
+
+.navigationWrapper .navigation button {
     font-size: 14px;
 }
 
@@ -1202,19 +1239,28 @@ img {
         margin-top: 10px;
         height: 44px;
     }
+
+    .location-suggest.active {
+        top: 106px;
+        width: 300px;
+    }
+
     .slideshow-container .our-dest .our-destinations h2 {
         margin-top: 35px;
         font-size: 30px
     }
-    .our-destinations > .sub-destinations{
+
+    .our-destinations > .sub-destinations {
         height: auto;
         display: block;
     }
+
     .sub-destinations .sub-child-destinations {
         width: 100%;
         height: 100%;
         margin-top: 4px;
     }
+
     .form-booking-container {
         margin-top: -40px;
     }
@@ -1347,6 +1393,7 @@ img {
     #menuToggle input:checked ~ ul {
         transform: none;
     }
+
     .navigationWrapper {
         justify-content: space-between;
         padding: 0 30px;
@@ -1471,21 +1518,26 @@ img {
 
 /* // Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) and (min-width: 991.98px) {
-    .account-area-menu{
+    .account-area-menu {
         width: 180px;
     }
-    #company-phone-menu{
+
+    #company-phone-menu {
         display: none;
     }
+
     .navigationWrapper .navigation button {
         font-size: 12px;
     }
+
     div.navigation > div.parent {
         font-size: 12px;
     }
+
     .login-area > div.parent {
         font-size: 12px;
     }
+
     .navigation {
         width: 50%;
     }

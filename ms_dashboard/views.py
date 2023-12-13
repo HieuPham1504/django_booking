@@ -55,6 +55,7 @@ def ms_mapstar_create_contact_request(request):
 
 def ms_dashboard(request):
     context = {}
+    destination_properties = {}
     today = datetime.now().date()
     destinations = MsDestination.objects.all().order_by('priority')
     properties = MsProperty.objects.all().order_by('id')
@@ -62,6 +63,14 @@ def ms_dashboard(request):
     first_special_destinations = destinations[0]
     last_three_special_destinations = destinations[1:4]
     available_coupons = MsCoupon.objects.filter(date_start__lte=today, date_end__gte=today).order_by('sequence')
+
+    for destination in destinations:
+        list_properties = MsProperty.objects.filter(destination_id=destination)
+        if len(list_properties) > 0:
+            destination_properties.update({
+                destination.name: list_properties
+            })
+
     context.update({
         'destinations': destinations,
         'first_special_destinations': first_special_destinations,
@@ -69,6 +78,7 @@ def ms_dashboard(request):
         'properties': properties,
         'available_coupons': available_coupons,
         'partner_customers': partner_customers,
+        'destination_properties': destination_properties,
     })
     return render(request, 'ms_dashboard.html', context)
 

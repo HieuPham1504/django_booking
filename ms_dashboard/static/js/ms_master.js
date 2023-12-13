@@ -1,5 +1,24 @@
 $(document).ready(function () {
 
+    window.addEventListener('click', ({target}) => {
+        const locationInput = target.closest('#location');
+        const locationSuggest = $('.location-suggest');
+        const ourDestinationH2 = $('.our-destinations h2');
+        const clickedOnClosedPopup = !locationInput
+
+        if (clickedOnClosedPopup && locationSuggest) {
+            locationSuggest.removeClass('active');
+            ourDestinationH2.css('margin-top', '0')
+        }
+    });
+
+    $('input#location').click(function () {
+        const ourDestinationH2 = $('.our-destinations h2');
+
+        $('.location-suggest').toggleClass('active')
+        ourDestinationH2.css('margin-top', '80px')
+    });
+
     $('#menuToggle').click(function () {
         $('#menu').toggleClass('active')
     });

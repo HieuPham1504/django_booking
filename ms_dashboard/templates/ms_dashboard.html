@@ -22,9 +22,19 @@
                             {{ form.as_p }}
                             <div class="locations">
                                 <ul class="location-suggest">
-                                    {% for property in properties %}
-                                        <li class="location-item"
-                                            data-location-id="{{ property.id }}">{{ property.name }}</li>
+                                    {% for destination_name, properties in destination_properties.items %}
+                                        <div class="suggest-destination">
+                                            <img src="{% static 'images/place-icon.png' %}" alt="Destination">
+                                            <div class="sd-info">
+                                                <p class="sd-title">{{ destination_name }}</p>
+                                                <ul class="sd-properties">
+                                                    {% for property in properties %}
+                                                        <li class="sd-property-pk"
+                                                            data-property-id="{{ property.id }}">{{ property.name }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
                                     {% endfor %}
                                 </ul>
                                 <input class="location" id="location" name="location" type="text"

@@ -47,7 +47,6 @@ function resetTotalAmount(changePrice) {
 }
 
 function setDoneStep(stepSequence) {
-    debugger
     let hideStepDivSelector = `.step-sequence-title-${stepSequence}`
     let doneStepImgSelector = `.item-img-${stepSequence}`
     let bsTitleSelector = `.bs-title-${stepSequence}`
@@ -85,17 +84,16 @@ $(document).ready(function () {
         },
     });
 
-    $('li.location-item').click(function (ev) {
+    $('li.sd-property-pk').click(function (ev) {
         let propertyIdInput = $('input#property-id')
         let locationItem = $('input#location')
-        let selectPropertyId = this.dataset.locationId
+        let selectPropertyId = this.dataset.propertyId
         let selectPropertyName = this.innerText
         locationItem.val(selectPropertyName)
         propertyIdInput.val(selectPropertyId)
     });
 
     $('#booking-step-submit').click(function (ev) {
-        debugger
         ev.preventDefault()
         let bookingForm = $('#booking-form')
         if (!bookingForm[0].checkValidity()) {
