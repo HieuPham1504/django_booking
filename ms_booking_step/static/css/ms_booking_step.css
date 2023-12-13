@@ -170,12 +170,35 @@
 
 .header-items .item {
     display: flex;
+    align-items: center;
+    margin: 20px;
+    margin-top: 0;
+}
+
+.header-items .item .icon {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.header-items .item .detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-items .item .detail p {
+    margin: 0;
+}
+
+.header-items .icon.person {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .header-items .icon > img {
-    width: 20px;
+    width: auto;
 }
 
 .images-slider {
@@ -226,13 +249,18 @@
 
 .total-amount {
     display: flex;
-    margin: var(--property-info-margin);
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     background-color: #ffffff;
     border-radius: 20px;
     padding: var(--bs-padding-size);
+    margin-top: var(--property-info-margin);
 
+}
+
+.total-amount > .title {
+    padding-left: 20px;
+    border-left: 1px solid #cccccc;
 }
 
 .total-amount .value {
