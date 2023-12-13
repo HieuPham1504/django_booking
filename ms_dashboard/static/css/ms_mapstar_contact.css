@@ -51,10 +51,6 @@
     margin: 8px;
 }
 
-.icon img {
-    width: 100%;
-}
-
 .detail p {
     font-size: 14px;
 }
@@ -155,6 +151,19 @@ input::placeholder {
     .contact-detail-section h3 {
         font-size: 20px;
     }
+    .first-row .input-container {
+        width: 100%;
+    }
+    .form .second-row {
+        display: block;
+    }
+    .second-row .input-container {
+        width: 100%;
+    }
+    .submit-button {
+        width: 100%;
+        margin-top: 25px;
+    }
 }
 
 /* // Small devices (landscape phones, less than 768px) */
@@ -164,7 +173,9 @@ input::placeholder {
 
 /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) { 
-   
+    .contact-detail-section h3{
+        font-size: 16px;
+    }
 }
 
 /* // Large devices (desktops, less than 1200px) */

@@ -56,42 +56,47 @@
                     </div>
                 </div>
             </div>
-            <!-- Điểm đến  -->
-            <div class="row our-dest">
-                <div class="col-12">
-                    <div class="our-destinations">
-                        <h2 class="slider-title">ĐIỂM ĐẾN CỦA CHÚNG TÔI</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="our-destinations">
-                        <div class="main-destination">
-                            <img src="{{ first_special_destinations.background.url }}" alt="Destination Image">
+        </div>
+        <div class="diem-den-ous">
+            <div class="container">
+                <!-- Điểm đến của chúng tôi -->
+                <div class="row our-dest">
+                    <div class="col-12">
+                        <div class="our-destinations">
+                            <h2 class="slider-title">ĐIỂM ĐẾN CỦA CHÚNG TÔI</h2>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="our-destinations">
-                        <div class="sub-destinations">
-                            {% for destination in last_three_special_destinations %}
-                                <div class="sub-child-destinations">
-                                    <img src="{{ destination.background.url }}" alt="Destination Image">
-                                </div>
-                            {% endfor %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="our-destinations">
+                            <div class="main-destination">
+                                <img src="{{ first_special_destinations.background.url }}" alt="Destination Image">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row link-xt">
-                <div class="col-12">
-                    <a href="http://">XEM THÊM <i class="fa-solid fa-arrow-right-long"></i></a>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="our-destinations">
+                            <div class="sub-destinations">
+                                {% for destination in last_three_special_destinations %}
+                                    <div class="sub-child-destinations">
+                                        <img src="{{ destination.background.url }}" alt="Destination Image">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row link-xt">
+                    <div class="col-12">
+                        <a href="http://">XEM THÊM <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
                 </div>
             </div>
-
+        </div>
+        <div class="container">
             {#  Ưu đãi#}
             <div class="carousel-backgound">
 
