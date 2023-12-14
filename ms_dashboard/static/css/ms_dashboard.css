@@ -563,6 +563,11 @@ img {
     cursor: pointer;
 }
 
+.booking-form-input-border {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
 #reserved-booking-warning {
     display: none;
     color: red;
@@ -1446,6 +1451,11 @@ img {
         margin-top: 10px;
     }
 
+    .booking-form-input-border {
+        border-radius: 0;
+        border: none;
+    }
+
     #no_guest {
         background: url(/static/images/no-guest-icon.png) no-repeat scroll 5% 14px;
         background-color: #FFFFFF;
@@ -1580,6 +1590,11 @@ img {
     .booking-form input {
         height: 44px;
         width: 100% !important;
+    }
+
+    .booking-form-input-border {
+        border-radius: 0;
+        border: none;
     }
 
     #no_guest {
