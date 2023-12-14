@@ -134,6 +134,14 @@
     position: relative;
 }
 
+#location {
+    min-width: 220px;
+}
+
+.booking-form input {
+    width: 24%;
+}
+
 .location-suggest {
     top: 31px;
     border-radius: 0px 0px 4px 4px;
