@@ -1,0 +1,39 @@
+.success_booking_card {
+    background: white;
+    padding: var(--navbar-height);
+    border-radius: 4px;
+    box-shadow: 0 2px 3px #C8D0D8;
+    margin: 0 auto;
+}
+
+.success_booking_card > div {
+    border-radius: 200px;
+    height: 200px;
+    width: 200px;
+    background: #F8FAF5;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.success_booking_card > h1 {
+    color: #88B04B;
+    font-family: "Roboto", Sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.success_booking_card p {
+    color: #404F5E;
+    font-family: "Roboto", Sans-serif;
+    font-size: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.success_booking_card i {
+    color: #9ABC66;
+    font-size: 100px;
+    line-height: 200px;
+}
