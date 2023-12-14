@@ -236,8 +236,8 @@
                                 <input class="location booking-form-input-border" id="location" name="location"
                                        type="text"
                                        placeholder="Chọn điểm đến"
-                                       aria-label="Location" required readonly>
-                                <input id="property-id" type="hidden"/>
+                                       aria-label="Location" required readonly value="{{ filter_property.name }}">
+                                <input id="property-id" type="hidden" value="{{ filter_property.id }}"/>
                             </div>
                             <div class="checkin-checkout-div booking-form-input-border">
                                 <input class="checkin js_date_picker" id="checkin" name="checkin" type="text"

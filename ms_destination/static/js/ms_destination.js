@@ -5,3 +5,9 @@ $(document).ready(function () {
         window.location.href = `/property/${propertyId}`
     });
 })
+
+function onClickBooking(dataset) {
+    propertyId = !dataset.propertyId == true ? 0 : parseInt(dataset.propertyId)
+    destinationId = !dataset.destinationId == true ? 0 : parseInt(dataset.destinationId)
+    window.location.href = `/booking-step?destination-id=${destinationId}&property-id=${propertyId}`
+}

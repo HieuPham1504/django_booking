@@ -21,7 +21,7 @@
                          data-interval="1000">
                         <div class="MultiCarousel-inner">
                             {% for property in properties %}
-                                <div class="item">
+                                <div class="item" data-property-id="{{ property.id }}" data-destination-id="{{ destination.id }}" onClick="onClickBooking(this.dataset)">
                                     <img class="item-img" src="{{ property.image.url }}" alt="Property Image">
                                     <h5 class="property-name">{{ property.name }}</h5>
                                 </div>

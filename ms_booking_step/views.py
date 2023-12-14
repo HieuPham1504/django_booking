@@ -59,6 +59,12 @@ def ms_booking_step(request):
             context.update({
                 'destination_properties': destination_properties
             })
+            if 'property-id' in datas:
+                filter_property_id = int(datas['property-id'])
+                filter_property = MsProperty.objects.get(id=filter_property_id)
+                context.update({
+                    'filter_property': filter_property
+                })
         else:
             for destination in destinations:
                 list_properties = MsProperty.objects.filter(destination_id=destination)
