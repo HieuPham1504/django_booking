@@ -124,7 +124,7 @@
 
 .booking-step-container .booking-form {
     width: 80%;
-    justify-content: space-evenly;
+    justify-content: space-evenly !important;
 }
 
 .booking-step-container .booking-form > input, .booking-step-container #location {
