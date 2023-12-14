@@ -683,7 +683,7 @@ img {
     outline: none;
     background-color: #FFFFFF;
     text-align: center;
-    width: 100%;
+    width: 100% !important;
 }
 
 .checkin-checkout-div .next-icon {
