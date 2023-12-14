@@ -197,12 +197,13 @@
                                     <h3>Tiện ích khác</h3>
                                     <p>{{ property_id.other_services | linebreaks }}</p>
                                 </div>
+
+                                <div class="cancel-conditional">
+                                    <h3>Điều kiện hoàn hủy</h3>
+                                    <p>Không thể hoàn</p>
+                                </div>
                             </div>
 
-                            <div class="cancel-conditional">
-                                <h3>Điều kiện hoàn hủy</h3>
-                                <p>Không thể hoàn</p>
-                            </div>
                             <div class="next-step-button">
                                 <button id="extra-service-button" onClick="onClickExtraServiceStep()">Tiếp tục ❯
                                 </button>
@@ -232,7 +233,8 @@
                                         </div>
                                     {% endfor %}
                                 </ul>
-                                <input class="location booking-form-input-border" id="location" name="location" type="text"
+                                <input class="location booking-form-input-border" id="location" name="location"
+                                       type="text"
                                        placeholder="Chọn điểm đến"
                                        aria-label="Location" required readonly>
                                 <input id="property-id" type="hidden"/>
@@ -248,7 +250,8 @@
                                        placeholder="Checkout"
                                        aria-label="Checkout" readonly>
                             </div>
-                            <input class="no_guest booking-form-input-border" id="no_guest" name="no_guest" type="number" placeholder="Số người"
+                            <input class="no_guest booking-form-input-border" id="no_guest" name="no_guest"
+                                   type="number" placeholder="Số người"
                                    aria-label="No Guest">
                             <input id="booking-step-submit" class="submit" type="submit" value="Xem giá phòng"/>
 

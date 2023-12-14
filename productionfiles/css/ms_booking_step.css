@@ -160,8 +160,8 @@
 }
 
 .property-header {
-    width: 50%;
-    margin-left: var(--property-info-margin);
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .property-header h3 {
@@ -236,11 +236,12 @@
 .bs-services {
     display: flex;
     justify-content: space-between;
-    margin: var(--property-info-margin);
+    margin-top: var(--property-info-margin);
+    margin-bottom: var(--property-info-margin);
 }
 
 .bs-services .special-services {
-    width: 50%;
+    width: 33%;
 }
 
 .bs-services h3, .cancel-conditional h3 {
@@ -248,8 +249,14 @@
     font-weight: var(--font-bold);
 }
 
+.other-services {
+    width: 33%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .cancel-conditional {
-    margin: var(--property-info-margin);
+    width: 33%;
 }
 
 .next-step-button {
@@ -610,10 +617,19 @@
 
     .bs-services {
         flex-direction: column;
+        align-items: center;
     }
 
     .bs-services .special-services {
         width: 100%;
+    }
+
+    .bs-services p {
+        text-align: center;
+    }
+
+    .next-step-button {
+        justify-content: center;
     }
 
     .total-price-section .footer-section {
@@ -668,6 +684,10 @@
 
     .bs-booking-confirm {
         width: 80%;
+    }
+
+    .bs-services h3 {
+        text-align: center;
     }
 
 
