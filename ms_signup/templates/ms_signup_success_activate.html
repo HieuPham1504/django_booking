@@ -1,0 +1,16 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ms_booking_confirmed.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="success_booking_card">
+    <div>
+        <i class="checkmark">✓</i>
+    </div>
+    <h1>Xin chào {{ user.mscustomer.name }}</h1>
+    <p>Bạn kích hoạt tài khoản thành công</p>
+</div>
+{% endblock %}

@@ -22,7 +22,7 @@ def ms_signup(request):
             email=email,
             password=password,
             is_staff=False,
-            is_active=True,
+            is_active=False,
             is_superuser=False
         )
         customer_type = MsCustomerType.objects.get(code='customer')
@@ -32,7 +32,7 @@ def ms_signup(request):
                                                  user=new_user)
 
         subject = f"Mapstar: Thông tin tài khoản"
-        email_message = f"""Xin chào {fullname}.\n.\nĐây là thông tin đăng nhập của bạn:\nTài khoản: {email}\nMật khẩu: {password}"""
+        email_message = f"""Xin chào {fullname}.\n.\nĐây là thông tin đăng nhập của bạn:\nTài khoản: {email}\nMật khẩu: {password}\nVui lòng click vào link này để Kích hoạt tài khoản của bạn: https://demo.mapstar.vn/signup/activate/{new_user.id}"""
         send_mail(subject, email_message, 'Mapstar <mapstar@gmail.com>', [email], fail_silently=False)
         message += 'Tạo tài khoản thành công.\nVui lòng kiểm tra email đã đăng ký để xem thông tin tài khoản của bạn.'
 
@@ -45,4 +45,11 @@ def ms_signup(request):
         context['message'] = message
     return render(request, 'ms_signup.html', context)
 
-# Create your views here.
+def ms_signup_activate(request, user_id):
+    user = User.objects.get(id=user_id)
+    if user:
+        user_customer = user.ms_customer
+        if user_customer.is_active:
+            user.is_active = True
+            user.save()
+            return render(request, 'ms_signup_success_activate.html')
