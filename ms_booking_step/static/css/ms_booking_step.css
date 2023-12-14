@@ -122,9 +122,9 @@
     color: red;
 }
 
-/*.booking-step-container .booking-form {*/
-/*    width: 80%;*/
-/*}*/
+.booking-step-container .booking-form {
+    width: 80%;
+}
 
 .booking-step-container .booking-form > input, .booking-step-container #location {
     background-color: white;
@@ -135,7 +135,7 @@
 }
 
 #location {
-    min-width: 220px;
+    min-width: 260px;
 }
 
 .booking-form input {
