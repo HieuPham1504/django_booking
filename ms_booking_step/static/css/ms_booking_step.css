@@ -136,7 +136,7 @@
 }
 
 .booking-form input {
-    width: 24% !important;
+    width: 24%;
 }
 
 .location-suggest {
@@ -675,13 +675,7 @@
 
 /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) and (min-width: 767.98px) {
-    .booking-form > input {
-        width: 100% !important;
-    }
 
-    #location {
-        width: 100% !important;
-    }
 }
 
 /* // Large devices (desktops, less than 1200px) */

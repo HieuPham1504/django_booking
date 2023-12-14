@@ -1579,7 +1579,7 @@ img {
 
     .booking-form input {
         height: 44px;
-        width: 100%;
+        width: 100% !important;
     }
 
     #no_guest {
