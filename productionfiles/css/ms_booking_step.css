@@ -135,12 +135,8 @@
     position: relative;
 }
 
-.booking-step-container #location {
-    min-width: 260px;
-}
-
 .booking-form input {
-    width: 24%;
+    width: 24% !important;
 }
 
 .location-suggest {
