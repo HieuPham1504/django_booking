@@ -59,6 +59,17 @@ def ms_booking_step(request):
             context.update({
                 'destination_properties': destination_properties
             })
+        else:
+            for destination in destinations:
+                list_properties = MsProperty.objects.filter(destination_id=destination)
+                if len(list_properties) > 0:
+                    destination_properties.update({
+                        destination.name: list_properties
+                    })
+            context.update({
+                'destination_properties': destination_properties
+            })
+
 
         if 'property-detail-step' in datas:
             method_datas = request.GET

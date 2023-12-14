@@ -547,7 +547,7 @@ img {
 
 .booking-form {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     height: 100%;
     width: 100%;
     padding-bottom: 8px;
@@ -694,7 +694,6 @@ img {
 }
 
 .checkin-checkout-div input#checkin {
-    border-left: 1px solid #ccc;
     background: url(/static/images/calendar-form-icon.png) no-repeat scroll 10% 14px;
     background-color: #FFFFFF;
 }
@@ -711,11 +710,6 @@ img {
 
 #no_guest:focus::placeholder {
     color: transparent;
-}
-
-
-#checkin, #checkout, #no_guest {
-    border-left: 1px solid #cccccc;
 }
 
 ::-webkit-input-placeholder {
@@ -1630,6 +1624,10 @@ img {
 
     .navigation {
         width: 50%;
+    }
+
+    #checkin, #no_guest {
+        border-left: 1px solid #cccccc;
     }
 
 }
