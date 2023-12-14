@@ -2,35 +2,133 @@
 {% load static %}
 
 {% block header %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/ms_destination.css' %}">
-<script src="{% static 'js/ms_destination.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_destination.css' %}">
+    <script src="{% static 'js/ms_destination.js' %}"></script>
 
 {% endblock %}
 
 {% block body %}
 
-<div class="destination-container">
-    {% for destination in list_destinations %}
-    <h1>{{destination.name}}</h1>
-    <div class="property-list">
-        {% with destination_id=destination.id %}
-        {% for property in destination_properties|get_item:destination_id %}
-        <div class="property-item" data-property-id="{{property.id}}">
-            <img class="slider-image" src="{{property.image.url}}" alt="Property">
-            <div class="description-item-content">
-                <h3>{{property.name}}</h3>
-                {% if property.description %}
-                <p class="title">{{property.description}}</p>
-                {% else %}
-                <p class="title"></p>
-                {% endif %}
-            </div>
+    <div class="destination-container">
+        <div class="destination-item">
+            {% for destination, properties in destination_properties.items %}
+                <img class="destination-background" src="{{ destination.background.url }}" alt="Destination Background">
+                <div class="destination-name">
+                    <h3>{{ destination.name }}</h3>
+                </div>
+                <div class="row">
+                    <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"
+                         data-interval="1000">
+                        <div class="MultiCarousel-inner">
+                            {% for property in properties %}
+                                <div class="item">
+                                    <img class="item-img" src="{{ property.image.url }}" alt="Property Image">
+                                    <h5 class="property-name">{{ property.name }}</h5>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-        {% endwith %}
     </div>
 
-    {% endfor %}
-</div>
+    <div class="discount-container">
+        <h2 class="box-section-title">ƯU ĐÃI HIỆN CÓ</h2>
+        <div class="row blog">
+            <div class="col-md-12">
+                <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+
+                    <ol class="carousel-indicators">
+                        {% if available_coupons|get_page_number:2 > 1 %}
+                            {% for index in available_coupons|get_coupon_range:2 %}
+                                {% if forloop.counter0 == 0 %}
+                                    <li data-target="#blogCarousel" data-slide-to="{{ index }}"
+                                        class="active"></li>
+                                {% else %}
+                                    <li data-target="#blogCarousel" data-slide-to="{{ index }}"></li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </ol>
+
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        {% for coupon_list in available_coupons|split_coupons:2 %}
+                            {% if forloop.counter == 1 %}
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        {% for coupon in  coupon_list %}
+                                            <div class="col-md-6">
+                                                <a href="#">
+                                                    <img src="{{ coupon.image.url }}" alt="Image"
+                                                         style="width:100%;">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5>{{ coupon.name }}</h5>
+                                                        <p>{{ coupon.description }}</p>
+                                                        <p id="coupon-more-information">XEM THÊM</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        {% for coupon in  coupon_list %}
+                                            <div class="col-md-6">
+                                                <a href="#">
+                                                    <img src="{{ coupon.image.url }}" alt="Image"
+                                                         style="width:100%;">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5>{{ coupon.name }}</h5>
+                                                        <p>{{ coupon.description }}</p>
+                                                        <p id="coupon-more-information">XEM THÊM</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="our-partner">
+        <section class="container pt-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>ĐỐI TÁC CỦA CHÚNG TÔI</h2>
+                </div>
+            </div>
+        </section>
+        <div class="carousel-container pt-0 mt-2">
+            <button class="btn btn-secondary-outline our-partner-button prev" href="" title="go back"><i
+                    class="fa fa-lg fa-chevron-left"></i></button>
+            <div class="carousel-inner">
+                <div class="card-deck">
+                    {% for partner_customer in partner_customers %}
+                        <div class="h-100">
+                            <div class="card-img-top card-img-top-250">
+                                <img src="{{ partner_customer.image.url }}"
+                                     alt="{{ partner_customer.name }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button class="btn btn-secondary-outline our-partner-button next" href="" title="more"><i
+                    class="fa fa-lg fa-chevron-right"></i></button>
+        </div>
+
+    </div>
 
 {% endblock %}
