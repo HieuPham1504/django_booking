@@ -8,6 +8,7 @@ from ms_destination.models import MsDestination
 from ms_property.models import MsProperty
 from ms_coupons.models import MsCoupon
 from ms_customer.models import MsCustomer
+from ms_customer.models import MsCustomerType
 from .models import MsMapstarContact
 
 
@@ -59,7 +60,8 @@ def ms_dashboard(request):
     today = datetime.now().date()
     destinations = MsDestination.objects.all().order_by('priority')
     properties = MsProperty.objects.all().order_by('id')
-    partner_customers = MsCustomer.objects.filter(is_active=True).order_by('sequence')
+    partner_customer_type = MsCustomerType.objects.get(code='partner')
+    partner_customers = MsCustomer.objects.filter(is_active=True, customer_type=partner_customer_type).order_by('sequence')
     first_special_destinations = destinations[0]
     last_three_special_destinations = destinations[1:4]
     available_coupons = MsCoupon.objects.filter(date_start__lte=today, date_end__gte=today).order_by('sequence')
