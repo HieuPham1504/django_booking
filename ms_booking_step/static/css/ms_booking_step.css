@@ -589,6 +589,10 @@
         padding: 0;
     }
 
+    form#booking-form input {
+        width: 100%;
+    }
+
     .location-suggest.active {
         width: 300px;
     }
