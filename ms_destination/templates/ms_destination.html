@@ -12,7 +12,7 @@
     <div class="destination-container">
         <div class="destination-item">
             {% for destination, properties in destination_properties.items %}
-                <img class="destination-background" src="{{ destination.background.url }}" alt="Destination Background">
+                <img class="destination-background" src="{{ destination.destination_background_page.url }}" alt="Destination Background">
                 <div class="destination-name">
                     <h3>{{ destination.name }}</h3>
                 </div>
