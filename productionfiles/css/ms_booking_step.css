@@ -124,6 +124,7 @@
 
 .booking-step-container .booking-form {
     width: 80%;
+    justify-content: space-evenly;
 }
 
 .booking-step-container .booking-form > input, .booking-step-container #location {
@@ -134,7 +135,7 @@
     position: relative;
 }
 
-#location {
+.booking-step-container #location {
     min-width: 260px;
 }
 
