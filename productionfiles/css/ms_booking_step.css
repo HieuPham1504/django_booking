@@ -680,6 +680,13 @@
 
 /* // Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) and (min-width: 991.98px) {
+    .booking-form > input {
+        width: 100%;
+    }
+
+    #location {
+        width: 100%;
+    }
 
 }
 
