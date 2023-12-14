@@ -48,8 +48,8 @@ def ms_signup(request):
 def ms_signup_activate(request, user_id):
     user = User.objects.get(id=user_id)
     if user:
-        user_customer = user.ms_customer
+        user_customer = user.mscustomer
         if user_customer.is_active:
             user.is_active = True
             user.save()
-            return render(request, 'ms_signup_success_activate.html')
+            return render(request, 'ms_signup_success_activate.html', {'user_name': user_customer.name})

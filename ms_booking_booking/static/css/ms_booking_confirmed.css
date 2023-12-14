@@ -1,6 +1,6 @@
 .success_booking_card {
     background: white;
-    padding: 60px;
+    padding: var(--navbar-height);
     border-radius: 4px;
     box-shadow: 0 2px 3px #C8D0D8;
     margin: 0 auto;
