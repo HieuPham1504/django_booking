@@ -13,7 +13,11 @@
         <input id="property-id" type="hidden" value="{{ property_id.id }}">
         <input id="no-guest" type="hidden" value="{{ no_guest }}">
         <div class="bs-banner">
-            <img src="{% static 'images/banner-2.jpg' %}" style="width:100%">
+            {% if destination_detail.destination_background_page %}
+                <img src="{{ destination_detail.destination_background_page.url }}" style="width:100%">
+            {% else %}
+                <img src="{% static 'images/banner-2.jpg' %}" style="width:100%">
+            {% endif %}
         </div>
 
         <div class="booking-step-state">
@@ -216,7 +220,7 @@
                         <form id="booking-form" class="booking-form" action="" method="POST">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <div class="locations">
+                            <div class="locations booking-form-input-border">
                                 <ul class="location-suggest">
                                     {% for destination_name, properties in destination_properties.items %}
                                         <div class="suggest-destination">
@@ -253,7 +257,7 @@
                             <input class="no_guest booking-form-input-border" id="no_guest" name="no_guest"
                                    type="number" placeholder="Số người"
                                    aria-label="No Guest">
-                            <input id="booking-step-submit" class="submit" type="submit" value="Xem giá phòng"/>
+                            <input id="booking-step-submit booking-form-input-border" class="submit" type="submit" value="Xem giá phòng"/>
 
                         </form>
                         <p id="reserved-booking-warning">Đã có lịch đặt phòng vào ngày này. Vui lòng chọn ngày khác!</p>

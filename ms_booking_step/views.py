@@ -57,7 +57,8 @@ def ms_booking_step(request):
                     filter_destination.name: list_properties
                 })
             context.update({
-                'destination_properties': destination_properties
+                'destination_properties': destination_properties,
+                'destination_detail': filter_destination
             })
             if 'property-id' in datas:
                 filter_property_id = int(datas['property-id'])
