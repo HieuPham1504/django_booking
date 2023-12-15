@@ -3,6 +3,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from .models import MsBooking
 from ms_property.models import MsProperty
 from ms_destination.models import MsDestination
@@ -11,7 +12,7 @@ from ms_payment_method.models import MsPaymentMethod
 from ms_services.models import MsServices
 from ms_property_slider_image.models import MsPropertySliderImage
 from django.template.defaulttags import register
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 @register.filter
 def extra_service_calculate_price(price, no_days):
@@ -19,11 +20,89 @@ def extra_service_calculate_price(price, no_days):
     result = '{:,.2f}'.format(total_price)
     return result.split('.')[0]
 
+
+@register.filter
+def booking_state_class(state):
+    BOOKING_STATE = {
+        'done': 'text-success',
+        'cancel': 'text-danger',
+    }
+    return BOOKING_STATE.get(state, 'text-success')
+@register.filter
+def booking_state(state):
+    BOOKING_STATE = {
+        'done': 'Hoàn thành',
+        'cancel': 'Hủy',
+    }
+    return BOOKING_STATE.get(state, 'Hoàn thành')
+
+@register.filter
+def booking_date_format(date):
+    if isinstance(date, datetime.datetime):
+        date_format = date.date().strftime('%d/%m/%Y')
+    else:
+        date_format = date.strftime('%d/%m/%Y')
+    return date_format
+
 @register.filter
 def format_price(price):
     result = '{:,.2f}'.format(price)
     return result.split('.')[0].replace(',', '.')
 
+@csrf_protect
+def ms_booking_list(request):
+    context = {}
+    if request.method == 'GET':
+        datas = request.GET
+        destinations = MsDestination.objects.all().order_by('priority')
+        bookings = MsBooking.objects.all().order_by('-id')
+
+        date_start = datas.get('date-start')
+        date_end = datas.get('date-end')
+        filter_type = datas.get('filter-type')
+
+        if filter_type == 'check_in':
+            if date_start and date_end:
+                date_start_date = datetime.datetime.strptime(date_start, '%d/%m/%Y')
+                date_end_date = datetime.datetime.strptime(date_end, '%d/%m/%Y')
+                bookings = bookings.filter(check_in__gte=date_start_date, check_in__lte=date_end_date)
+            elif date_start:
+                date_start_date = datetime.datetime.strptime(date_start, '%d/%m/%Y')
+                bookings = bookings.filter(check_in__gte=date_start_date)
+            elif date_end:
+                date_end_date = datetime.datetime.strptime(date_end, '%d/%m/%Y')
+                bookings = bookings.filter(check_in__lte=date_end_date)
+        elif filter_type == 'check_out':
+            if date_start and date_end:
+                date_start_date = datetime.datetime.strptime(date_start, '%d/%m/%Y')
+                date_end_date = datetime.datetime.strptime(date_end, '%d/%m/%Y')
+                bookings = bookings.filter(check_out__gte=date_start_date, check_out__lte=date_end_date)
+            elif date_start:
+                date_start_date = datetime.datetime.strptime(date_start, '%d/%m/%Y')
+                bookings = bookings.filter(check_out__gte=date_start_date)
+            elif date_end:
+                date_end_date = datetime.datetime.strptime(date_end, '%d/%m/%Y')
+                bookings = bookings.filter(check_out__lte=date_end_date)
+
+        current_page = int(datas.get('page', 1))
+        pages = Paginator(bookings, 20)
+        max_page = pages.num_pages
+        next_page = current_page + 1 if current_page < max_page else current_page
+        previous_page = current_page - 1 if current_page > 1 else current_page
+
+        context.update({
+            'date_start': date_start if date_start else '',
+            'date_end': date_end if date_end else '',
+            'filter_type': filter_type,
+            'bookings': bookings,
+            'destinations': destinations,
+            'num_pages': max_page,
+            'page_range': pages.page_range,
+            'next_page': next_page,
+            'previous_page': previous_page,
+            'current_page': current_page,
+        })
+    return render(request, 'booking_list.html', context)
 
 def ms_booking_confirmation(request):
     context = {}

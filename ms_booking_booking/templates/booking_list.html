@@ -1,0 +1,99 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_booking_list.css' %}">
+    <script src="{% static 'js/ms_booking_list.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="booking-list">
+        <form id="booking-form-filters" class="form-inline" action="/booking">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group">
+                <label for="filter-type">Ngày</label>
+                <select name="filter-type" class="form-control" id="filter-type">
+                    {% if filter_type == 'check_out' %}
+                        <option value="check_in">Nhận phòng</option>
+                        <option value="check_out" selected="selected">Trả phòng</option>
+                    {% else %}
+                        <option value="check_in" selected="selected">Nhận phòng</option>
+                        <option value="check_out">Trả phòng</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div class="form-group filter-booking">
+                <label for="date-start">Từ</label>
+                <input type="text" class="form-control js_date_picker" id="date-start" name="date-start" readonly
+                       value="{{ date_start }}">
+            </div>
+            <div class="form-group filter-booking">
+                <label for="date-end">Cho đến</label>
+                <input type="text" class="form-control js_date_picker" id="date-end" name="date-end" readonly
+                       value="{{ date_end }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+
+        <div class="table-responsive">
+            <table class="booking-list-table table">
+                <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Mã số đặt phòng</th>
+                    <th scope="col">Tên khách</th>
+                    <th scope="col">Check In</th>
+                    <th scope="col">Check Out</th>
+                    <th scope="col">Biệt thự</th>
+                    <th scope="col">Được đặt vào</th>
+                    <th scope="col">Tình trạng đặt phòng</th>
+                    <th scope="col">Giá</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ booking.booking_code }}</td>
+                        <td>{{ booking.customer_name }}</td>
+                        <td>{{ booking.check_in | booking_date_format }}</td>
+                        <td>{{ booking.check_out | booking_date_format }}</td>
+                        <td>{{ booking.property_id.name }}</td>
+                        <td>{{ booking.create_date | booking_date_format }}</td>
+                        <td class="{{ booking.state | booking_state_class }} booking-state">{{ booking.state | booking_state }}</td>
+                        <td>{{ booking.total_amount | format_price }} <span class="fb-price-currency">₫</span></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if num_pages > 1 %}
+            <div class="pagination-container">
+                <div class="pagination_rounded">
+                    <ul>
+                        <li>
+                            <a href="/mapstar-recruitments?page={{ previous_page }}" class="prev"> <i
+                                    class="fa fa-angle-left"
+                                    aria-hidden="true"></i>
+                                Prev </a>
+                        </li>
+                        {% for page in page_range %}
+                            {% if current_page == page %}
+                                <li><a class="active_page" href="/booking?page={{ page }}">{{ page }}</a>
+                                </li>
+                            {% else %}
+                                <li><a href="/booking?page={{ page }}">{{ page }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li><a href="/booking?page={{ next_page }}" class="next"> Next <i
+                                class="fa fa-angle-right"
+                                aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

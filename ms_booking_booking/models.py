@@ -22,7 +22,7 @@ class MsBooking(models.Model):
     payment_method = models.ForeignKey(MsPaymentMethod, blank=True, null=True, on_delete=models.SET_NULL)
     coupon_ids = models.ManyToManyField(MsCoupon)
     extra_services_ids = models.ManyToManyField(MsServices)
-    state = models.CharField(BOOKING_STATE, max_length=100, default='draft')
+    state = models.CharField(BOOKING_STATE, max_length=100, default='done')
     booking_code = models.CharField(unique=True)
     create_date = models.DateTimeField(null=True, blank=True)
 

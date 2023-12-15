@@ -1,29 +1,6 @@
 $(document).ready(function () {
 
     let slidePageNumberLimit = 3
-
-    $('.js_date_picker').datepicker({
-        dateFormat: 'dd/mm/yy',
-        useCurrent: false,
-        keepOpen: false,
-        icons: {
-            time: 'fa fa-clock-o',
-            date: 'fa fa-calendar',
-            up: 'fa fa-chevron-up',
-            down: 'fa fa-chevron-down',
-            previous: 'fa fa-chevron-left',
-            next: 'fa fa-chevron-right',
-            today: 'fa fa-calendar-check-o',
-            clear: 'fa fa-trash',
-            close: 'fa fa-check primary',
-        },
-        buttons: {
-            showToday: true,
-            showClear: false,
-            showClose: true,
-        },
-    });
-
     let slideIndex = 0;
 
     // showSlides();
