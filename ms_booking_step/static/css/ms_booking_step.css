@@ -95,6 +95,7 @@
 
 .bs-detail {
     background-color: var(--background-color);
+    padding: 50px 0;
 }
 
 .bs-detail-container {
