@@ -148,7 +148,8 @@ function onClickReturnHomePage() {
     window.location.href = "/";
 }
 
-function onClickRedirectBookingDetail(bookingId) {
+function onClickRedirectBookingDetail() {
+    bookingId = parseInt($('#booking-id').val())
     window.location.href = `/booking/${bookingId}`;
 }
 

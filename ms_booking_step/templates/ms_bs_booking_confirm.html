@@ -1,6 +1,7 @@
 {% load static %}
 <div class="bs-booking-confirm-container">
     <div class="bs-booking-confirm">
+        <input id="booking-id" type="hidden" value="{{ new_booking.id }}">
         <div class="success-tick-symbol">
             <img src="{% static 'images/checked.png' %}" alt="Success Image">
         </div>
@@ -11,7 +12,7 @@
         <p>Trân trọng!</p>
         <div class="redirect-menu">
             <button id="return-home-page" onClick="onClickReturnHomePage()">QUAY VỀ TRANG CHỦ</button>
-            <button id="detail-booking-form" onClick="onClickRedirectBookingDetail({{ new_booking.id }})">XEM ĐƠN ĐẶT PHÒNG</button>
+            <button id="detail-booking-form" data-booking-id onClick="onClickRedirectBookingDetail()">XEM ĐƠN ĐẶT PHÒNG</button>
         </div>
     </div>
 </div>

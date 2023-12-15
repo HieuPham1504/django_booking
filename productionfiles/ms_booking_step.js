@@ -148,7 +148,8 @@ function onClickReturnHomePage() {
     window.location.href = "/";
 }
 
-function onClickRedirectBookingDetail(bookingId) {
+function onClickRedirectBookingDetail(dataset) {
+    debugger
     window.location.href = `/booking/${bookingId}`;
 }
 
