@@ -160,7 +160,7 @@ def ms_bs_payment_confirm(request):
             esIDs = esId.split(',')
             esIds_vals = esIDs if len(esIDs) == 0 else esIDs[1:]
             extraServicesAdded = MsServices.objects.filter(id__in=esIds_vals)
-            payment_methods = MsPaymentMethod.objects.filter(is_active=True)
+            payment_methods = MsPaymentMethod.objects.filter(is_active=True).order_by('sequence')
             final_pay = (sum([es.price for es in extraServicesAdded]) * int(totalNights)) + int(totalAmount)
             context = {
                 'payment_methods': payment_methods,
