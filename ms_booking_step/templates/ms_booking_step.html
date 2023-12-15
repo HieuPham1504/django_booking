@@ -10,7 +10,7 @@
     <div class="booking-step-container">
         <input id="check-in" type="hidden" value="{{ check_in }}">
         <input id="check-out" type="hidden" value="{{ check_out }}">
-        <input id="property-id" type="hidden" value="{{ property_id.id }}">
+        <input id="property-id" type="hidden" value="{{ filter_property.id }}">
         <input id="no-guest" type="hidden" value="{{ no_guest }}">
         <div class="bs-banner">
             {% if destination_detail.destination_background_page %}
@@ -241,7 +241,7 @@
                                        type="text"
                                        placeholder="Chọn điểm đến"
                                        aria-label="Location" required readonly value="{{ filter_property.name }}">
-                                <input id="property-id" type="hidden" value="{{ filter_property.id }}"/>
+{#                                <input id="property-id" type="hidden" value="{{ filter_property.id }}"/>#}
                             </div>
                             <div class="checkin-checkout-div booking-form-input-border">
                                 <input class="checkin js_date_picker" id="checkin" name="checkin" type="text"
