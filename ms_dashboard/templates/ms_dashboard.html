@@ -193,12 +193,14 @@
             <div class="carousel-inner">
                 <div class="card-deck">
                     {% for partner_customer in partner_customers %}
-                        <div class="h-100">
-                            <div class="card-img-top card-img-top-250">
-                                <img src="{{ partner_customer.image.url }}"
-                                     alt="{{ partner_customer.name }}">
+                        {% if partner_customer.image %}
+                            <div class="h-100">
+                                <div class="card-img-top card-img-top-250">
+                                    <img src="{{ partner_customer.image.url }}"
+                                         alt="{{ partner_customer.name }}">
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

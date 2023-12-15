@@ -3,6 +3,7 @@ from .choices import *
 from ms_destination.models import MsDestination
 from ms_property.models import MsProperty
 from ms_coupons.models import MsCoupon
+from ms_customer.models import MsCustomer
 from ms_services.models import MsServices
 from ms_payment_method.models import MsPaymentMethod
 
@@ -25,6 +26,7 @@ class MsBooking(models.Model):
     state = models.CharField(BOOKING_STATE, max_length=100, default='done')
     booking_code = models.CharField(unique=True)
     create_date = models.DateTimeField(null=True, blank=True)
+    create_customer = models.ForeignKey(MsCustomer, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.customer_name

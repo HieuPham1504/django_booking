@@ -21,16 +21,19 @@ def bs_get_qr_code_image_url(payment_methods):
     qr_code_method = payment_methods.filter(code='qr_code')
     return qr_code_method[0].main_QR_code_img.url if len(qr_code_method) > 0 else False
 
+
 @register.filter
 def bs_extra_service_calculate_price_total_nights(price, nights):
     total_price = int(price) * int(nights)
     result = '{:,.2f}'.format(int(total_price))
     return result.split('.')[0].replace(',', '.')
 
+
 @register.filter
 def bs_extra_service_calculate_price(price):
     result = '{:,.2f}'.format(int(price))
     return result.split('.')[0].replace(',', '.')
+
 
 def ms_booking_step(request):
     context = {}
@@ -48,6 +51,12 @@ def ms_booking_step(request):
             'destinations': destinations,
         }
         datas = request.GET
+        if 'property-id' in datas:
+            filter_property_id = int(datas['property-id'])
+            filter_property = MsProperty.objects.get(id=filter_property_id)
+            context.update({
+                'filter_property': filter_property
+            })
         if 'destination-id' in datas:
             filter_destination_id = int(datas['destination-id'])
             filter_destination = MsDestination.objects.get(id=filter_destination_id)
@@ -60,12 +69,6 @@ def ms_booking_step(request):
                 'destination_properties': destination_properties,
                 'destination_detail': filter_destination
             })
-            if 'property-id' in datas:
-                filter_property_id = int(datas['property-id'])
-                filter_property = MsProperty.objects.get(id=filter_property_id)
-                context.update({
-                    'filter_property': filter_property
-                })
         else:
             for destination in destinations:
                 list_properties = MsProperty.objects.filter(destination_id=destination)
@@ -76,7 +79,6 @@ def ms_booking_step(request):
             context.update({
                 'destination_properties': destination_properties
             })
-
 
         if 'property-detail-step' in datas:
             method_datas = request.GET
@@ -122,6 +124,7 @@ def ms_booking_step(request):
 
     return render(request, 'ms_booking_step.html', context)
 
+
 def ms_bs_extra_services(request):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         if request.method == 'GET':
@@ -148,6 +151,7 @@ def ms_bs_extra_services(request):
     }
     return render(request, 'ms_bs_extra_services.html', context)
 
+
 @csrf_exempt
 def ms_bs_payment_confirm(request):
     context = {}
@@ -170,6 +174,7 @@ def ms_bs_payment_confirm(request):
                 'extra_services_adds': extraServicesAdded,
             }
     return render(request, 'ms_payment_confirmation.html', context)
+
 
 @csrf_exempt
 def ms_bs_booking_confirm(request):
@@ -196,7 +201,7 @@ def ms_bs_booking_confirm(request):
             es_ids = datas.get('es_ids').split(',')
             es_ids_list = es_ids[1:] if len(es_ids) > 0 else es_ids
             extra_services = MsServices.objects.filter(id__in=es_ids_list)
-
+            current_user = request.user
             new_booking = MsBooking.objects.create(
                 check_in=datetime.strptime(check_in, '%d/%m/%Y'),
                 check_out=datetime.strptime(check_out, '%d/%m/%Y'),
@@ -210,9 +215,13 @@ def ms_bs_booking_confirm(request):
                 property_id=property,
                 payment_method=payment_method,
                 create_date=datetime.now(),
-                state='draft',
+                state='done',
             )
 
+            create_customer = current_user.mscustomer if not current_user.is_anonymous else False
+            if create_customer:
+                new_booking.create_customer = create_customer
+            new_booking.save()
             for extra_service in extra_services:
                 new_booking.extra_services_ids.add(extra_service)
             new_booking.save()
