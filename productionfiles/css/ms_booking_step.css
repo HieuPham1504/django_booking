@@ -499,12 +499,21 @@
 
 .payment-bill-container {
     width: 22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .payment-bill {
     background-color: #fff;
     border-radius: var(--bs-border-radius);
     padding: var(--bs-padding-size);
+    height: 80%;
+
+}
+
+.payment-bill .footer-section {
+    margin-top: 20px;
 }
 
 .payment-bill .price-detail {
