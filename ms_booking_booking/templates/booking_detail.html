@@ -18,7 +18,7 @@
         <div class="bdc-header">
             <h4>{{ booking_detail.property_id.name }}</h4>
             <h4>{{ booking_detail.check_in | booking_date_format }} - {{ booking_detail | booking_booking_nights }} đêm
-                - {{ user.mscustomer.name }}</h4>
+                - {{ booking_detail.customer_name }}</h4>
         </div>
         <div class="bdc-body">
             <div class="bdc-booking-detail">
