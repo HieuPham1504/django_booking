@@ -1,0 +1,18 @@
+.booking-detail-container {
+    padding-top: 120px;
+    margin-left: var(--margin-rl-width);
+    margin-right: var(--margin-rl-width);
+}
+
+.bdc-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bdc-body {
+    display: flex;
+}
+
+.bdc-body .bdc-booking-detail {
+    margin-right: 60px;
+}

@@ -35,6 +35,10 @@ body {
     font-weight: 500;
 }
 
+.booking-detail-row {
+    cursor: pointer;
+}
+
 /*pagination*/
 .pagination-container {
     width: 100%;

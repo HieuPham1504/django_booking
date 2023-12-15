@@ -37,7 +37,7 @@
         </form>
 
         <div class="table-responsive">
-            <table class="booking-list-table table">
+            <table class="booking-list-table table table-hover">
                 <thead>
                 <tr>
                     <th scope="col">STT</th>
@@ -53,7 +53,7 @@
                 </thead>
                 <tbody>
                 {% for booking in bookings %}
-                    <tr>
+                    <tr class="booking-detail-row" data-booking-id="{{ booking.id }}">
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{ booking.booking_code }}</td>
                         <td>{{ booking.customer_name }}</td>

@@ -1,0 +1,48 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_booking_detail.css' %}">
+    <script src="{% static 'js/ms_booking_detail.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="booking-detail-container">
+        <div class="action-back">
+            <a href="/booking/?page=1">
+                <i class="fa-solid fa-arrow-left"></i> QUAY LẠI
+            </a>
+        </div>
+        <div class="bdc-header">
+            <h4>{{ booking_detail.property_id.name }}</h4>
+            <h4>{{ booking_detail.check_in | booking_date_format }} - {{ booking_detail | booking_booking_nights }} đêm
+                - {{ user.mscustomer.name }}</h4>
+        </div>
+        <div class="bdc-body">
+            <div class="bdc-booking-detail">
+                <p>Nhận phòng</p>
+                <h4>{{ booking_detail.check_in | booking_date_format }}</h4>
+                <p>Trả phòng</p>
+                <h4>{{ booking_detail.check_out | booking_date_format }}</h4>
+                <p>Thời gian lưu trú:</p>
+                <h5>{{ booking_detail | booking_booking_nights }} đêm</h5>
+                <p>Tổng số khách:</p>
+                <h5>{{ booking_detail.no_adult }}</h5>
+                <p>Tổng tiền phòng</p>
+                <h3>{{ booking_detail.total_amount | format_price }} <span class="fb-price-currency">₫</span></h3>
+            </div>
+            <div class="bds-customer-detail">
+                <p>Tên khách: </p>
+                <h5>{{ booking_detail.customer_name }}</h5>
+                <p>Email </p>
+                <h5>{{ booking_detail.customer_email }}</h5>
+                <p>Số điện thoại </p>
+                <h5>{{ booking_detail.customer_phone }}</h5>
+                <p>Mã số đặt phòng</p>
+                <h5>{{ booking_detail.booking_code }}</h5>
+                <p>Ghi chú</p>
+                <h5>{{ booking_detail.customer_request }}</h5>
+            </div>
+        </div>
+    </div>
+{% endblock %}

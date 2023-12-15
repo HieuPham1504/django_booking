@@ -148,6 +148,10 @@ function onClickReturnHomePage() {
     window.location.href = "/";
 }
 
+function onClickRedirectBookingDetail(bookingId) {
+    window.location.href = `/booking/${bookingId}`;
+}
+
 function getOnBillExistedExtraService(serviceId) {
     let onBillserviceSelector = `.price-detail-info[data-bill-es-id=${serviceId}]`
     let onBillExtraService = $(onBillserviceSelector)

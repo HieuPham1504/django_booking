@@ -22,6 +22,11 @@ def extra_service_calculate_price(price, no_days):
 
 
 @register.filter
+def booking_booking_nights(booking):
+    date_diff = (booking.check_out - booking.check_in).days
+    return date_diff
+
+@register.filter
 def booking_state_class(state):
     BOOKING_STATE = {
         'done': 'text-success',
@@ -103,6 +108,16 @@ def ms_booking_list(request):
             'current_page': current_page,
         })
     return render(request, 'booking_list.html', context)
+
+def ms_booking_detail(request, booking_id):
+    context = {}
+    if request.method == 'GET':
+        booking_detail = MsBooking.objects.get(id=booking_id)
+        context.update({
+            'booking_detail': booking_detail
+        })
+
+    return render(request, 'booking_detail.html', context)
 
 def ms_booking_confirmation(request):
     context = {}
