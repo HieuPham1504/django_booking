@@ -60,7 +60,10 @@ def ms_booking_list(request):
     if request.method == 'GET':
         datas = request.GET
         destinations = MsDestination.objects.all().order_by('priority')
-        bookings = MsBooking.objects.all().order_by('-id')
+        if request.user.is_admin:
+            bookings = MsBooking.objects.all().order_by('-id')
+        else:
+            bookings = MsBooking.objects.filter(create_customer=request.user.mscustomer).order_by('-id')
 
         date_start = datas.get('date-start')
         date_end = datas.get('date-end')
