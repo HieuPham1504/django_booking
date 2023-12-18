@@ -29,6 +29,8 @@ def booking_booking_nights(booking):
 @register.filter
 def booking_state_class(state):
     BOOKING_STATE = {
+        'waiting_confirm': 'text-info',
+        'confirm': 'text-primary',
         'done': 'text-success',
         'cancel': 'text-danger',
     }
@@ -36,10 +38,12 @@ def booking_state_class(state):
 @register.filter
 def booking_state(state):
     BOOKING_STATE = {
+        'waiting_confirm': 'Chờ xác nhận',
+        'confirm': 'Xác nhận',
         'done': 'Hoàn thành',
         'cancel': 'Hủy',
     }
-    return BOOKING_STATE.get(state, 'Hoàn thành')
+    return BOOKING_STATE.get(state, '')
 
 @register.filter
 def booking_date_format(date):
@@ -275,7 +279,7 @@ def confirm_booking(request):
             customer_request=customer_comment,
             total_amount=float(total_price.replace(',', '')),
             payment_method=payment_method,
-            state='draft',
+            state='waiting_confirm',
         )
         new_booking.save()
         if extra_service_ids and extra_service_ids != '':

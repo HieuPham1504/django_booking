@@ -215,7 +215,7 @@ def ms_bs_booking_confirm(request):
                 property_id=property,
                 payment_method=payment_method,
                 create_date=datetime.now(),
-                state='done',
+                state='waiting_confirm',
             )
 
             create_customer = current_user.mscustomer if not current_user.is_anonymous else False
