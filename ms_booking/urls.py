@@ -33,4 +33,5 @@ urlpatterns = [
     path("mapstar-recruitments/", include("ms_recruitment.urls")),
     path("applicants/", include("ms_applicant.urls")),
     path("common-question/", include("ms_common_question.urls")),
+    path("partners/", include("ms_partner.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'ms_booking_step',
     'ms_account_payment',
     'ms_common_question',
+    'ms_partner',
 ]
 
 MIDDLEWARE = [

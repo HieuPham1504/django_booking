@@ -98,6 +98,9 @@
                         <p class="user-name">{{ user.username }}</p>
 
                         <ul class="login-submenu">
+                            {% if user|has_group:"TA Manager" or user|has_group:"TA Admin" %}
+                                <li><a href="/partners/?page=1">Quản lý tài khoản</a></li>
+                            {% endif %}
                             <li><a href="/booking">Quản lý đặt phòng</a></li>
                             {% if user.is_staff %}
                                 <li><a href="/applicants/?page=1">Thông tin ứng viên</a></li>

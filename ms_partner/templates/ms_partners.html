@@ -1,0 +1,169 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_partner.css' %}">
+    <script src="{% static 'js/ms_partner.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="partner-button-modal">
+
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#changePasswordModal" data-whatever="@mdo">
+            Đổi mật khẩu
+        </button>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#inactiveAccountModal" data-whatever="@fat">
+            Khóa/Mở khóa tài khoản
+        </button>
+
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalLabel">Đổi mật khẩu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="changePasswordModalForm" action="/partners/change-password" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="user-id" class="col-form-label">Tài khoản</label>
+                                <select class="form-control" id="user-id" name="user-id">
+                                    {% for user in users %}
+                                        <option value="{{ user.id }}">{{ user.username }}
+                                            - {{ user.mscustomer.name }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password" class="col-form-label">Mật khẩu mới (*)</label>
+                                <input type="password" class="form-control" id="new-password" name="new-pasword"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password" class="col-form-label">Xác nhận mật khẩu (*)</label>
+                                <input type="password" class="form-control" id="confirm-password" required>
+                            </div>
+
+                            <div class="form-group">
+                                <p class="changePasswordModalFormWarning">Thông tin mật khẩu không giống nhau. Vu lòng
+                                    thử lại</p>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary changePasswordModalSubmitButton">Đổi mật khẩu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="inactiveAccountModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inactiveAccountModalLabel">Khóa/Mở khóa tài khoản</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="inactiveAccountModal" action="/partners/inactive-account" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="type" class="col-form-label">Loại (*)</label>
+                                <select class="form-control" id="type" name="type" required>
+                                    <option value="active" selected>Mở khóa</option>
+                                    <option value="inactive">Khóa</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-id-1" class="col-form-label">Tài khoản (*)</label>
+                                <select class="form-control" id="user-id-1" name="user-id-1" required>
+                                    {% for user in users %}
+                                        <option value="{{ user.id }}">{{ user.username }}
+                                            - {{ user.mscustomer.name }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary inactiveAccountModalSubmitButton">Khóa/Mở khóa tài
+                            khoản
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="booking-list-table table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên tài khoản</th>
+                <th scope="col">Họ và tên</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Email</th>
+                <th scope="col">Agency</th>
+                <th scope="col">Active</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr class="partner-detail-row" data-user-id="{{ booking.id }}">
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.mscustomer.name }}</td>
+                    <td>{{ user.mscustomer.phone }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.mscustomer.company.name }}</td>
+                    <td class="{{ user.is_active | get_active_user_color }}">{{ user.is_active | get_active_user }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if num_pages > 1 %}
+        <div class="pagination-container">
+            <div class="pagination_rounded">
+                <ul>
+                    <li>
+                        <a href="/partners?page={{ previous_page }}" class="prev"> <i
+                                class="fa fa-angle-left"
+                                aria-hidden="true"></i>
+                            Prev </a>
+                    </li>
+                    {% for page in page_range %}
+                        {% if current_page == page %}
+                            <li><a class="active_page" href="/partners?page={{ page }}">{{ page }}</a>
+                            </li>
+                        {% else %}
+                            <li><a href="/partners?page={{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li><a href="/partners?page={{ next_page }}" class="next"> Next <i
+                            class="fa fa-angle-right"
+                            aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

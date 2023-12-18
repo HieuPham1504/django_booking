@@ -12,6 +12,10 @@ from ms_customer.models import MsCustomerType
 from .models import MsMapstarContact
 
 
+@register.filter(name='has_group')
+def has_group(user, group_name):
+    return user.groups.filter(name=group_name).exists()
+
 # Create your views here.
 @register.filter
 def get_coupon_range(total_coupons, no_item):
