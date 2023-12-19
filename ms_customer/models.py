@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .choices import *
 
 from ms_customer_type.models import MsCustomerType
 from ms_company.models import MsCompany
@@ -14,6 +15,7 @@ class MsCustomer(models.Model):
   sequence = models.IntegerField(default=1)
   is_active = models.BooleanField(default=True)
   customer_manager = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
+  partner_type = models.CharField(PARTNER_TYPE, null=True, blank=True)
 
   def __str__(self):
     return self.name

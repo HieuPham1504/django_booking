@@ -12,27 +12,138 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="form-group">
-                <label for="filter-type">Ngày</label>
+                <label for="filter-type">Lọc theo</label>
                 <select name="filter-type" class="form-control" id="filter-type">
                     {% if filter_type == 'check_out' %}
-                        <option value="check_in">Nhận phòng</option>
-                        <option value="check_out" selected="selected">Trả phòng</option>
-                    {% else %}
-                        <option value="check_in" selected="selected">Nhận phòng</option>
+                        <option value="check_in">Ngày nhận phòng</option>
+                        <option value="check_out" selected="selected">Ngày trả phòng</option>
+                        <option value="booking_code">Mã đặt phòng</option>
+                        <option value="partner_type">Đối tác</option>
+                    {% elif filter_type == 'check_in' %}
+                        <option value="check_in" selected="selected">Ngày nhận phòng</option>
                         <option value="check_out">Trả phòng</option>
+                        <option value="booking_code">Mã đặt phòng</option>
+                        <option value="partner_type">Đối tác</option>
+                    {% elif filter_type == 'booking_code' %}
+                        <option value="check_in">Ngày nhận phòng</option>
+                        <option value="check_out">Trả phòng</option>
+                        <option value="booking_code" selected="selected">Mã đặt phòng</option>
+                        <option value="partner_type">Đối tác</option>
+                    {% elif filter_type == 'partner_type' %}
+                        <option value="check_in">Ngày nhận phòng</option>
+                        <option value="check_out">Trả phòng</option>
+                        <option value="booking_code">Mã đặt phòng</option>
+                        <option value="partner_type" selected="selected">Đối tác</option>
+                    {% else %}
+                        <option value="check_in" selected="selected">Ngày nhận phòng</option>
+                        <option value="check_out">Trả phòng</option>
+                        <option value="booking_code">Mã đặt phòng</option>
+                        <option value="partner_type">Đối tác</option>
                     {% endif %}
                 </select>
             </div>
-            <div class="form-group filter-booking">
-                <label for="date-start">Từ</label>
-                <input type="text" class="form-control js_date_picker" id="date-start" name="date-start" readonly
-                       value="{{ date_start }}">
+
+            {% if filter_type == 'booking_code' %}
+                <div class="form-group filter-booking booking-code-input">
+                    <label for="booking-code">Mã đặt phòng</label>
+                    <input type="text" class="form-control" id="booking-code" name="booking-code"
+                           value="{{ booking_code }}">
+                </div>
+            {% else %}
+                <div class="form-group filter-booking booking-code-input" style="display: none">
+                    <label for="booking-code">Mã đặt phòng</label>
+                    <input type="text" class="form-control" id="booking-code" name="booking-code"
+                           value="{{ booking_code }}">
+                </div>
+            {% endif %}
+
+            {% if filter_type == 'partner_type' %}
+                <div class="form-group filter-booking partner-type-input">
+                    <label for="partner-type">Loại</label>
+                    <select class="form-control" id="partner-type" name="partner-type">
+                        {% if partner_type == 'individual' %}
+                            <option value="individual" selected="selected">Cá nhân</option>
+                            <option value="agency">Agency</option>
+                        {% elif partner_type == 'agency' %}
+                            <option value="individual">Cá nhân</option>
+                            <option value="agency" selected="selected">Agency</option>
+                        {% else %}
+                            <option value=""></option>
+                            <option value="individual">Cá nhân</option>
+                            <option value="agency">Agency</option>
+                        {% endif %}
+                    </select>
+                </div>
+            {% else %}
+                <div class="form-group filter-booking partner-type-input" style="display: none">
+                    <label for="partner-type">Loại</label>
+                    <select class="form-control" id="partner-type" name="partner-type">
+                        {% if partner_type == 'individual' %}
+                            <option value="individual" selected="selected">Cá nhân</option>
+                            <option value="agency">Agency</option>
+                        {% elif partner_type == 'agency' %}
+                            <option value="individual">Cá nhân</option>
+                            <option value="agency" selected="selected">Agency</option>
+                        {% else %}
+                            <option value=""></option>
+                            <option value="individual">Cá nhân</option>
+                            <option value="agency">Agency</option>
+                        {% endif %}
+                    </select>
+                </div>
+            {% endif %}
+            <div class="form-group filter-booking partner-type-individual-value" style="display: none">
+                <label for="partner-type-value">Cá nhân</label>
+                <select class="form-control" id="partner-type-individual-value" name="partner-type-individual-value">
+                    {% for individual in individual_partners %}
+                        {% if partner_type_individual_value == individual.id %}
+                            <option value="{{ individual.id }}" selected="selected">{{ individual.name }}</option>
+                        {% else %}
+                            <option value="{{ individual.id }}">{{ individual.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
             </div>
-            <div class="form-group filter-booking">
-                <label for="date-end">Cho đến</label>
-                <input type="text" class="form-control js_date_picker" id="date-end" name="date-end" readonly
-                       value="{{ date_end }}">
+
+            <div class="form-group filter-booking partner-type-agency-value" style="display: none">
+                <label for="partner-type-value">Agency</label>
+                <select class="form-control" id="partner-type-individual-value" name="partner-type-agency-value">
+                    {% for agency in agency_partners %}
+                        {% if partner_type_agency_value == agency.id %}
+                            <option value="{{ agency.id }}" selected="selected">{{ agency.name }}</option>
+                        {% else %}
+                            <option value="{{ agency.id }}">{{ agency.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
             </div>
+
+            {% if filter_type == 'check_out' or filter_type == 'check_in' %}
+
+                <div class="form-group filter-booking date-input">
+                    <label for="date-start">Từ</label>
+                    <input type="text" class="form-control js_date_picker" id="date-start" name="date-start" readonly
+                           value="{{ date_start }}">
+                </div>
+                <div class="form-group filter-booking date-input">
+                    <label for="date-end">Cho đến</label>
+                    <input type="text" class="form-control js_date_picker" id="date-end" name="date-end" readonly
+                           value="{{ date_end }}">
+                </div>
+            {% else %}
+                <div class="form-group filter-booking date-input" style="display: none">
+                    <label for="date-start">Từ</label>
+                    <input type="text" class="form-control js_date_picker" id="date-start" name="date-start" readonly
+                           value="{{ date_start }}">
+                </div>
+                <div class="form-group filter-booking date-input" style="display: none">
+                    <label for="date-end">Cho đến</label>
+                    <input type="text" class="form-control js_date_picker" id="date-end" name="date-end" readonly
+                           value="{{ date_end }}">
+                </div>
+            {% endif %}
+
+
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </form>
 
@@ -49,6 +160,7 @@
                     <th scope="col">Được đặt vào</th>
                     <th scope="col">Tình trạng đặt phòng</th>
                     <th scope="col">Giá</th>
+                    <th scope="col">Người đặt</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,6 +175,7 @@
                         <td>{{ booking.create_date | booking_date_format }}</td>
                         <td class="{{ booking.state | booking_state_class }} booking-state">{{ booking.state | booking_state }}</td>
                         <td>{{ booking.total_amount | format_price }} <span class="fb-price-currency">₫</span></td>
+                        <td>{{ booking.create_customer.name }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

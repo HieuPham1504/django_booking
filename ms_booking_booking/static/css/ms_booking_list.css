@@ -17,6 +17,10 @@ body {
     margin-right: 10px;
 }
 
+/*.filter-booking.booking-code-input {*/
+/*    display: none;*/
+/*}*/
+
 #booking-form-filters {
     margin-bottom: 40px;
 }

@@ -10,6 +10,8 @@ from ms_destination.models import MsDestination
 from ms_property_condition.models import MsPropertyCondition
 from ms_payment_method.models import MsPaymentMethod
 from ms_services.models import MsServices
+from ms_customer.models import MsCustomer
+from ms_company.models import MsCompany
 from ms_property_slider_image.models import MsPropertySliderImage
 from django.template.defaulttags import register
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -62,16 +64,37 @@ def format_price(price):
 def ms_booking_list(request):
     context = {}
     if request.method == 'GET':
+        current_user = request.user
         datas = request.GET
         destinations = MsDestination.objects.all().order_by('priority')
-        if request.user.is_superuser:
-            bookings = MsBooking.objects.all().order_by('-id')
+        is_ta_admin = current_user.groups.filter(name='TA Admin')
+        is_ta_manager = current_user.groups.filter(name='TA Manager')
+        is_ta_officer = current_user.groups.filter(name='TA Officer')
+        if current_user.is_anonymous:
+            bookings = MsBooking.objects.filter(id=0)
         else:
-            bookings = MsBooking.objects.filter(create_customer=request.user.mscustomer).order_by('-id')
+            if request.user.is_superuser or is_ta_admin:
+                bookings = MsBooking.objects.all().order_by('-id')
+            elif is_ta_manager:
+                child_partners = MsCustomer.objects.filter(customer_manager=current_user.mscustomer)
+                my_bookings = MsBooking.objects.filter(create_customer=current_user.mscustomer)
+                child_partner_bookings = MsBooking.objects.filter(create_customer__in=child_partners)
+                bookings = my_bookings | child_partner_bookings
+            else:
+                current_customer = current_user.mscustomer if current_user.mscustomer else MsCustomer.objects.filter(id=0)
+                bookings = MsBooking.objects.filter(create_customer=current_customer)
 
         date_start = datas.get('date-start')
         date_end = datas.get('date-end')
-        filter_type = datas.get('filter-type')
+        booking_code = datas.get('booking-code')
+        partner_type = datas.get('partner-type', '')
+        partner_type_individual_value = datas.get('partner-type-individual-value', 0)
+        partner_type_agency_value = datas.get('partner-type-agency-value', 0)
+
+        filter_type = datas.get('filter-type', 'check_in')
+
+        agency_partners = MsCompany.objects.filter(is_admin=False)
+        individual_partners = MsCustomer.objects.filter(partner_type='individual')
 
         if filter_type == 'check_in':
             if date_start and date_end:
@@ -95,6 +118,16 @@ def ms_booking_list(request):
             elif date_end:
                 date_end_date = datetime.datetime.strptime(date_end, '%d/%m/%Y')
                 bookings = bookings.filter(check_out__lte=date_end_date)
+        elif filter_type == 'booking_code':
+            bookings = bookings.filter(booking_code__contains=booking_code)
+        elif filter_type == 'partner_type':
+            if partner_type == 'individual':
+                individual_customer = MsCustomer.objects.get(id=partner_type_individual_value)
+                bookings = bookings.filter(create_customer=individual_customer)
+            elif partner_type == 'agency':
+                agency = MsCompany.objects.get(id=partner_type_agency_value)
+                agency_customers = MsCustomer.objects.filter(company=agency)
+                bookings = bookings.filter(create_customer__in=agency_customers)
 
         current_page = int(datas.get('page', 1))
         pages = Paginator(bookings, 20)
@@ -105,7 +138,10 @@ def ms_booking_list(request):
         context.update({
             'date_start': date_start if date_start else '',
             'date_end': date_end if date_end else '',
+            'booking_code': booking_code if booking_code else '',
             'filter_type': filter_type,
+            'agency_partners': agency_partners,
+            'individual_partners': individual_partners,
             'bookings': bookings,
             'destinations': destinations,
             'num_pages': max_page,
