@@ -133,6 +133,7 @@
                                         <div class="carousel-item active">
                                             <div class="row">
                                                 {% for coupon in  coupon_list %}
+                                                    {% if coupon.image %}
                                                     <div class="col-md-6">
                                                         <a href="#">
                                                             <img src="{{ coupon.image.url }}" alt="Image"
@@ -144,6 +145,7 @@
                                                             </div>
                                                         </a>
                                                     </div>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </div>
                                         </div>
@@ -151,6 +153,7 @@
                                         <div class="carousel-item">
                                             <div class="row">
                                                 {% for coupon in  coupon_list %}
+                                                    {% if coupon.image %}
                                                     <div class="col-md-6">
                                                         <a href="#">
                                                             <img src="{{ coupon.image.url }}" alt="Image"
@@ -162,6 +165,7 @@
                                                             </div>
                                                         </a>
                                                     </div>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </div>
                                         </div>

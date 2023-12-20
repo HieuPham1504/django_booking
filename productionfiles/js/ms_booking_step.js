@@ -278,13 +278,24 @@ function onClickExtraServiceStep(ev) {
 }
 
 function getExtraServicesAdded() {
-    let extraServiceSelectors = $('.extra-service-added')
+    let extraServicesAddedSelectors = $('.price-detail-info-coupon')
     let extraServiceIds = ''
-    extraServiceSelectors.each(function () {
+    extraServicesAddedSelectors.each(function () {
         let esId = this.dataset.billEsId
         extraServiceIds = extraServiceIds.concat(',', esId);
     })
     return extraServiceIds
+}
+
+function getAppliedCoupons() {
+    debugger
+    let appliedCouponsSelectors = $('.extra-service-added')
+    let appliedCouponsIds = ''
+    appliedCouponsSelectors.each(function () {
+        let couponId = this.dataset.couponId
+        appliedCouponsIds = appliedCouponsIds.concat(',', couponId);
+    })
+    return appliedCouponsIds
 }
 
 function onClickPaymentButton(ev) {
@@ -319,7 +330,6 @@ function onClickPaymentButton(ev) {
 }
 
 function onClickPaymentMethod(ev) {
-    debugger
     let qrCodeImgDiv = $('#qr-code-img')
     let checkedPaymentMethodCode = $('input[name="payment-method"]:checked').val();
     if (checkedPaymentMethodCode == 'qr_code') {
@@ -330,6 +340,45 @@ function onClickPaymentMethod(ev) {
         qrCodeImgDiv.css('display', 'none')
     }
 
+}
+
+function onClickVoucherSubmit(ev) {
+    debugger
+    let voucherCode = $('#payment-bill-voucher-code').val()
+    $.ajax({
+        type: "GET",
+        url: "/coupons/get-coupon",
+        data: {
+            'voucherCode': voucherCode,
+        },
+        success: function (data) {
+            console.log(data)
+            let couponData = data.data
+            let couponId = couponData.id
+
+            let voucherLine = `.price-detail-info[data-coupon-id=${couponId}]`
+            let voucherLineDiv = $(voucherLine)
+            if (couponData != {} && voucherLineDiv.length == 0) {
+                let totalPriceDisplay = $('span#total-price')
+                let totalPriceInput = $('input#final-pay')
+
+                let totalPriceValue = parseInt(totalPriceInput.val().split('.')[0])
+                let priceDetail = $('.price-detail')
+                let couponDataValue = couponData.value
+                let number = formatCurrency(couponDataValue);
+                let couponDiv =
+                    `<div class="price-detail-info price-detail-info-coupon" data-coupon-id="${couponId}">
+                        <p>Giá thuê</p>
+                        <p>-${number}<span class="fb-price-currency">₫</span>
+                        </p>
+                </div>`
+                priceDetail.append(couponDiv)
+                let finalPrice = totalPriceValue - couponDataValue
+                totalPriceDisplay.text(formatCurrency(finalPrice))
+                totalPriceInput.val(finalPrice)
+            }
+        }
+    })
 }
 
 function onClickPaymentConfirmation() {
@@ -346,8 +395,10 @@ function onClickPaymentConfirmation() {
     let fullName = $('input#fullname').val()
     let email = $('input#email').val()
     let phone = $('input#phone').val()
-    let customerRequest = $('input#customer-request').val()
+    let customerRequest = $('textarea#customer-request').val()
     let PaymentMethodCode = $('input[name="payment-method"]:checked').val();
+    let appliedVoucherIds = getAppliedCoupons()
+
     let esId = getExtraServicesAdded()
     $.ajax({
         type: "POST",
@@ -364,6 +415,7 @@ function onClickPaymentConfirmation() {
             'customer_request': customerRequest,
             'payment_method_code': PaymentMethodCode,
             'es_ids': esId,
+            'appliedVoucherIds': appliedVoucherIds,
         },
         success: function (data) {
             let emptyDiv = $('.bs-booking-confirm-container')

@@ -49,6 +49,16 @@
 
         <div class="payment-bill-container">
             <div class="payment-bill">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="payment-bill-voucher-code" placeholder="Mã ưu đãi">
+                    </div>
+                    <div class="form-group button">
+                        <button id="voucher-code-submit" onClick="onClickVoucherSubmit()"
+                                class="btn btn-primary voucher-code-submit">Áp dụng
+                        </button>
+                    </div>
+                </div>
                 <div class="price-detail">
                     <div class="price-detail-info">
                         <p>Giá thuê</p>
@@ -67,8 +77,9 @@
                 <div class="footer-section">
                     <div class="title">
                         <h5>Tổng giá</h5>
-                        <h2 id="total-price">{{ final_pay | bs_extra_service_calculate_price }}<span
-                                class="fb-price-currency">₫</span></h2>
+                        <h2><span id="total-price">{{ final_pay | bs_extra_service_calculate_price }}</span><span
+                                class="fb-price-currency">₫</span>
+                        </h2>
                         <p>(Đã bao gồm VAT)</p>
                     </div>
 

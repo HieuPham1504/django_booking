@@ -10,17 +10,23 @@ $(document).ready(function () {
         let dateInput = $('.date-input')
         let bookingCodeInput = $('.booking-code-input')
         let partnerTypeInput = $('.partner-type-input')
+        let partnerTypeIndividualValue = $('.partner-type-individual-value')
+        let partnerTypeAgencyValue = $('.partner-type-agency-value')
         // alert(data);
         filterDate = ['check_in', 'check_out']
         if (filterDate.includes(data)) {
             bookingCodeInput.css('display', 'none')
             partnerTypeInput.css('display', 'none')
+            partnerTypeIndividualValue.css('display', 'none')
+            partnerTypeAgencyValue.css('display', 'none')
             dateInput.fadeIn()
         }
         else if (data == 'booking_code') {
             dateInput.css('display', 'none')
             partnerTypeInput.css('display', 'none')
             bookingCodeInput.fadeIn()
+            partnerTypeIndividualValue.css('display', 'none')
+            partnerTypeAgencyValue.css('display', 'none')
         }
         else if (data == 'partner_type') {
             dateInput.css('display', 'none')
@@ -39,9 +45,13 @@ $(document).ready(function () {
             partnerTypeAgencyValue.css('display', 'none')
             partnerTypeIndividualValue.fadeIn()
         }
-        else {
+        else if ( data == 'agency' ) {
             partnerTypeIndividualValue.css('display', 'none')
             partnerTypeAgencyValue.fadeIn()
+        }
+        else {
+            partnerTypeAgencyValue.css('display', 'none')
+            partnerTypeIndividualValue.css('display', 'none')
         }
     })
 })
