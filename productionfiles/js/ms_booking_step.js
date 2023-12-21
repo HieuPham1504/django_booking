@@ -94,7 +94,6 @@ $(document).ready(function () {
     });
 
     $('#booking-step-submit').click(function (ev) {
-        debugger
         ev.preventDefault()
         let bookingForm = $('#booking-form')
         if (!bookingForm[0].checkValidity()) {
@@ -288,7 +287,6 @@ function getExtraServicesAdded() {
 }
 
 function getAppliedCoupons() {
-    debugger
     let appliedCouponsSelectors = $('.extra-service-added')
     let appliedCouponsIds = ''
     appliedCouponsSelectors.each(function () {
@@ -342,8 +340,22 @@ function onClickPaymentMethod(ev) {
 
 }
 
+function onClickDeleteCoupon(dataset) {
+    let couponId = dataset.couponId
+    let couponDataValue = dataset.couponValue
+    let voucherLine = `.price-detail-info-coupon[data-coupon-id=${couponId}]`
+    let voucherLineDiv = $(voucherLine)
+    voucherLineDiv.remove()
+
+    let totalPriceDisplay = $('span#total-price')
+    let totalPriceInput = $('input#final-pay')
+    let totalPriceValue = parseInt(totalPriceInput.val().split('.')[0])
+    let finalPrice = totalPriceValue + parseInt(couponDataValue)
+    totalPriceDisplay.text(formatCurrency(finalPrice))
+    totalPriceInput.val(finalPrice)
+}
+
 function onClickVoucherSubmit(ev) {
-    debugger
     let voucherCode = $('#payment-bill-voucher-code').val()
     $.ajax({
         type: "GET",
@@ -356,7 +368,7 @@ function onClickVoucherSubmit(ev) {
             let couponData = data.data
             let couponId = couponData.id
 
-            let voucherLine = `.price-detail-info[data-coupon-id=${couponId}]`
+            let voucherLine = `.price-detail-info-coupon`
             let voucherLineDiv = $(voucherLine)
             if (couponData != {} && voucherLineDiv.length == 0) {
                 let totalPriceDisplay = $('span#total-price')
@@ -370,6 +382,7 @@ function onClickVoucherSubmit(ev) {
                     `<div class="price-detail-info price-detail-info-coupon" data-coupon-id="${couponId}">
                         <p>Giá thuê</p>
                         <p>-${number}<span class="fb-price-currency">₫</span>
+                        <i data-coupon-id="${couponId}" data-coupon-value="${couponDataValue}" class="fa-solid fa-trash delete-applied-coupon" onclick="onClickDeleteCoupon(this.dataset)"></i>
                         </p>
                 </div>`
                 priceDetail.append(couponDiv)
