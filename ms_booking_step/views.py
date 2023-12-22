@@ -14,6 +14,7 @@ from ms_property_slider_image.models import MsPropertySliderImage
 from ms_property_condition.models import MsPropertyCondition
 from ms_company.models import MsCompany
 from ms_destination.models import MsDestination
+from ms_coupons.models import MsCoupon
 
 
 @register.filter
@@ -201,6 +202,11 @@ def ms_bs_booking_confirm(request):
             es_ids = datas.get('es_ids').split(',')
             es_ids_list = es_ids[1:] if len(es_ids) > 0 else es_ids
             extra_services = MsServices.objects.filter(id__in=es_ids_list)
+
+            applied_vouchers = datas.get('appliedVoucherIds').split(',')
+            applied_voucher_ids = applied_vouchers[1:] if len(applied_vouchers) > 0 else applied_vouchers
+            appliedVouchers = MsCoupon.objects.filter(id__in=applied_voucher_ids)
+
             current_user = request.user
             new_booking = MsBooking.objects.create(
                 check_in=datetime.strptime(check_in, '%d/%m/%Y'),
@@ -224,6 +230,10 @@ def ms_bs_booking_confirm(request):
             new_booking.save()
             for extra_service in extra_services:
                 new_booking.extra_services_ids.add(extra_service)
+            new_booking.save()
+
+            for applied_voucher in appliedVouchers:
+                new_booking.coupon_ids.add(applied_voucher)
             new_booking.save()
 
             new_account_payment = MsAccountPayment.objects.create(
