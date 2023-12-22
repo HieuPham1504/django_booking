@@ -277,7 +277,7 @@ function onClickExtraServiceStep(ev) {
 }
 
 function getExtraServicesAdded() {
-    let extraServicesAddedSelectors = $('.price-detail-info-coupon')
+    let extraServicesAddedSelectors = $('.extra-service-added')
     let extraServiceIds = ''
     extraServicesAddedSelectors.each(function () {
         let esId = this.dataset.billEsId
@@ -287,7 +287,7 @@ function getExtraServicesAdded() {
 }
 
 function getAppliedCoupons() {
-    let appliedCouponsSelectors = $('.extra-service-added')
+    let appliedCouponsSelectors = $('.price-detail-info-coupon')
     let appliedCouponsIds = ''
     appliedCouponsSelectors.each(function () {
         let couponId = this.dataset.couponId

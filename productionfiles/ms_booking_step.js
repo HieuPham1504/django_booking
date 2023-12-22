@@ -287,6 +287,7 @@ function getExtraServicesAdded() {
 }
 
 function getAppliedCoupons() {
+    debugger
     let appliedCouponsSelectors = $('.extra-service-added')
     let appliedCouponsIds = ''
     appliedCouponsSelectors.each(function () {
