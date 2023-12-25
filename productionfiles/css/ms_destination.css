@@ -75,6 +75,7 @@ img.destination-background {
     width: 30%;
     margin-top: 20px;
     margin: 20px 10px 0 10px;
+    height: 100%;
 }
 
 .MultiCarousel .MultiCarousel-inner .item h5.property-name {
@@ -146,6 +147,7 @@ img.destination-background {
         width: 48%;
         margin-left: 0;
         margin-right: 0;
+        height: 100%;
     }
 
     .discount-container {
