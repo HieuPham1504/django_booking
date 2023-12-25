@@ -91,8 +91,7 @@
                         |
                         <a class="link" href="/signup">Đăng ký</a>
                     </div>
-                {% endif %}
-                {% if user.is_authenticated %}
+                {% elif user.is_authenticated %}
                     <div class="login-icon">
                         <img class="login-icon-img" src="{% static 'images/user_1.png' %}" alt="User">
                         <p class="user-name">{{ user.username }}</p>
@@ -100,6 +99,7 @@
                         <ul class="login-submenu">
                             {% if user|has_group:"TA Manager" or user|has_group:"TA Admin" %}
                                 <li><a href="/partners/?page=1">Quản lý tài khoản</a></li>
+                                <li><a href="/coupons/?page=1">Quản lý mã giảm giá</a></li>
                             {% endif %}
                             <li><a href="/booking">Quản lý đặt phòng</a></li>
                             {% if user.is_staff %}

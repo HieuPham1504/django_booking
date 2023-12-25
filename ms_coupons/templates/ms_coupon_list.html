@@ -1,0 +1,134 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_coupon_list.css' %}">
+    <script src="{% static 'js/ms_coupon_list.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="coupon-button-modal">
+        {% if perms.ms_coupons.add_mscoupon %}
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#createCouponModal" data-whatever="@mdo">
+                Thêm mã giảm giá
+            </button>
+        {% endif %}
+
+        {% if perms.ms_coupons.delete_mscoupon %}
+            <button type="button" class="btn btn-danger deleteCoupon" data-toggle="modal"
+                    data-target="#deleteCouponModal" data-whatever="@mdo">
+                Xóa mã giảm giá
+            </button>
+        {% endif %}
+
+        <div class="modal fade" id="createCouponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalLabel">Thêm mã giảm giá</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="createCouponModalForm" action="/coupons/create" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="coupon-name" class="col-form-label">Tên <span
+                                        class="required">(*)</span></label>
+                                <input type="text" class="form-control" id="coupon-name" name="coupon-name"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="coupon-value" class="col-form-label">Giá trị <span
+                                        class="required">(*)</span></label>
+                                <input type="number" class="form-control" id="coupon-value" name="coupon-value"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date-start" class="col-form-label">Ngày bắt đầu <span
+                                        class="required">(*)</span></label>
+                                <input type="text" class="form-control js_date_picker" id="date-start" name="date-start"
+                                       required readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date-end" class="col-form-label">Ngày kết thúc <span
+                                        class="required">(*)</span></label>
+                                <input type="text" class="form-control js_date_picker" id="date-end" required readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <p class="wrongDateWarning">Ngày bắt đầu không được lớn hơn ngày kết thúc.</p>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary createCouponModalSubmitButton">Thêm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteCouponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalLabel">Xóa mã giảm giá</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xóa mã giảm giá?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-danger deleteCouponModalSubmitButton">Xóa
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="coupon-list">
+        <div class="table-responsive">
+            <table class="coupon-list-table table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"><input type="checkbox" class="coupon-checkbox-all"></th>
+                    <th scope="col">STT</th>
+                    <th scope="col">Mã</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Giá trị</th>
+                    <th scope="col">Ngày bắt đầu</th>
+                    <th scope="col">Ngày kết thúc</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for coupon in coupons %}
+                    <tr class="coupon-detail-row" data-coupon-id="{{ coupon.id }}">
+                        <th><input type="checkbox" class="coupon-checkbox-item" data-coupon-id="{{ coupon.id }}"></th>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ coupon.code }}</td>
+                        <td>{{ coupon.name }}</td>
+                        <td>{{ coupon.value | format_price }} <span class="fb-price-currency">₫</span></td>
+                        <td>{{ coupon.date_start | coupon_date_format }}</td>
+                        <td>{{ coupon.date_end | coupon_date_format }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

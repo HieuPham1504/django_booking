@@ -155,9 +155,11 @@ def ms_booking_list(request):
 def ms_booking_detail(request, booking_id):
     context = {}
     if request.method == 'GET':
+        destinations = MsDestination.objects.all().order_by('priority')
         booking_detail = MsBooking.objects.get(id=booking_id)
         context.update({
-            'booking_detail': booking_detail
+            'booking_detail': booking_detail,
+            'destinations': destinations,
         })
 
     return render(request, 'booking_detail.html', context)

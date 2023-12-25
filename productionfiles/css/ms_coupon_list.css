@@ -1,0 +1,42 @@
+body {
+    height: 100%;
+}
+
+.w-100 {
+    height: 100%;
+}
+
+.coupon-button-modal {
+    padding-top: 200px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.coupon-button-modal > .btn {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+button.deleteCoupon {
+    display: none;
+}
+
+.form-group .required {
+    color: red;
+}
+
+
+
+.coupon-list {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    height: 100%;
+}
+
+.wrongDateWarning {
+    display: none;
+    color: red;
+}
+
+
