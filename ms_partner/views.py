@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from ms_customer_type.models import MsCustomerType
 from ms_customer.models import MsCustomer
+from ms_destination.models import MsDestination
 from django.contrib.auth.models import User
 
 
@@ -27,6 +28,7 @@ def ms_partners(request):
         is_ta_admin = current_user.groups.filter(name='TA Admin')
         is_ta_manager = current_user.groups.filter(name='TA Manager')
         is_ta_officer = current_user.groups.filter(name='TA Officer')
+        destinations = MsDestination.objects.all().order_by('priority')
         is_superuser = current_user.is_superuser
         partner_customer_type = MsCustomerType.objects.get(code='partner')
         if is_superuser or is_ta_admin:
@@ -52,6 +54,7 @@ def ms_partners(request):
             'next_page': next_page,
             'previous_page': previous_page,
             'current_page': current_page,
+            'destinations': destinations,
         })
 
     return render(request, 'ms_partners.html', context)

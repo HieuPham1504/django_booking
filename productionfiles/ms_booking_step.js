@@ -445,6 +445,13 @@ function onClickPaymentConfirmation() {
             bookingConfirmationContainer.css('display', 'flex')
             bookingConfirmationContainer.css('justify-content', 'center')
             setDoneStep(CurrentState)
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest)
+            console.log(textStatus)
+            console.log(errorThrown)
+            reservedBookingWarningFinal = $('.reservedBookingWarningFinal')
+            reservedBookingWarningFinal.fadeIn()
         }
     })
 }

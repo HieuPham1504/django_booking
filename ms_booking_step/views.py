@@ -1,5 +1,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                         HttpResponseForbidden)
 
 from django.shortcuts import render
 from django.template.defaulttags import register
@@ -185,6 +187,15 @@ def ms_bs_booking_confirm(request):
             datas = request.POST
             check_in = datas.get('check_in')
             check_out = datas.get('check_out')
+
+            check_in_date = datetime.strptime(check_in, '%d/%m/%Y').date()
+            check_out_date = datetime.strptime(check_out, '%d/%m/%Y').date()
+
+            reserved_bookings = MsBooking.objects.filter(check_in__lt=check_in_date,check_out__gte=check_in_date) | MsBooking.objects.filter(check_in__gte=check_in_date,check_in__lt=check_out_date)
+            if len(reserved_bookings) > 0:
+                return HttpResponseBadRequest('Booking đã được đặt.'. \
+                                       format(request.method), status=400)
+
             no_adult = int(datas.get('no_guest'))
             customer_name = datas.get('customer_name')
             customer_email = datas.get('customer_email')
@@ -209,8 +220,8 @@ def ms_bs_booking_confirm(request):
 
             current_user = request.user
             new_booking = MsBooking.objects.create(
-                check_in=datetime.strptime(check_in, '%d/%m/%Y'),
-                check_out=datetime.strptime(check_out, '%d/%m/%Y'),
+                check_in=check_in_date,
+                check_out=check_out_date,
                 no_adult=no_adult,
                 customer_name=customer_name,
                 customer_email=customer_email,

@@ -633,6 +633,11 @@
     filter: invert(100%);
 }
 
+.reservedBookingWarningFinal {
+    display: none;
+    color: red;
+}
+
 /* // Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 767.98px) {
     .booking-step-state {

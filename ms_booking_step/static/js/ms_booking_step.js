@@ -395,6 +395,7 @@ function onClickVoucherSubmit(ev) {
 }
 
 function onClickPaymentConfirmation() {
+    debugger
     let pccForm = $('#pcc-form')
     if (!pccForm[0].checkValidity()) {
         pccForm[0].reportValidity()
@@ -445,6 +446,13 @@ function onClickPaymentConfirmation() {
             bookingConfirmationContainer.css('display', 'flex')
             bookingConfirmationContainer.css('justify-content', 'center')
             setDoneStep(CurrentState)
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest)
+            console.log(textStatus)
+            console.log(errorThrown)
+            reservedBookingWarningFinal = $('.reservedBookingWarningFinal')
+            reservedBookingWarningFinal.fadeIn()
         }
     })
 }
