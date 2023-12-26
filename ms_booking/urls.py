@@ -35,4 +35,5 @@ urlpatterns = [
     path("common-question/", include("ms_common_question.urls")),
     path("partners/", include("ms_partner.urls")),
     path("coupons/", include("ms_coupons.urls")),
+    path("api/", include("ms_rest_api.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,6 @@
 from django.db import models
 from ms_company.models import MsCompany
+from ms_country.models import MsCountry
 
 class MsDestination(models.Model):
   name = models.CharField(max_length=100, null=False)
@@ -9,6 +10,7 @@ class MsDestination(models.Model):
 
   company = models.ForeignKey(MsCompany, on_delete=models.SET_NULL, null=True, blank=True)
   priority = models.IntegerField(default=1000)
+  country = models.ForeignKey(MsCountry, on_delete=models.SET_NULL, null=True, blank=True)
 
   def __str__(self):
     return self.name

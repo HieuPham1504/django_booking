@@ -17,7 +17,6 @@ class MsBooking(models.Model):
     customer_email = models.EmailField()
     customer_phone = models.CharField(max_length=20)
     customer_request = models.TextField(blank=True, null=True)
-    destination_id = models.ForeignKey(MsDestination, on_delete=models.CASCADE)
     property_id = models.ForeignKey(MsProperty, on_delete=models.CASCADE)
     total_amount = models.FloatField()
     payment_method = models.ForeignKey(MsPaymentMethod, blank=True, null=True, on_delete=models.SET_NULL)
