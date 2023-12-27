@@ -188,10 +188,13 @@ def ms_bs_booking_confirm(request):
             check_in = datas.get('check_in')
             check_out = datas.get('check_out')
 
+            property_id = int(datas.get('property_id', 0))
+            property = MsProperty.objects.get(id=property_id)
+
             check_in_date = datetime.strptime(check_in, '%d/%m/%Y').date()
             check_out_date = datetime.strptime(check_out, '%d/%m/%Y').date()
 
-            reserved_bookings = MsBooking.objects.filter(check_in__lt=check_in_date,check_out__gte=check_in_date) | MsBooking.objects.filter(check_in__gte=check_in_date,check_in__lt=check_out_date)
+            reserved_bookings = MsBooking.objects.filter(property_id=property,check_in__lt=check_in_date,check_out__gte=check_in_date) | MsBooking.objects.filter(property_id=property,check_in__gte=check_in_date,check_in__lt=check_out_date)
             if len(reserved_bookings) > 0:
                 return HttpResponseBadRequest('Booking đã được đặt.'. \
                                        format(request.method), status=400)
@@ -203,8 +206,6 @@ def ms_bs_booking_confirm(request):
             customer_request = datas.get('customer_request')
             total_amount = float(datas.get('total_amount', 0))
 
-            property_id = int(datas.get('property_id', 0))
-            property = MsProperty.objects.get(id=property_id)
             destination_id = property.destination_id
 
             payment_method_code = datas.get('payment_method_code')
@@ -228,7 +229,6 @@ def ms_bs_booking_confirm(request):
                 customer_phone=customer_phone,
                 customer_request=customer_request,
                 total_amount=total_amount,
-                destination_id=destination_id,
                 property_id=property,
                 payment_method=payment_method,
                 create_date=datetime.now(),

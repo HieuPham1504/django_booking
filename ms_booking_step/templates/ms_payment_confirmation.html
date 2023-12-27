@@ -5,13 +5,13 @@
             {% csrf_token %}
             <h3>Thông tin người đặt</h3>
             <div class="pcc-input fullname">
-                <label for="fullname">Họ tên <span class="required-icon">(*)</span></label>
-                <input type="text" id="fullname" name="fullname" required value="{{ user.mscustomer.name }}">
+                <label for="fullname">Họ tên</label>
+                <input type="text" id="fullname" name="fullname" value="{{ user.mscustomer.name }}">
             </div>
 
             <div class="pcc-input email">
-                <label for="email">Email <span class="required-icon">(*)</span></label>
-                <input type="email" id="email" name="email" required value="{{ user.email }}">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}">
             </div>
 
             <div class="pcc-input phone">

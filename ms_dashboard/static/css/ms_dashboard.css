@@ -8,6 +8,7 @@
     --mapstar--bg-color: #ffe001;
     --mapstar-header-height: 50%;
     --mapstar-header-border-radius: 40px;
+    --bui_color_foreground_disabled: #a2a2a2;
 }
 
 @font-face {
@@ -225,6 +226,20 @@ div#logo {
 .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
     color: black;
     background-color: var(--mapstar--bg-color);
+}
+
+.daterangepicker td.disabled, .daterangepicker option.disabled {
+    color: var(--bui_color_foreground_disabled) !important;
+    text-decoration: none !important;
+}
+
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+    font-size: 14px !important;
+}
+
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+    padding: 0px 8px 0px 8px !important;
+    line-height: 32px !important;
 }
 
 div.parent {

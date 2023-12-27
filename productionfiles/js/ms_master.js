@@ -1,25 +1,141 @@
 $(document).ready(function () {
-    $('.js_date_picker').datepicker({
-        dateFormat: 'dd/mm/yy',
-        useCurrent: false,
-        keepOpen: false,
-        icons: {
-            time: 'fa fa-clock-o',
-            date: 'fa fa-calendar',
-            up: 'fa fa-chevron-up',
-            down: 'fa fa-chevron-down',
-            previous: 'fa fa-chevron-left',
-            next: 'fa fa-chevron-right',
-            today: 'fa fa-calendar-check-o',
-            clear: 'fa fa-trash',
-            close: 'fa fa-check primary',
+    // $('.js_date_picker').daterangepicker({
+    //     dateFormat: 'dd/mm/yy',
+    //     useCurrent: false,
+    //     keepOpen: false,
+    //     icons: {
+    //         time: 'fa fa-clock-o',
+    //         date: 'fa fa-calendar',
+    //         up: 'fa fa-chevron-up',
+    //         down: 'fa fa-chevron-down',
+    //         previous: 'fa fa-chevron-left',
+    //         next: 'fa fa-chevron-right',
+    //         today: 'fa fa-calendar-check-o',
+    //         clear: 'fa fa-trash',
+    //         close: 'fa fa-check primary',
+    //     },
+    //     buttons: {
+    //         showToday: true,
+    //         showClear: false,
+    //         showClose: true,
+    //     },
+    // });
+
+    $('#checkin.js_date_picker').daterangepicker({
+            opens: 'right',
+            language: 'vi',
+            autoUpdateInput: false,
+            startDate: new Date(),
+            minDate: new Date(),
+            function(start, end, label) {
+                debugger
+                $(this).val(start.format("DD/MM/YYYY"));
+            },
+            locale: {
+                "format":
+                    'DD/MM/YYYY',
+                "applyLabel":
+                    "Chọn",
+                "cancelLabel":
+                    "Hủy",
+                "daysOfWeek":
+                    [
+                        "CN",
+                        "T2",
+                        "T3",
+                        "T4",
+                        "T5",
+                        "T6",
+                        "T7"
+                    ],
+                "monthNames":
+                    [
+                        "Tháng 1",
+                        "Tháng 2",
+                        "Tháng 3",
+                        "Tháng 4",
+                        "Tháng 5",
+                        "Tháng 6",
+                        "Tháng 7",
+                        "Tháng 8",
+                        "Tháng 9",
+                        "Tháng 10",
+                        "Tháng 11",
+                        "Tháng 12"
+                    ],
+            }
+            ,
         },
-        buttons: {
-            showToday: true,
-            showClear: false,
-            showClose: true,
+
+        function (start, end, label) {
+            $('.js_date_picker#checkin').val(start.format('DD/MM/YYYY'))
+            $('.js_date_picker#checkout').val(end.format('DD/MM/YYYY'))
+        }
+
+        ,
+        $('#checkin.js_date_picker').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD/MM/YYYY')); // set value for this
+            // anything else you want to do
+        })
+    );
+
+
+    $('#checkout.js_date_picker').daterangepicker({
+            opens: 'left',
+            language: 'vi',
+            autoUpdateInput: false,
+            startDate: new Date(),
+            minDate: new Date(),
+            function(start, end, label) {
+                debugger
+                $(this).val(start.format("DD/MM/YYYY"));
+            },
+            locale: {
+                "format":
+                    'DD/MM/YYYY',
+                "applyLabel":
+                    "Chọn",
+                "cancelLabel":
+                    "Hủy",
+                "daysOfWeek":
+                    [
+                        "CN",
+                        "T2",
+                        "T3",
+                        "T4",
+                        "T5",
+                        "T6",
+                        "T7"
+                    ],
+                "monthNames":
+                    [
+                        "Tháng 1",
+                        "Tháng 2",
+                        "Tháng 3",
+                        "Tháng 4",
+                        "Tháng 5",
+                        "Tháng 6",
+                        "Tháng 7",
+                        "Tháng 8",
+                        "Tháng 9",
+                        "Tháng 10",
+                        "Tháng 11",
+                        "Tháng 12"
+                    ],
+            }
+            ,
         },
-    });
+
+        function (start, end, label) {
+            $('.js_date_picker#checkin').val(start.format('DD/MM/YYYY'))
+            $('.js_date_picker#checkout').val(end.format('DD/MM/YYYY'))
+        },
+        $('#checkout.js_date_picker').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.endDate.format('DD/MM/YYYY')); // set value for this
+            // anything else you want to do
+        })
+    );
+
 
 
     window.addEventListener('click', ({target}) => {
