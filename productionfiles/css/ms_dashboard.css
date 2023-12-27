@@ -228,18 +228,30 @@ div#logo {
     background-color: var(--mapstar--bg-color);
 }
 
+.daterangepicker {
+    font-family: inherit !important;
+}
+
 .daterangepicker td.disabled, .daterangepicker option.disabled {
     color: var(--bui_color_foreground_disabled) !important;
     text-decoration: none !important;
 }
 
 .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
-    font-size: 14px !important;
+    font-size: 15px !important;
 }
 
 .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
     padding: 0px 8px 0px 8px !important;
     line-height: 32px !important;
+}
+
+.daterangepicker .drp-calendar.left {
+    padding: 24px 0 24px 24px !important;
+}
+
+.daterangepicker .drp-calendar.right {
+    padding: 24px 24px 24px 8px !important;
 }
 
 div.parent {
