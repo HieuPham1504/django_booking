@@ -232,6 +232,10 @@ div#logo {
     font-family: inherit !important;
 }
 
+td.off.ends.available {
+    visibility: hidden !important;
+}
+
 .daterangepicker td.disabled, .daterangepicker option.disabled {
     color: var(--bui_color_foreground_disabled) !important;
     text-decoration: none !important;
@@ -252,10 +256,6 @@ div#logo {
 
 .daterangepicker .drp-calendar.right {
     padding: 24px 24px 24px 8px !important;
-}
-
-td.off.ends.available {
-    visibility: hidden !important;
 }
 
 div.parent {
