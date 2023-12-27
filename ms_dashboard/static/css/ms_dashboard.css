@@ -255,7 +255,7 @@ div#logo {
 }
 
 td.off.ends.available {
-    visibility: hidden;
+    visibility: hidden !important;
 }
 
 div.parent {
