@@ -254,6 +254,10 @@ div#logo {
     padding: 24px 24px 24px 8px !important;
 }
 
+td.off.ends.available {
+    visibility: hidden;
+}
+
 div.parent {
     color: #ffffff;
     list-style-type: none;
