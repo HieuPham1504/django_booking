@@ -2,9 +2,10 @@ body {
     height: 100%;
 }
 
-/*.w-100 {*/
-/*    height: 100%;*/
-/*}*/
+.w-100 {
+    height: 100%;
+    width: 100%;
+}
 
 .booking-list {
     padding-top: 160px;
