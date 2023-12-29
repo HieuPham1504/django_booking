@@ -129,9 +129,13 @@ def ms_booking_step(request):
 
 
 def ms_bs_extra_services(request):
+    context = {}
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         if request.method == 'GET':
             datas = request.GET
+            property_id = datas.get('propertyId')
+            Property = MsProperty.objects.get(id=int(property_id))
+
             check_in_str = datas.get('checkIn')
             check_out_str = datas.get('checkOut')
             total_amount = datas.get('totalAmount', '').replace('.', '')
@@ -141,17 +145,15 @@ def ms_bs_extra_services(request):
             check_out_date = datetime.strptime(check_out_str, date_format).date()
             date_diff = (check_out_date - check_in_date).days
 
-            extra_services = MsServices.objects.filter(is_extra=True)
-            context = {
+            extra_services = MsServices.objects.filter(is_extra=True,property_id=Property) | MsServices.objects.filter(is_extra=True,property_id=None)
+            context.update({
                 'total_nights': date_diff,
                 'check_in_str': check_in_str,
                 'check_out_str': check_out_str,
                 'total_amount': total_amount,
                 'extra_services': extra_services,
-            }
+            })
             return render(request, 'ms_bs_extra_services.html', context)
-    context = {
-    }
     return render(request, 'ms_bs_extra_services.html', context)
 
 
@@ -194,10 +196,12 @@ def ms_bs_booking_confirm(request):
             check_in_date = datetime.strptime(check_in, '%d/%m/%Y').date()
             check_out_date = datetime.strptime(check_out, '%d/%m/%Y').date()
 
-            reserved_bookings = MsBooking.objects.filter(property_id=property,check_in__lt=check_in_date,check_out__gte=check_in_date) | MsBooking.objects.filter(property_id=property,check_in__gte=check_in_date,check_in__lt=check_out_date)
+            reserved_bookings = MsBooking.objects.filter(property_id=property, check_in__lt=check_in_date,
+                                                         check_out__gte=check_in_date) | MsBooking.objects.filter(
+                property_id=property, check_in__gte=check_in_date, check_in__lt=check_out_date)
             if len(reserved_bookings) > 0:
                 return HttpResponseBadRequest('Booking đã được đặt.'. \
-                                       format(request.method), status=400)
+                                              format(request.method), status=400)
 
             no_adult = int(datas.get('no_guest'))
             customer_name = datas.get('customer_name')

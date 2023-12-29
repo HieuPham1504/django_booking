@@ -245,6 +245,7 @@ function onClickBackImg() {
 function onClickExtraServiceStep(ev) {
     let checkIn = $('input#check-in').val()
     let checkOut = $('input#check-out').val()
+    let propertyId = $('input#property-id').val()
     let totalAmount = $('p#total-amount').text()
     $.ajax({
         type: "GET",
@@ -252,6 +253,7 @@ function onClickExtraServiceStep(ev) {
         data: {
             checkIn: checkIn,
             checkOut: checkOut,
+            propertyId: propertyId,
             totalAmount: totalAmount,
         },
         success: function (data) {
