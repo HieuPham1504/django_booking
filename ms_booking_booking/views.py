@@ -215,7 +215,6 @@ def ms_booking_confirmation(request):
 @csrf_exempt
 def ms_get_available_reservations(request):
     context = {}
-    template = ''
     data = {
         'is_available': False
     }
