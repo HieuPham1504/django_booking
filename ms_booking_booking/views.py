@@ -3,6 +3,9 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
+from django.template.defaulttags import register
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
 from django.core.paginator import Paginator
 from .models import MsBooking
 from ms_property.models import MsProperty
@@ -13,8 +16,8 @@ from ms_services.models import MsServices
 from ms_customer.models import MsCustomer
 from ms_company.models import MsCompany
 from ms_property_slider_image.models import MsPropertySliderImage
-from django.template.defaulttags import register
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from ms_property_special_price.models import MsPropertySpecialPrice
+
 
 @register.filter
 def extra_service_calculate_price(price, no_days):
@@ -255,9 +258,16 @@ def ms_get_available_reservations(request):
             total_amount = 0
             for index in range(date_diff):
                 date_count = check_in_date + relativedelta(days=index)
-                date_count_weekday = date_count.weekday()
-                date_count_price = property_prices.get(str(date_count_weekday), 0)
+
+                special_price = MsPropertySpecialPrice.objects.filter(property=property_id,start_date__lte=date_count,end_date__gte=date_count,is_active=True)
+                if len(special_price) > 0:
+                    special_price = special_price[0]
+                    date_count_price = special_price.price
+                else:
+                    date_count_weekday = date_count.weekday()
+                    date_count_price = property_prices.get(str(date_count_weekday), 0)
                 total_amount += date_count_price
+
             context.update({
                 'overnight_count': date_diff,
                 'price_per_night': total_amount//date_diff,

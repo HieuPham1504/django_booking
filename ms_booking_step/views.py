@@ -17,6 +17,7 @@ from ms_property_condition.models import MsPropertyCondition
 from ms_company.models import MsCompany
 from ms_destination.models import MsDestination
 from ms_coupons.models import MsCoupon
+from ms_property_special_price.models import MsPropertySpecialPrice
 
 
 @register.filter
@@ -109,8 +110,15 @@ def ms_booking_step(request):
             total_amount = 0
             for index in range(date_diff):
                 date_count = check_in_date + relativedelta(days=index)
-                date_count_weekday = date_count.weekday()
-                date_count_price = property_prices.get(str(date_count_weekday), 0)
+
+                special_price = MsPropertySpecialPrice.objects.filter(property=property_id, start_date__lte=date_count,
+                                                                      end_date__gte=date_count, is_active=True)
+                if len(special_price) > 0:
+                    special_price = special_price[0]
+                    date_count_price = special_price.price
+                else:
+                    date_count_weekday = date_count.weekday()
+                    date_count_price = property_prices.get(str(date_count_weekday), 0)
                 total_amount += date_count_price
             context.update({
                 'property_detail_step': True,

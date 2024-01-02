@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'ms_account_payment',
     'ms_common_question',
     'ms_partner',
+    'ms_property_special_price',
 ]
 
 MIDDLEWARE = [
