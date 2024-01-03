@@ -249,8 +249,8 @@ def ms_bs_booking_confirm(request):
                 state='waiting_confirm',
             )
 
-            if not current_user.is_anonymous or not current_user.is_superuser:
-                new_booking.create_customer = current_user.mscustomer
+            # if not current_user.is_anonymous or not current_user.is_superuser:
+            #     new_booking.create_customer = current_user.mscustomer
             new_booking.save()
             for extra_service in extra_services:
                 new_booking.extra_services_ids.add(extra_service)
