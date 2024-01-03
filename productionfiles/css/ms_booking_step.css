@@ -12,6 +12,10 @@
     --bs-background-color: #5aaa77;
 }
 
+#loading {
+    display: none;
+}
+
 .booking-step-container img {
     width: 100%;
     object-fit: cover;

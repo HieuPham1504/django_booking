@@ -415,6 +415,10 @@ function onClickPaymentConfirmation() {
     let appliedVoucherIds = getAppliedCoupons()
 
     let esId = getExtraServicesAdded()
+    let submitPaymentButton = $('#submit-payment-button')
+    let loadingDiv = $('#loading')
+    submitPaymentButton.replaceWith(loadingDiv)
+    loadingDiv.css('display', 'flex')
     $.ajax({
         type: "POST",
         url: "/booking-step/booking-confirm/",
@@ -447,6 +451,7 @@ function onClickPaymentConfirmation() {
             bookingConfirmationContainer.css('display', 'flex')
             bookingConfirmationContainer.css('justify-content', 'center')
             setDoneStep(CurrentState)
+            loadingDiv.fadeOut()
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log(XMLHttpRequest)
@@ -454,6 +459,7 @@ function onClickPaymentConfirmation() {
             console.log(errorThrown)
             reservedBookingWarningFinal = $('.reservedBookingWarningFinal')
             reservedBookingWarningFinal.fadeIn()
+            loadingDiv.fadeOut()
         }
     })
 }
