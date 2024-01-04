@@ -26,6 +26,9 @@ class MsBooking(models.Model):
     booking_code = models.CharField(unique=True)
     create_date = models.DateTimeField(null=True, blank=True)
     create_customer = models.ForeignKey(MsCustomer, on_delete=models.CASCADE, null=True, blank=True)
+    cancel_reason = models.TextField(null=True, blank=True)
+    cancel_customer = models.ForeignKey(MsCustomer, related_name='mscustomer_cancelcustomer', on_delete=models.SET_NULL, null=True, blank=True)
+    confirm_customer = models.ForeignKey(MsCustomer, related_name='mscustomer_confirmcustomer', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.customer_name

@@ -5,6 +5,8 @@ from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
 from django.template.defaulttags import register
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.db.models import Q
+from django.core.mail import send_mail
 
 from django.core.paginator import Paginator
 from .models import MsBooking
@@ -93,6 +95,7 @@ def ms_booking_list(request):
         partner_type = datas.get('partner-type', '')
         partner_type_individual_value = datas.get('partner-type-individual-value', 0)
         partner_type_agency_value = datas.get('partner-type-agency-value', 0)
+        property_input_value = int(datas.get('property-input-value', 0))
 
         filter_type = datas.get('filter-type', 'check_in')
 
@@ -131,12 +134,18 @@ def ms_booking_list(request):
                 agency = MsCompany.objects.get(id=partner_type_agency_value)
                 agency_customers = MsCustomer.objects.filter(company=agency)
                 bookings = bookings.filter(create_customer__in=agency_customers)
+        elif filter_type == 'property':
+            Property = MsProperty.objects.filter(id=property_input_value)
+            Property = Property[0] if len(Property) > 0 else Property
+            bookings = bookings.filter(property_id=Property)
 
         current_page = int(datas.get('page', 1))
         pages = Paginator(bookings, 20)
         max_page = pages.num_pages
         next_page = current_page + 1 if current_page < max_page else current_page
         previous_page = current_page - 1 if current_page > 1 else current_page
+
+        properties = MsProperty.objects.all()
 
         context.update({
             'date_start': date_start if date_start else '',
@@ -145,8 +154,10 @@ def ms_booking_list(request):
             'filter_type': filter_type,
             'agency_partners': agency_partners,
             'individual_partners': individual_partners,
+            'property_input_value': property_input_value,
             'bookings': bookings,
             'destinations': destinations,
+            'properties': properties,
             'num_pages': max_page,
             'page_range': pages.page_range,
             'next_page': next_page,
@@ -342,3 +353,44 @@ def confirm_booking(request):
         })
 
     return render(request, 'booking_confirmed.html', context)
+
+@csrf_exempt
+def cancel_booking(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.method == 'POST':
+            datas = request.POST
+            cancel_reason = datas.get('cancelReason')
+            booking_ids = datas.get('row_ids', '')
+            booking_list = booking_ids.split(',')
+            booking_list = booking_list[1:] if len(booking_list) > 0 else booking_list
+            Bookings = MsBooking.objects.filter(~Q(state='cancel'), id__in=booking_list)
+            for booking in Bookings:
+                booking.cancel_reason = cancel_reason
+                booking.cancel_customer = request.user.mscustomer
+                booking.state = 'cancel'
+                booking.save()
+                subject = f"Mapstar: Hủy Đặt phòng."
+                email_message = f"""Xin chào {booking.customer_name}.\nLịch đặt phòng mã {booking.booking_code} đã bị Hủy.Link xem chi tiết lịch đặt phòng: https://demo.mapstar.vn/booking/{booking.id}"""
+                send_mail(subject, email_message, 'Mapstar <mapstar@gmail.com>', [booking.customer_email],
+                          fail_silently=False)
+            return JsonResponse({'bookings': booking_list})
+
+@csrf_exempt
+def done_booking(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.method == 'POST':
+            datas = request.POST
+            booking_ids = datas.get('row_ids', '')
+            booking_list = booking_ids.split(',')
+            booking_list = booking_list[1:] if len(booking_list) > 0 else booking_list
+            Bookings = MsBooking.objects.filter(~Q(state='done'), id__in=booking_list)
+            for booking in Bookings:
+                booking.state = 'done'
+                booking.confirm_customer = request.user.mscustomer
+                booking.save()
+                subject = f"Mapstar: Xác nhận Đặt phòng."
+                email_message = f"""Xin chào {booking.customer_name}.\nLịch đặt phòng mã {booking.booking_code} đã được Xác nhận.Link xem chi tiết lịch đặt phòng: https://demo.mapstar.vn/booking/{booking.id}"""
+                send_mail(subject, email_message, 'Mapstar <mapstar@gmail.com>', [booking.customer_email], fail_silently=False)
+            return JsonResponse({'bookings': booking_list})
+
+

@@ -38,9 +38,9 @@ $(document).ready(function () {
 
     $('.deleteCouponModalSubmitButton').click(function (ev) {
         let checkedCheckboxes =  Array.from($('input.coupon-checkbox-item:checked'));
-        let checkedRowIds = []
+        let checkedRowIds = ''
         checkedCheckboxes.forEach((input) => {
-            checkedRowIds.push(input.dataset.couponId);
+            checkedRowIds = checkedRowIds.concat(',', input.dataset.couponId);
         });
         $.ajax({
             type: "POST",
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     function displayDeleteButton() {
         let checkedCheckboxes = $('input.coupon-checkbox-item:checked').length;
-        deleteCuponBtn = $('button.deleteCoupon')
+        let deleteCuponBtn = $('button.deleteCoupon')
         if (checkedCheckboxes > 0) {
             deleteCuponBtn.fadeIn()
         } else {
@@ -72,7 +72,7 @@ $(document).ready(function () {
 
     $('.coupon-checkbox-all').click(function (ev) {
         isChecked = this.checked
-        couponCheckboxItems = $('.coupon-checkbox-item')
+        let couponCheckboxItems = $('.coupon-checkbox-item')
         if (isChecked) {
             couponCheckboxItems.prop('checked', true);
             displayDeleteButton()
@@ -86,7 +86,7 @@ $(document).ready(function () {
     $('.coupon-checkbox-item').click(function (ev) {
         isChecked = this.checked
         if (!isChecked) {
-            couponCheckboxAll = $('.coupon-checkbox-all')
+            let couponCheckboxAll = $('.coupon-checkbox-all')
             couponCheckboxAll.prop('checked', false);
             displayDeleteButton()
         } else {

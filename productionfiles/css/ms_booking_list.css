@@ -21,6 +21,10 @@ body {
     margin-bottom: 40px;
 }
 
+.required {
+    color: red;
+}
+
 #booking-form-filters .form-group {
     flex-direction: column;
     align-items: flex-start;
@@ -29,6 +33,10 @@ body {
 
 #booking-form-filters .form-group input {
     background-color: #FFFFFF;
+}
+
+.booking-button-modal {
+    margin-bottom: 40px;
 }
 
 .booking-list-table td.booking-state {

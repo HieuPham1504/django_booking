@@ -246,7 +246,7 @@ def ms_bs_booking_confirm(request):
                 property_id=property,
                 payment_method=payment_method,
                 create_date=datetime.now(),
-                state='waiting_confirm',
+                state='done',
             )
 
             if not current_user.is_anonymous and not current_user.is_superuser:

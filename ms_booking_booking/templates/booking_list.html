@@ -19,26 +19,37 @@
                         <option value="check_out" selected="selected">Ngày trả phòng</option>
                         <option value="booking_code">Mã đặt phòng</option>
                         <option value="partner_type">Đối tác</option>
+                        <option value="property">Biệt thự</option>
                     {% elif filter_type == 'check_in' %}
                         <option value="check_in" selected="selected">Ngày nhận phòng</option>
                         <option value="check_out">Trả phòng</option>
                         <option value="booking_code">Mã đặt phòng</option>
                         <option value="partner_type">Đối tác</option>
+                        <option value="property">Biệt thự</option>
                     {% elif filter_type == 'booking_code' %}
                         <option value="check_in">Ngày nhận phòng</option>
                         <option value="check_out">Trả phòng</option>
                         <option value="booking_code" selected="selected">Mã đặt phòng</option>
                         <option value="partner_type">Đối tác</option>
+                        <option value="property">Biệt thự</option>
                     {% elif filter_type == 'partner_type' %}
                         <option value="check_in">Ngày nhận phòng</option>
                         <option value="check_out">Trả phòng</option>
                         <option value="booking_code">Mã đặt phòng</option>
                         <option value="partner_type" selected="selected">Đối tác</option>
+                        <option value="property">Biệt thự</option>
+                    {% elif filter_type == 'property' %}
+                        <option value="check_in">Ngày nhận phòng</option>
+                        <option value="check_out">Trả phòng</option>
+                        <option value="booking_code">Mã đặt phòng</option>
+                        <option value="partner_type">Đối tác</option>
+                        <option value="property" selected="selected">Biệt thự</option>
                     {% else %}
                         <option value="check_in" selected="selected">Ngày nhận phòng</option>
                         <option value="check_out">Trả phòng</option>
                         <option value="booking_code">Mã đặt phòng</option>
                         <option value="partner_type">Đối tác</option>
+                        <option value="property">Biệt thự</option>
                     {% endif %}
                 </select>
             </div>
@@ -89,6 +100,34 @@
                             <option value="individual">Cá nhân</option>
                             <option value="agency">Agency</option>
                         {% endif %}
+                    </select>
+                </div>
+            {% endif %}
+
+            {% if filter_type == 'property' %}
+                <div class="form-group filter-booking property-input">
+                    <label for="property-input-value">Biệt thự</label>
+                    <select class="form-control" id="property-input-value" name="property-input-value">
+                        {% for property in properties %}
+                            {% if property_input_value == property.id %}
+                                <option value="{{ property.id }}" selected="selected">{{ property.name }}</option>
+                            {% else %}
+                                <option value="{{ property.id }}">{{ property.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            {% else %}
+                <div class="form-group filter-booking property-input" style="display: none">
+                    <label for="property-input-value">Biệt thự</label>
+                    <select class="form-control" id="property-input-value" name="property-input-value">
+                        {% for property in properties %}
+                            {% if property_input_value == property.id %}
+                                <option value="{{ property.id }}" selected="selected">{{ property.name }}</option>
+                            {% else %}
+                                <option value="{{ property.id }}">{{ property.name }}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
                 </div>
             {% endif %}
@@ -147,10 +186,166 @@
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </form>
 
+        <div class="booking-button-modal">
+            {% if perms.ms_booking_booking.add_msbooking %}
+                <button type="button" class="btn btn-primary buttonCreateBooking" data-toggle="modal"
+                        data-target="#createBookingModal" data-whatever="@mdo">
+                    Thêm Booking
+                </button>
+            {% endif %}
+
+            {% if perms.ms_booking_booking.change_msbooking %}
+                <button type="button" class="btn btn-primary buttonConfirmBooking" data-toggle="modal"
+                        style="display: none"
+                        data-target="#confirmBookingModal" data-whatever="@mdo">
+                    Xác nhận Booking
+                </button>
+                <button type="button" class="btn btn-secondary buttonCancelBooking" data-toggle="modal"
+                        style="display: none"
+                        data-target="#cancelBookingModal" data-whatever="@mdo">
+                    Hủy Booking
+                </button>
+            {% endif %}
+
+            <div class="modal fade" id="cancelBookingModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordModalLabel">Hủy Booking</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="cancel-reason" class="col-form-label">Lý do hủy <span
+                                        class="required">(*)</span></label>
+                                <textarea class="form-control" id="cancel-reason" name="cancel-reason"
+                                          required> </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-danger cancelBookingModalSubmitButton">Hủy
+                            </button>
+                            <div class="spinner-border text-primary cancelBookingLoading" style="display: none"
+                                 role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="createBookingModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordModalLabel">Thêm Booking</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="customer-name" class="col-form-label">Tên khách</label>
+                                <input type="text" class="form-control" id="customer-name" name="customer-name"
+                                       required> </input>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone" class="col-form-label">Số điện thoại <span
+                                        class="required">(*)</span></label>
+                                <input type="text" class="form-control" id="customer-phone" name="customer-phone"
+                                       required> </input>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email" class="col-form-label">Email</label>
+                                <input type="email" class="form-control" id="customer-email" name="customer-email"
+                                       required> </input>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col">
+                                    <label for="checkin" class="col-form-label">Checkin <span
+                                            class="required">(*)</span></label>
+                                    <input type="text" class="form-control js_date_picker" id="checkin" name="checkin"
+                                           required> </input>
+                                </div>
+                                <div class="col">
+                                    <label for="checkout" class="col-form-label">Checkout <span
+                                            class="required">(*)</span></label>
+                                    <input type="text" class="form-control js_date_picker" id="checkout" name="checkout"
+                                           required> </input>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-property">Biệt thự <span
+                                        class="required">(*)</span></label>
+                                <select class="form-control" id="booking-property" name="booking-property" required>
+                                    {% for property in properties %}
+                                        <option value="{{ property.id }}">{{ property.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="total-amount" class="col-form-label">Giá <span
+                                        class="required">(*)</span></label>
+                                <input type="text" class="form-control" id="total-amount" name="total-amount"
+                                       required> </input>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary createBookingModalSubmitButton">Thêm
+                            </button>
+                            <div class="spinner-border text-primary createBookingLoading" style="display: none"
+                                 role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="confirmBookingModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordModalLabel">Xác nhận Booking</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p>Bạn có chắc chắn muốn Xác nhận Booking?</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary confirmBookingModalSubmitButton">Xác nhận
+                            </button>
+                            <div class="spinner-border text-primary confirmBookingLoading" style="display: none"
+                                 role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="table-responsive">
             <table class="booking-list-table table table-hover">
                 <thead>
                 <tr>
+                    <th scope="col"><input type="checkbox" class="booking-checkbox-all"></th>
                     <th scope="col">STT</th>
                     <th scope="col">Mã số đặt phòng</th>
                     <th scope="col">Tên khách</th>
@@ -166,7 +361,9 @@
                 <tbody>
                 {% for booking in bookings %}
                     <tr class="booking-detail-row" data-booking-id="{{ booking.id }}">
-                        <th scope="row">{{ forloop.counter }}</th>
+                        <th><input type="checkbox" class="booking-checkbox-item" data-booking-id="{{ booking.id }}">
+                        </th>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ booking.booking_code }}</td>
                         <td>{{ booking.customer_name }}</td>
                         <td>{{ booking.check_in | booking_date_format }}</td>
