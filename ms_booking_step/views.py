@@ -2,6 +2,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseForbidden)
+from django.core.mail import send_mail
 
 from django.shortcuts import render
 from django.template.defaulttags import register
@@ -17,6 +18,7 @@ from ms_property_condition.models import MsPropertyCondition
 from ms_company.models import MsCompany
 from ms_destination.models import MsDestination
 from ms_coupons.models import MsCoupon
+from ms_property_special_price.models import MsPropertySpecialPrice
 
 
 @register.filter
@@ -109,8 +111,15 @@ def ms_booking_step(request):
             total_amount = 0
             for index in range(date_diff):
                 date_count = check_in_date + relativedelta(days=index)
-                date_count_weekday = date_count.weekday()
-                date_count_price = property_prices.get(str(date_count_weekday), 0)
+
+                special_price = MsPropertySpecialPrice.objects.filter(property=property_id, start_date__lte=date_count,
+                                                                      end_date__gte=date_count, is_active=True)
+                if len(special_price) > 0:
+                    special_price = special_price[0]
+                    date_count_price = special_price.price
+                else:
+                    date_count_weekday = date_count.weekday()
+                    date_count_price = property_prices.get(str(date_count_weekday), 0)
                 total_amount += date_count_price
             context.update({
                 'property_detail_step': True,
@@ -145,7 +154,8 @@ def ms_bs_extra_services(request):
             check_out_date = datetime.strptime(check_out_str, date_format).date()
             date_diff = (check_out_date - check_in_date).days
 
-            extra_services = MsServices.objects.filter(is_extra=True,property_id=Property) | MsServices.objects.filter(is_extra=True,property_id=None)
+            extra_services = MsServices.objects.filter(is_extra=True, property_id=Property) | MsServices.objects.filter(
+                is_extra=True, property_id=None)
             context.update({
                 'total_nights': date_diff,
                 'check_in_str': check_in_str,
@@ -236,12 +246,11 @@ def ms_bs_booking_confirm(request):
                 property_id=property,
                 payment_method=payment_method,
                 create_date=datetime.now(),
-                state='waiting_confirm',
+                state='done',
             )
 
-            create_customer = current_user.mscustomer if not current_user.is_anonymous else False
-            if create_customer:
-                new_booking.create_customer = create_customer
+            if not current_user.is_anonymous and not current_user.is_superuser:
+                new_booking.create_customer = current_user.mscustomer
             new_booking.save()
             for extra_service in extra_services:
                 new_booking.extra_services_ids.add(extra_service)
@@ -270,6 +279,11 @@ def ms_bs_booking_confirm(request):
                 'admin_company_info': admin_company_info,
                 'new_account_payment': new_account_payment,
             }
+
+            subject = f"Mapstar: Đặt phòng thành công."
+            email_message = f"""Xin chào {customer_name}.\n.\nĐây là thông tin đặt phòng của bạn:\nNgười đặt: {customer_name}\nMã đặt phòng: {new_booking.booking_code}\nLink xem chi tiết lịch đặt phòng: https://demo.mapstar.vn/booking/{new_booking.id}"""
+            send_mail(subject, email_message, 'Mapstar <mapstar@gmail.com>', [customer_email], fail_silently=False)
+
             return render(request, 'ms_bs_booking_confirm.html', context)
 
     return render(request, 'ms_bs_booking_confirm.html', context)

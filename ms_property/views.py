@@ -2,7 +2,7 @@ import datetime
 from dateutil.relativedelta import relativedelta
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_protect
 from ms_booking_booking.models import MsBooking
 from ms_property_condition.models import MsPropertyCondition
@@ -10,6 +10,7 @@ from ms_destination.models import MsDestination
 from ms_property.models import MsProperty
 from ms_property_slider_image.models import MsPropertySliderImage
 from ms_services.models import MsServices
+from ms_property_special_price.models import MsPropertySpecialPrice
 
 
 # Create your views here.
@@ -81,4 +82,45 @@ def ms_property_detail(request, property_id):
                     'property_conditions': property_conditions,
                 })
     return render(request, 'ms_property_detail.html', context)
+
+def ms_property_get_total_amount(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.method == 'GET':
+            datas = request.GET
+            check_in = datas.get('checkin')
+            check_out = datas.get('checkout')
+            property_id = datas.get('propertyId')
+
+            if not check_in or not check_out or not property_id:
+                return JsonResponse({"total_amount": 0}, status=200)
+
+            date_format = '%d/%m/%Y'
+            check_in_date = datetime.datetime.strptime(check_in, date_format).date()
+            check_out_date = datetime.datetime.strptime(check_out, date_format).date()
+
+            Property = MsProperty.objects.get(id=property_id)
+            property_prices = {
+                '0': Property.property_price_monday,
+                '1': Property.property_price_tuesday,
+                '2': Property.property_price_wednesday,
+                '3': Property.property_price_thursday,
+                '4': Property.property_price_friday,
+                '5': Property.property_price_saturday,
+                '6': Property.property_price_sunday,
+            }
+            date_diff = (check_out_date - check_in_date).days
+            total_amount = 0
+            for index in range(date_diff):
+                date_count = check_in_date + relativedelta(days=index)
+
+                special_price = MsPropertySpecialPrice.objects.filter(property=property_id, start_date__lte=date_count,
+                                                                      end_date__gte=date_count, is_active=True)
+                if len(special_price) > 0:
+                    special_price = special_price[0]
+                    date_count_price = special_price.price
+                else:
+                    date_count_weekday = date_count.weekday()
+                    date_count_price = property_prices.get(str(date_count_weekday), 0)
+                total_amount += date_count_price
+            return JsonResponse({"total_amount": total_amount}, status=200)
 
