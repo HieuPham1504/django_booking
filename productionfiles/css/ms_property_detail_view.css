@@ -1,0 +1,110 @@
+.property-detail-container {
+    padding-top: var(--navbar-height);
+}
+
+.bs-banner {
+    position: relative;
+}
+
+.bs-banner img {
+    height: 300px;
+}
+
+.destination-title {
+    position: absolute;
+    bottom: 20px;
+    left: var(--margin-rl-width);
+}
+
+.destination-title > p {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.property-detail-container-detail {
+    background-color: #ecf4f6;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.property-description {
+    margin: 0px var(--margin-rl-width) 40px var(--margin-rl-width);
+}
+
+.property-address, .property-title{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.property-title h2 {
+    text-align: start;
+}
+
+.property-title .title-left {
+    width: 60%;
+}
+
+.property-title .title-right {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+a.locationModal {
+    color: #5aaa77;
+}
+
+.buttonPropertyBooking {
+    background-color: #5aaa77;
+    color: #FFFFFF;
+}
+
+.property-room-detail {
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.property-room-detail .prd-left {
+    width: 60%;
+}
+
+.property-room-detail .prd-right {
+    width: 40%;
+}
+
+.prd-right .item {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    margin-top: 0;
+}
+
+.prd-right .item .icon {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.prd-right .item .detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prd-right .item .detail p {
+    margin: 0;
+}
+
+.prd-right .icon.person {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.prd-right .icon > img {
+    width: auto;
+}

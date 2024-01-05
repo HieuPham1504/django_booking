@@ -23,6 +23,7 @@ class MsProperty(models.Model):
   total_size = models.FloatField(blank=True, null=True)
   rest_room_number = models.IntegerField(blank=True, null=True)
   bedroom_number = models.IntegerField(blank=True, null=True)
+  location_iframe = models.TextField(blank=True, null=True)
 
   def __str__(self):
     return self.name

@@ -1,0 +1,135 @@
+{% extends 'ms_master.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_property_detail_view.css' %}">
+    <script src="{% static 'js/ms_property_detail_view.js' %}"></script>
+
+{% endblock %}
+
+{% block body %}
+    <div class="property-detail-container">
+        <div class="bs-banner">
+            {% if destination_detail.destination_background_page %}
+                <img src="{{ destination_detail.destination_background_page.url }}" style="width:100%">
+            {% else %}
+                <img src="{% static 'images/banner-2.jpg' %}" style="width:100%">
+            {% endif %}
+            <div class="destination-title">
+                <p>{{ destination_detail.name | upper }}</p>
+            </div>
+        </div>
+
+        <div class="property-detail-container-detail">
+            <div class="property-description">
+                <div class="row property-title">
+                    <div class="title-left">
+                        <h2>{{ property.name }}</h2>
+                        <div class="row property-address">
+                            <div>
+                                <img src="{% static 'images/location_icon.png' %}" alt="Location">
+                            </div>
+                            <p> {{ property.address }}</p>
+                            <span> - </span>
+                            <a type="button" class="locationModal" data-toggle="modal"
+                               data-target="#locationModal">
+                                Hiển thị vị trí trên bản đồ
+                            </a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="locationModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content" style="width: 600px;height: 450px">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">{{ property.name }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <iframe src="{{ property.location_iframe }}"
+                                                    width="100%" height="100%" style="border:0;" allowfullscreen=""
+                                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="title-right">
+                        <button type="button" class="btn buttonPropertyBooking" data-toggle="modal"
+                                data-target="#deleteCouponModal" data-whatever="@mdo">
+                            ĐẶT NGAY
+                        </button>
+                    </div>
+                </div>
+
+                <div class="property-room-detail">
+                    <div class="prd-left">
+                        <p>{{ property.description | linebreaks }}</p>
+                    </div>
+                    <div class="prd-right">
+                        <div class="hi hi-left">
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="{% static 'images/green_square_icon.png' %}" alt="Square Icon">
+                                </div>
+                                <div class="detail">
+                                    <p>{{ property.total_size }} <span>&#13217;</span></p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="{% static 'images/green_bath_icon.png' %}" alt="Bath Icon">
+                                </div>
+                                <div class="detail">
+                                    <p>{{ property.rest_room_number }} <span>WC</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hi hi_right">
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="{% static 'images/green_bed_icon.png' %}" alt="Bath Icon">
+                                </div>
+                                <div class="detail">
+                                    <p>{{ property.rest_room_number }} <span>PN</span></p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="icon person">
+                                    <img id="green-person-icon-head"
+                                         src="{% static 'images/green_person_icon_head.png' %}"
+                                         alt="Bath Icon">
+                                    <img src="{% static 'images/green_person_icon_body.png' %}"
+                                         alt="Bath Icon">
+                                </div>
+                                <div class="detail">
+                                    <p>Tối đa {{ property.max_adults }} khách</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-benefits">
+                    <div class="pb-left">
+
+                    </div>
+                    <div class="pb-right">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

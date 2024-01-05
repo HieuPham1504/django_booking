@@ -9,5 +9,5 @@ $(document).ready(function () {
 function onClickBooking(dataset) {
     propertyId = !dataset.propertyId == true ? 0 : parseInt(dataset.propertyId)
     destinationId = !dataset.destinationId == true ? 0 : parseInt(dataset.destinationId)
-    window.location.href = `/booking-step?destination-id=${destinationId}&property-id=${propertyId}`
+    window.location.href = `/property/${propertyId}/view`
 }

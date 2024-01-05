@@ -14,6 +14,20 @@ from ms_property_special_price.models import MsPropertySpecialPrice
 
 
 # Create your views here.
+def ms_property_detail_view(request, property_id):
+    context = {}
+    if request.method == 'GET':
+        Property = MsProperty.objects.get(id=property_id)
+        destination_detail = Property.destination_id
+
+        destinations = MsDestination.objects.all().order_by('priority')
+        context.update({
+            'property': Property,
+            'destinations': destinations,
+            'destination_detail': destination_detail,
+        })
+    return render(request, 'ms_property_detail_view.html', context)
+
 @csrf_protect
 def ms_property_detail(request, property_id):
     context = {}
