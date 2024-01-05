@@ -1,6 +1,8 @@
 import datetime
 from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                         HttpResponseForbidden)
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
 from django.template.defaulttags import register
@@ -19,6 +21,8 @@ from ms_customer.models import MsCustomer
 from ms_company.models import MsCompany
 from ms_property_slider_image.models import MsPropertySliderImage
 from ms_property_special_price.models import MsPropertySpecialPrice
+from ms_booking_source.models import MsBookingSource
+from ms_payment_method.models import MsPaymentMethod
 
 
 @register.filter
@@ -146,6 +150,8 @@ def ms_booking_list(request):
         previous_page = current_page - 1 if current_page > 1 else current_page
 
         properties = MsProperty.objects.all()
+        booking_sources = MsBookingSource.objects.filter(is_active=True)
+        payment_methods = MsPaymentMethod.objects.filter(is_active=True)
 
         context.update({
             'date_start': date_start if date_start else '',
@@ -157,6 +163,8 @@ def ms_booking_list(request):
             'property_input_value': property_input_value,
             'bookings': bookings,
             'destinations': destinations,
+            'booking_sources': booking_sources,
+            'payment_methods': payment_methods,
             'properties': properties,
             'num_pages': max_page,
             'page_range': pages.page_range,
@@ -393,4 +401,62 @@ def done_booking(request):
                 send_mail(subject, email_message, 'Mapstar <mapstar@gmail.com>', [booking.customer_email], fail_silently=False)
             return JsonResponse({'bookings': booking_list})
 
+@csrf_exempt
+def create_booking(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.method == 'POST':
+            datas = request.POST
+            customer_name = datas.get('customerName')
+            customer_phone = datas.get('customerPhone')
+            customer_email = datas.get('customerEmail')
 
+            checkin = datas.get('checkin')
+            checkout = datas.get('checkout')
+
+            checkin_date = datetime.datetime.strptime(checkin, '%d/%m/%Y')
+            checkout_date = datetime.datetime.strptime(checkout, '%d/%m/%Y')
+
+            property_id = datas.get('propertyId')
+            Property = MsProperty.objects.get(id=property_id)
+
+            reserved_bookings = MsBooking.objects.filter(property_id=Property, check_in__lt=checkin_date,
+                                                         check_out__gte=checkin_date) | MsBooking.objects.filter(
+                property_id=Property, check_in__gte=checkin_date, check_in__lt=checkout_date)
+            if len(reserved_bookings) > 0:
+                return HttpResponseBadRequest('Booking đã được đặt.'. \
+                                              format(request.method), status=400)
+
+            booking_source_id = datas.get('bookingSourceId')
+            bookingSource = MsBookingSource.objects.get(id=booking_source_id)
+
+            total_amount = datas.get('totalAmount')
+            no_guest = datas.get('noGuest')
+
+            payment_method_id = datas.get('paymentMethodId')
+            paymentMethod = MsPaymentMethod.objects.get(id=payment_method_id)
+
+            new_booking = MsBooking.objects.create(
+                check_in=checkin_date,
+                check_out=checkout_date,
+                no_adult=no_guest,
+                customer_name=customer_name,
+                customer_email=customer_email,
+                customer_phone=customer_phone,
+                total_amount=total_amount,
+                property_id=Property,
+                payment_method=paymentMethod,
+                create_date=datetime.datetime.now(),
+                booking_source=bookingSource,
+                state='done',
+            )
+            new_booking.save()
+            if not request.user.is_anonymous and not request.user.is_superuser:
+                new_booking.create_customer = request.user.mscustomer
+            new_booking.save()
+            if not customer_email:
+                return JsonResponse({'booking': new_booking.id})
+            else:
+                subject = f"Mapstar: Đặt phòng thành công."
+                email_message = f"""Xin chào {customer_name}.\n.\nĐây là thông tin đặt phòng của bạn:\nNgười đặt: {customer_name}\nMã đặt phòng: {new_booking.booking_code}\nLink xem chi tiết lịch đặt phòng: https://demo.mapstar.vn/booking/{new_booking.id}"""
+                send_mail(subject, email_message, 'Mapstar <mapstar@gmail.com>', [customer_email], fail_silently=False)
+                return JsonResponse({'booking': new_booking.id})

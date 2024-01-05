@@ -6,6 +6,7 @@ from ms_coupons.models import MsCoupon
 from ms_customer.models import MsCustomer
 from ms_services.models import MsServices
 from ms_payment_method.models import MsPaymentMethod
+from ms_booking_source.models import MsBookingSource
 
 
 class MsBooking(models.Model):
@@ -29,6 +30,7 @@ class MsBooking(models.Model):
     cancel_reason = models.TextField(null=True, blank=True)
     cancel_customer = models.ForeignKey(MsCustomer, related_name='mscustomer_cancelcustomer', on_delete=models.SET_NULL, null=True, blank=True)
     confirm_customer = models.ForeignKey(MsCustomer, related_name='mscustomer_confirmcustomer', on_delete=models.SET_NULL, null=True, blank=True)
+    booking_source = models.ForeignKey(MsBookingSource, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.customer_name

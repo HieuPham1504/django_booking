@@ -338,6 +338,55 @@ $(document).ready(function () {
         })
     })
 
+    $('.createBookingModalSubmitButton').click(function (ev) {
+        debugger
+        let customerName = $('#customer-name').val()
+        let customerPhone = $('#customer-phone').val()
+        let customerEmail = $('#customer-email').val()
+        let checkin = $('#checkin').val()
+        let checkout = $('#checkout').val()
+        let propertyId = $('#booking-property').val()
+        let bookingSourceId = $('#booking-source').val()
+        let noGuest = $('#no-guest').val()
+        let paymentMethodId = $('#payment-method').val()
+
+        let totalAmount = parseInt($('#total-amount').val().replaceAll('.', ''))
+        let createBookingModalSubmitButton = $('.createBookingModalSubmitButton')
+        let createBookingLoading = $('.createBookingLoading')
+        createBookingLoading.fadeIn()
+        createBookingModalSubmitButton.css('display', 'none')
+        $.ajax({
+            type: "POST",
+            url: "/booking/create/",
+            data: {
+                'customerName': customerName,
+                'customerPhone': customerPhone,
+                'customerEmail': customerEmail,
+                'checkin': checkin,
+                'checkout': checkout,
+                'noGuest': noGuest,
+                'propertyId': propertyId,
+                'bookingSourceId': bookingSourceId,
+                'paymentMethodId': paymentMethodId,
+                'totalAmount': totalAmount,
+            },
+            success: function (data) {
+                window.location.href = "/booking"
+                createBookingLoading.css('display', 'none')
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                createBookingLoading.css('display', 'none')
+                createBookingModalSubmitButton.fadeIn()
+                createBookingWarning = $('.createBookingWarning')
+                createBookingWarning.text(XMLHttpRequest.responseText)
+                createBookingWarning.fadeIn()
+                console.log(XMLHttpRequest)
+                console.log(textStatus)
+                console.log(errorThrown)
+            }
+        })
+    })
+
     $('.confirmBookingModalSubmitButton').click(function (ev) {
         let checkedCheckboxes = Array.from($('input.booking-checkbox-item:checked'));
         let checkedRowIds = ''

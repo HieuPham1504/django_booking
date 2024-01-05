@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'ms_partner',
     'ms_rest_api',
     'ms_property_special_price',
+    'ms_booking_source',
 ]
 
 MIDDLEWARE = [
