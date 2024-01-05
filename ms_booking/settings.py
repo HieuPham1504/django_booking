@@ -31,6 +31,7 @@ CSRF_TRUSTED_ORIGINS = ["https://demo.mapstar.vn"]
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,6 +68,7 @@ INSTALLED_APPS = [
     'ms_account_payment',
     'ms_common_question',
     'ms_partner',
+    'ms_rest_api',
 ]
 
 MIDDLEWARE = [
