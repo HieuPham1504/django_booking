@@ -391,6 +391,12 @@
     justify-content: end;
 }
 
+.payment-button #button-back-step2 {
+    width: 30%;
+    margin-right: 10px;
+    border-radius: 8px;
+}
+
 .payment-button > #payment-button {
     width: 30%;
     height: 40px;

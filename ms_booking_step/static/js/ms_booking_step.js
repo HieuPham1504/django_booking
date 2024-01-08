@@ -298,6 +298,36 @@ function getAppliedCoupons() {
     return appliedCouponsIds
 }
 
+function onClickBackStep2(ev) {
+    let propertyId = $('input#property-id').val()
+    if (!propertyId) {
+        return
+    }
+    let checkIn = $('#check-in').val()
+    let checkOut = $('#check-out').val()
+    let noGuest = $('#no-guest').val() == '' ? 0 : parseInt($('#no-guest').val())
+    $.ajax({
+        type: "POST",
+        url: "/booking/available_reservations/",
+        data: {
+            property_id: propertyId,
+            check_in: checkIn,
+            check_out: checkOut,
+            no_guest: noGuest,
+        },
+        success: function (datas) {
+            mainData = datas.data
+            if (mainData.is_available) {
+                window.location.href = `/booking-step?property-detail-step&property-id=${propertyId}&check_in=${checkIn}&check_out=${checkOut}&no_guest=${noGuest}`
+            } else {
+                let reservedBookingWarning = $('#reserved-booking-warning')
+                reservedBookingWarning.fadeIn()
+
+            }
+        }
+    })
+}
+
 function onClickPaymentButton(ev) {
     let totalAmount = $('input#total-amount').val().replaceAll('.', '')
     let totalNights = $('input#total-nights').val()
