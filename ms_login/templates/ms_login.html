@@ -2,42 +2,45 @@
 {% load static %}
 
 {% block header %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/ms_login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ms_login.css' %}">
 
 {% endblock %}
 
 
 {% block body %}
-<div class="container-login">
+    <div class="container-login">
 
-    <div class="main">
-        <p class="sign" align="center">Đăng nhập</p>
-        <form class="loginform" action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div class="form-group px-5">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Tài khoản" aria-label="Username"
-                    required>
-            </div>
-            <div class="form-group px-5">
-                <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu"
-                   aria-label="Password"
-                   required>
-            </div>
-            {% if wrong_account %}
-            <p class="authenticate_warning" align="center">Tên đăng nhập hoặc mật khẩu không đúng.</p>
-            {% endif %}
-            <div class="signin-button">
-                <input class="submit" type="submit" value="Đăng nhập"/>
-            </div>
+        <div class="main">
+            <p class="sign" align="center">ĐĂNG NHẬP</p>
+            <form class="loginform" action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="form-group px-5">
+                    <label for="username">Tên đăng nhập</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Tài khoản"
+                           aria-label="Username"
+                           required>
+                </div>
+                <div class="form-group px-5">
+                    <label for="password">Mật khẩu</label>
+                    <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu"
+                           aria-label="Password"
+                           required>
+                </div>
+                <p class="forgot px-5" align="center"><a href="/identify">Quên mật khẩu?</a></p>
+                {% if wrong_account %}
+                    <p class="authenticate_warning" align="center">Tên đăng nhập hoặc mật khẩu không đúng.</p>
+                {% endif %}
+                <div class="signin-button px-5">
+                    <input class="submit" type="submit" value="ĐĂNG NHẬP"/>
+                </div>
 
-            <div class="identify_buttons">
-                <p class="forgot" align="center"><a href="/signup">Đăng ký</a></p>
-                <!--            <p class="forgot">|</p>-->
-                <p class="forgot" align="center"><a href="/identify">Quên mật khẩu?</a></p>
-            </div>
-        </form>
+                <div class="identify_buttons">
+{#                    <p class="forgot" align="center"><a href="/signup">Đăng ký</a></p>#}
+                    <!--            <p class="forgot">|</p>-->
+                </div>
+            </form>
 
+        </div>
     </div>
-</div>
 {% endblock %}

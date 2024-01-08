@@ -1,40 +1,64 @@
 .container-login {
-    padding-top: var(--navbar-height);
+    padding-top: 160px;
     min-height: 80vh;
+    background-image: url(../images/login_background.jpg);
+    padding-bottom: 35px;
 }
 
 .main {
-    background-color: #FFFFFF;
+    position: relative;
+    background-color: transparent;
     width: 400px;
-    height: 450px;
-    margin: 35px auto;
+    height: 360px;
+    margin: 35px auto 0 auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    border: 1px solid #768d92;
 }
 
 .identify_main {
-    background-color: #FFFFFF;
+    position: relative;
+    background-color: transparent;
     width: 400px;
-    height: 344px;
+    height: 300px;
     margin: 7em auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.2);
+    border: 1px solid #768d92;;
 }
-.identify_main .identify_form .identify_buttons p{
+
+.identify_main label {
+    color: white;
+}
+
+.identify_main input:not(.submit) {
+    background-color: #74887f;
+    color: white;
+    border: none;
+}
+
+.identify_main .submit {
+    border-radius: 0.5rem;
+    width: 30%;
+}
+
+.identify_main .identify_form .identify_buttons p {
     margin-bottom: 0;
 }
 
 .sign_up_main {
-    background-color: #FFFFFF;
-    width: 400px;
-    min-height: 540px;
+    position: relative;
+    background-color: transparent;
+    width: 800px;
+    min-height: 200px;
     margin: 20px auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    border: 1px solid #768d92;
 }
 
 .identify_buttons {
-    margin: 50px;
+    margin-top: 50px;
 }
 
 .verify_notice {
@@ -56,7 +80,7 @@
 
 .cancel {
     cursor: pointer;
-    border-radius: 5em;
+    border-radius: 0.5rem;
     color: black;
     background-color: #FF5722;
     border: 0;
@@ -70,11 +94,20 @@
 }
 
 .sign {
-    padding-top: 40px;
     color: #0b2e36;
     font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 23px;
+    position: absolute;
+    top: -18px;
+    margin-left: 2rem;
+    background-color: transparent;
+    background-image: url(../images/login_background.jpg);
+    z-index: 10;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    letter-spacing: 2px;
 }
 
 .un {
@@ -99,6 +132,38 @@
 
 form.loginform {
     padding-top: 40px;
+}
+
+.loginform input:not(.submit), .form1 input:not(.submit), .form1 select {
+    background-color: #74887f;
+    color: white;
+    border: none;
+}
+
+.loginform label {
+    color: white;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #9ca8a2;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #9ca8a2;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #9ca8a2;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #9ca8a2;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #9ca8a2;
+}
+
+::placeholder { /* Most modern browsers support this now. */
+   color:    #9ca8a2;
 }
 
 .identify_form {
@@ -147,23 +212,30 @@ form.loginform {
 }
 
 .submit {
+    width: 100%;
     cursor: pointer;
-    border-radius: 5em;
-    color: #fff;
-    background-color: rgb(11 46 54);
+    border-radius: 0.25rem;
+    color: #000000;
+    background-color: #ffe001;
     border: 0;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 10px;
     padding-top: 10px;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 500;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
-.forgot {
-    padding-top: 15px;
+.sign_up_main .submit {
+    margin-top: 29px;
 }
+
+.forgot {
+    text-align: end;
+}
+
 
 .forgot:hover {
     text-decoration: underline;
@@ -171,12 +243,16 @@ form.loginform {
 
 .forgot a {
     text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-    color: #000000;
+    color: #a69d17;
     text-decoration: none
 }
 
+.form1 label {
+    color: white;
+}
+
 @media (max-width: 600px) {
-    .main {
-        border-radius: 0px;
-    }
+    /*.main {*/
+    /*    border-radius: 0px;*/
+    /*}*/
 }
