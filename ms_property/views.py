@@ -1,6 +1,6 @@
 import datetime
 from dateutil.relativedelta import relativedelta
-
+from django.template.defaulttags import register
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_protect
@@ -13,6 +13,17 @@ from ms_services.models import MsServices
 from ms_property_special_price.models import MsPropertySpecialPrice
 
 
+@register.simple_tag
+def property_images_filter(property_images, no_page):
+    start = no_page
+    end = no_page + 4
+    end = len(property_images) + 1 if end > len(property_images) + 1 else end
+    property_images = property_images[start:end]
+    result = []
+    for image in property_images:
+        result.append(image)
+    return result
+
 # Create your views here.
 def ms_property_detail_view(request, property_id):
     context = {}
@@ -20,11 +31,16 @@ def ms_property_detail_view(request, property_id):
         Property = MsProperty.objects.get(id=property_id)
         destination_detail = Property.destination_id
 
+        property_slider_images = MsPropertySliderImage.objects.filter(property_id=Property)
+        slider_image_pages = len(property_slider_images)//4 + 1
+
         destinations = MsDestination.objects.all().order_by('priority')
         context.update({
             'property': Property,
             'destinations': destinations,
             'destination_detail': destination_detail,
+            'property_slider_images': property_slider_images,
+            'property_slider_images_range': range(slider_image_pages),
         })
     return render(request, 'ms_property_detail_view.html', context)
 

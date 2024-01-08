@@ -12,7 +12,7 @@ from django.template.defaulttags import register
 def get_page_number(total_coupons, no_item):
     total_coupons_length = len(total_coupons)
     number_page = total_coupons_length // no_item if total_coupons_length % no_item == 0 else (
-                                                                                                          total_coupons_length // no_item) + 1
+                                                                                                      total_coupons_length // no_item) + 1
     return number_page
 
 
@@ -20,7 +20,7 @@ def get_page_number(total_coupons, no_item):
 def split_coupons(total_coupons, no_item):
     total_coupons_length = len(total_coupons)
     number_page = total_coupons_length // no_item if total_coupons_length % no_item == 0 else (
-                                                                                                          total_coupons_length // no_item) + 1
+                                                                                                      total_coupons_length // no_item) + 1
     datas = []
     index = 0
     for page in range(number_page):

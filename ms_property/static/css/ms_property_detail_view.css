@@ -32,7 +32,7 @@
     margin: 0px var(--margin-rl-width) 40px var(--margin-rl-width);
 }
 
-.property-address, .property-title{
+.property-address, .property-title {
     margin-left: 0;
     margin-right: 0;
 }
@@ -109,6 +109,11 @@ a.locationModal {
     width: auto;
 }
 
+.property-benefits-title {
+    margin-top: 40px;
+    text-align: start;
+}
+
 .property-benefits {
     display: flex;
 }
@@ -119,5 +124,81 @@ a.locationModal {
 
 .property-benefits .pb-right {
     width: 50%;
+    padding-left: 20px;
+}
+
+.carousel-item img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+    display: flex;
+}
+
+@media only screen and (max-width: 767.98px) {
+    .property-detail-container {
+        padding-top: 40px;
+    }
+
+    .destination-title {
+        left: 20px;
+    }
+
+    .property-description {
+        margin: 0px 20px 40px 20px;
+    }
+
+    .property-title.row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .property-title .title-left {
+        width: 100%;
+    }
+
+    .property-title .title-right {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .property-room-detail {
+        flex-direction: column;
+    }
+
+    .property-room-detail .prd-left {
+        width: 100%;
+    }
+
+    .property-room-detail .prd-right {
+        width: 100%;
+    }
+
+    .prd-right .item {
+        justify-content: center;
+    }
+
+    .property-benefits {
+        flex-direction: column;
+    }
+
+    .property-benefits .pb-left {
+        width: 100%;
+    }
+
+    .property-benefits .pb-right {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .col-md-3 {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
 }
 
