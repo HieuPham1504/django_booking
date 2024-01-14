@@ -28,12 +28,12 @@
                     <div class="title-left">
                         <h2>{{ property.name }}</h2>
                         <div class="row property-address">
-                            <div>
+                            <div class="padding-right">
                                 <img src="{% static 'images/location_icon.png' %}" alt="Location">
                             </div>
-                            <p> {{ property.address }}</p>
+                            <p class="padding-right"> {{ property.address }}</p>
                             <span> - </span>
-                            <a type="button" class="locationModal" data-toggle="modal"
+                            <a type="button" class="locationModal padding-left" data-toggle="modal"
                                data-target="#locationModal">
                                 Hiển thị vị trí trên bản đồ
                             </a>

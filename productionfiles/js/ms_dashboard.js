@@ -108,7 +108,6 @@ $(document).ready(function () {
     });
 
     $('input.submit').click(function (ev) {
-        debugger
         ev.preventDefault()
         let bookingForm = $('.booking-form')
         if (!bookingForm[0].checkValidity()) {

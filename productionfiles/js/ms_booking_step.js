@@ -442,6 +442,11 @@ function onClickPaymentConfirmation() {
     let phone = $('input#phone').val()
     let customerRequest = $('textarea#customer-request').val()
     let PaymentMethodCode = $('input[name="payment-method"]:checked').val();
+    if (!PaymentMethodCode) {
+        reservedBookingWarningPaymentMethod = $('.reservedBookingWarningPaymentMethod')
+        reservedBookingWarningPaymentMethod.fadeIn()
+        return
+    }
     let appliedVoucherIds = getAppliedCoupons()
 
     let esId = getExtraServicesAdded()

@@ -199,7 +199,10 @@ def ms_bs_booking_confirm(request):
             datas = request.POST
             check_in = datas.get('check_in')
             check_out = datas.get('check_out')
-
+            payment_method_code = datas.get('payment_method_code')
+            if not payment_method_code:
+                return HttpResponseBadRequest('Vui lòng chọn phương thức thanh toán.'. \
+                                              format(request.method), status=400)
             property_id = int(datas.get('property_id', 0))
             property = MsProperty.objects.get(id=property_id)
 
@@ -220,9 +223,6 @@ def ms_bs_booking_confirm(request):
             customer_request = datas.get('customer_request')
             total_amount = float(datas.get('total_amount', 0))
 
-            destination_id = property.destination_id
-
-            payment_method_code = datas.get('payment_method_code')
             payment_method = MsPaymentMethod.objects.get(code=payment_method_code)
 
             es_ids = datas.get('es_ids').split(',')

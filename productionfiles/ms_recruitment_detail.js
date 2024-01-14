@@ -38,7 +38,6 @@ $(document).ready(function () {
     });
 
     $('input#modal-submit-button').click(async function (ev) {
-        debugger
         ev.preventDefault()
         let applicantForm = $('#applicant-modal-form')
         if (!applicantForm[0].checkValidity()) {

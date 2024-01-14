@@ -46,6 +46,14 @@
     width: 60%;
 }
 
+.padding-left {
+    padding-left: 9px;
+}
+
+.padding-right {
+    padding-right: 9px;
+}
+
 .property-title .title-right {
     width: 40%;
     display: flex;

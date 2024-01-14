@@ -28,7 +28,6 @@ $(document).ready(function () {
             startDate: new Date(),
             minDate: new Date(),
             function(start, end, label) {
-                debugger
                 $(this).val(start.format("DD/MM/YYYY"));
             },
             locale: {
@@ -40,13 +39,13 @@ $(document).ready(function () {
                     "Hủy",
                 "daysOfWeek":
                     [
+                        "CN",
                         "T2",
                         "T3",
                         "T4",
                         "T5",
                         "T6",
-                        "T7",
-                        "CN",
+                        "T7"
                     ],
                 "monthNames":
                     [
@@ -87,7 +86,6 @@ $(document).ready(function () {
             startDate: new Date(),
             minDate: new Date(),
             function(start, end, label) {
-                debugger
                 $(this).val(start.format("DD/MM/YYYY"));
             },
             locale: {

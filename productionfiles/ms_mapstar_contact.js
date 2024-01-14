@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('input.form-submit').click(function (ev) {
-        debugger
         ev.preventDefault()
         let contactForm = $('#contact-form')
         if (!contactForm[0].checkValidity()) {

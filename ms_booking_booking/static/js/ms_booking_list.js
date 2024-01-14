@@ -6,7 +6,6 @@ $(document).ready(function () {
             startDate: new Date(),
             minDate: new Date(),
             function(start, end, label) {
-                debugger
                 $(this).val(start.format("DD/MM/YYYY"));
             },
             locale: {
@@ -64,7 +63,6 @@ $(document).ready(function () {
             startDate: new Date(),
             minDate: new Date(),
             function(start, end, label) {
-                debugger
                 $(this).val(start.format("DD/MM/YYYY"));
             },
             locale: {
@@ -278,7 +276,6 @@ $(document).ready(function () {
     );
 
     $('#booking-property').change(function (ev) {
-        debugger
         currentTarget = ev.currentTarget
         let propertyId = parseInt(currentTarget.value)
         $.ajax({
@@ -297,7 +294,6 @@ $(document).ready(function () {
     })
 
     $('#total-amount').keyup(function (ev) {
-        debugger
         currentTarget = ev.currentTarget
         let currentAmount = currentTarget.value
         let finalAmount = formatCurrency(currentAmount.replaceAll('.', ''))
@@ -339,7 +335,6 @@ $(document).ready(function () {
     })
 
     $('.createBookingModalSubmitButton').click(function (ev) {
-        debugger
         let customerName = $('#customer-name').val()
         let customerPhone = $('#customer-phone').val()
         let customerEmail = $('#customer-email').val()
@@ -507,7 +502,6 @@ $(document).ready(function () {
     });
 
     $('#partner-type').change(function () {
-        debugger
         let data = $(this).val();
         let partnerTypeIndividualValue = $('.partner-type-individual-value')
         let partnerTypeAgencyValue = $('.partner-type-agency-value')

@@ -28,7 +28,6 @@ $(document).ready(function () {
             startDate: new Date(),
             minDate: new Date(),
             function(start, end, label) {
-                debugger
                 $(this).val(start.format("DD/MM/YYYY"));
             },
             locale: {
@@ -87,7 +86,6 @@ $(document).ready(function () {
             startDate: new Date(),
             minDate: new Date(),
             function(start, end, label) {
-                debugger
                 $(this).val(start.format("DD/MM/YYYY"));
             },
             locale: {

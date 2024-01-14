@@ -643,6 +643,11 @@
     filter: invert(100%);
 }
 
+.reservedBookingWarningPaymentMethod {
+    display: none;
+    color: red;
+}
+
 .reservedBookingWarningFinal {
     display: none;
     color: red;
@@ -691,12 +696,16 @@
         align-items: center;
     }
 
-    .bs-services .special-services {
-        width: 100%;
+    .bs-services .other-services {
+        padding: 0;
+    }
+
+    .bs-services .special-services, .bs-services .other-services, .bs-services .cancel-conditional {
+        width: 80%;
     }
 
     .bs-services p {
-        text-align: center;
+        text-align: start;
     }
 
     .next-step-button {
@@ -733,7 +742,7 @@
     }
 
     .payment-methods .pm-item {
-        justify-content: center;
+        justify-content: start;
     }
 
     .pcc-input > input {
