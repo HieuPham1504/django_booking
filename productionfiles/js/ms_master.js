@@ -1,5 +1,15 @@
 $(document).ready(function () {
-    // $('.js_date_picker').daterangepicker({
+    // $(function () {
+    //     let isMobile = (window.matchMedia("(max-width: 767px)").matches) ? true : false;
+    //     $('input.js_date_picker').daterangepicker({
+    //         opens: 'left',
+    //         singleDatePicker: isMobile,
+    //     }, function (start, end, label) {
+    //         console.log("Mobile date range picker");
+    //     });
+    // });
+
+    // $('.js_date_picker_mobile').datepicker({
     //     dateFormat: 'dd/mm/yy',
     //     useCurrent: false,
     //     keepOpen: false,
@@ -21,12 +31,15 @@ $(document).ready(function () {
     //     },
     // });
 
+    let isMobile = (window.matchMedia("(max-width: 767px)").matches) ? true : false;
+
     $('#checkin.js_date_picker').daterangepicker({
             opens: 'right',
             language: 'vi',
             autoUpdateInput: false,
             startDate: new Date(),
             minDate: new Date(),
+            singleDatePicker: isMobile,
             function(start, end, label) {
                 $(this).val(start.format("DD/MM/YYYY"));
             },
@@ -67,8 +80,12 @@ $(document).ready(function () {
         },
 
         function (start, end, label) {
-            $('.js_date_picker#checkin').val(start.format('DD/MM/YYYY'))
-            $('.js_date_picker#checkout').val(end.format('DD/MM/YYYY'))
+            if (isMobile) {
+                $('.js_date_picker#checkin').val(start.format('DD/MM/YYYY'))
+            } else {
+                $('.js_date_picker#checkin').val(start.format('DD/MM/YYYY'))
+                $('.js_date_picker#checkout').val(end.format('DD/MM/YYYY'))
+            }
         }
 
         ,
@@ -85,6 +102,7 @@ $(document).ready(function () {
             autoUpdateInput: false,
             startDate: new Date(),
             minDate: new Date(),
+            singleDatePicker: isMobile,
             function(start, end, label) {
                 $(this).val(start.format("DD/MM/YYYY"));
             },
@@ -125,15 +143,18 @@ $(document).ready(function () {
         },
 
         function (start, end, label) {
-            $('.js_date_picker#checkin').val(start.format('DD/MM/YYYY'))
-            $('.js_date_picker#checkout').val(end.format('DD/MM/YYYY'))
+            if (isMobile) {
+                $('.js_date_picker#checkout').val(end.format('DD/MM/YYYY'))
+            } else {
+                $('.js_date_picker#checkin').val(start.format('DD/MM/YYYY'))
+                $('.js_date_picker#checkout').val(end.format('DD/MM/YYYY'))
+            }
         },
         $('#checkout.js_date_picker').on('apply.daterangepicker', function (ev, picker) {
             $(this).val(picker.endDate.format('DD/MM/YYYY')); // set value for this
             // anything else you want to do
         })
     );
-
 
 
     window.addEventListener('click', ({target}) => {
